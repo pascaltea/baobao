@@ -114,6 +114,17 @@ data/histoires.json     histoires courtes et questions
 docs/idees.md           roadmap et idées
 ```
 
+## Vérifier la lisibilité
+
+`outils/audit-contraste.mjs` mesure le contraste de chaque texte visible (norme WCAG AA)
+sur toutes les pages, en mode clair, en mode sombre et en thème enfant :
+
+```bash
+python3 -m http.server 8000 &
+npm install playwright   # une seule fois
+node outils/audit-contraste.mjs http://localhost:8000/
+```
+
 ## Ajouter du vocabulaire
 
 1. Créer ou compléter un fichier dans `data/vocabulaire/` :
