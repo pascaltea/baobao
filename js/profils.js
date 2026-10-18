@@ -237,3 +237,24 @@ export function importerDonnees(texte) {
   ecrireEtat(etat);
   return etat.profils.length;
 }
+
+// ---------- Réinitialisation ----------
+
+// Repart de zéro pour le profil actif : on garde le prénom, l'avatar, le type
+// de profil et l'objectif, tout le reste (mots, leçons, XP, badges…) est effacé.
+export function reinitialiserProfilActif() {
+  modifierActif((p) => {
+    const { id, nom, avatar, mode, objectif } = p;
+    for (const cle of Object.keys(p)) delete p[cle];
+    Object.assign(p, normaliser({ id, nom, avatar, mode, objectif }));
+  });
+}
+
+// Efface toute l'appli sur cet appareil : profils, progression et préférences.
+export function effacerTout() {
+  try {
+    for (const cle of Object.keys(localStorage)) if (cle.startsWith(CLE)) localStorage.removeItem(cle);
+  } catch {
+    // stockage indisponible : rien à effacer
+  }
+}

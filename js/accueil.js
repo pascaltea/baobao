@@ -7,7 +7,7 @@ import { chargerParcours, chargerRoutines, etatsLecons } from "./parcours.js";
 import {
   listerProfils, ajouterProfil, choisirProfil, supprimerProfil, profilActif, changerMode, changerObjectif,
   statistiques, leconsTerminees, motsARevoir, motsConnus, phrasesDitesAujourdhui, marquerPhraseDite, aujourdhui,
-  motsDeLaSemaine, exporterDonnees, importerDonnees,
+  motsDeLaSemaine, exporterDonnees, importerDonnees, reinitialiserProfilActif, effacerTout,
 } from "./profils.js";
 import { rubyHTML } from "./pinyin.js";
 import { mascotte } from "./mascotte.js";
@@ -426,6 +426,29 @@ $("exporter").addEventListener("click", () => {
   setTimeout(() => URL.revokeObjectURL(lien.href), 1000);
   $("sauvegarde-info").textContent = "✅ Fichier enregistré dans tes téléchargements.";
 });
+// ---------- Réinitialisation ----------
+
+$("reinit-profil").addEventListener("click", () => {
+  const p = profilActif();
+  if (!confirm(`Recommencer à zéro pour ${p.nom} ? Mots appris, leçons, XP, série et badges seront effacés. Le profil est conservé.`)) return;
+  reinitialiserProfilActif();
+  afficherAccueil("apprendre");
+});
+
+$("supprimer-profil").addEventListener("click", () => {
+  const p = profilActif();
+  if (!confirm(`Supprimer le profil ${p.nom} et toute sa progression ?`)) return;
+  supprimerProfil(p.id);
+  listerProfils().length ? afficherAccueil("apprendre") : afficherProfils();
+});
+
+$("effacer-tout").addEventListener("click", () => {
+  if (!confirm("Tout effacer sur cet appareil ? Tous les profils, la progression et les réglages seront supprimés.")) return;
+  if (!confirm("Vraiment tout effacer ? Cette action est définitive (sauf si tu as une sauvegarde).")) return;
+  effacerTout();
+  location.href = location.pathname; // repart du premier lancement
+});
+
 const demanderImport = () => $("fichier-import").click();
 $("importer").addEventListener("click", demanderImport);
 $("restaurer-accueil").addEventListener("click", demanderImport);

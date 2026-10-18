@@ -1423,6 +1423,11 @@ header h1 { font-size: 1.3rem; }
   :root[data-sombre="auto"][data-theme="adulte"] :is(.pastille, .bouton-entete, main h2, .titre-etape, .filtre:not(.actif), .bouton.secondaire, .choix button, .paires button, .morceau, .salut .bulle, .bulle, .infobulle, .quete-verre, .onglets) { background: var(--carte); }
 }
 
+/* Réinitialisation */
+.zone-danger { background: #fff; }
+.zone-danger h3 { color: var(--corail); }
+.bouton.danger { color: var(--corail); box-shadow: 0 5px 0 rgba(242, 92, 84, 0.35); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
