@@ -6,6 +6,7 @@
 import { chargerJSON, chargerTousLesMots, prononcer, melanger, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { profilActif, enregistrerReponse, motsConnus } from "./profils.js";
 import { gagnerXP, evenement } from "./gamification.js";
+import { visuel } from "./visuel.js";
 
 const DATA = "../data/vocabulaire/";
 const NB_QUESTIONS = 10;
@@ -75,7 +76,7 @@ function afficherQuestion() {
     prononcer(mot.hanzi);
   } else {
     q.innerHTML = `<p class="consigne">Comment dit-on en chinois…</p><div class="grand-emoji"></div><p class="fr" style="font-size:1.4rem"></p>`;
-    q.querySelector(".grand-emoji").textContent = mot.emoji || "";
+    q.querySelector(".grand-emoji").innerHTML = visuel(mot);
     q.querySelector(".fr").textContent = mot.fr;
   }
 
@@ -108,7 +109,7 @@ function repondre(option, bouton) {
   }
   if (!juste) bouton.classList.add("faux");
   $("retour").innerHTML = `<span class="${juste ? "ok" : "ko"}">${juste ? "Bravo ! 👏" : "Pas tout à fait…"}</span><br>`;
-  $("retour").append(`${mot.emoji || ""} ${mot.hanzi} ${mot.pinyin} = ${mot.fr}`);
+  $("retour").insertAdjacentHTML("beforeend", `${visuel(mot)} ${mot.hanzi} ${mot.pinyin} = ${mot.fr}`);
   prononcer(mot.hanzi);
   $("score").textContent = `Question ${numero + 1} / ${questions.length} · ⭐ ${points}`;
   $("suivant").textContent = numero + 1 < questions.length ? "Suivant →" : "Voir mon score";

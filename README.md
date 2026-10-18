@@ -41,6 +41,7 @@ parents chinois disent à leurs enfants.
   bon pinyin (tons), paires, et **remettre la phrase dans l'ordre**
 - 🧠 **Répétition espacée** et révision du jour
 - 📒 **Mes mots** : lexique avec recherche et jauge de mémoire pour chaque mot
+- 👨‍👩‍👧 **Illustrations** de la famille et des pronoms : grand frère / petit frère, papy côté papa / côté maman… se distinguent d'un coup d'œil (taille par rapport à « toi », badge du parent)
 
 ### Rester motivé, sans pression
 - 🐼 **Bao**, le panda mascotte : il salue, parle pendant les exercices d'écoute,
@@ -106,6 +107,8 @@ js/
   micro.js              « Je répète » : enregistrement et comparaison
   gamification.js       niveaux, quêtes du jour, coffre, badges, notifications
   mascotte.js           Bao le panda (SVG animé, plusieurs expressions)
+  visuel.js             image d'un mot : illustration si elle existe, sinon emoji
+assets/illustrations/   illustrations de la famille et des pronoms (générées)
 data/vocabulaire/       le contenu, un fichier JSON par thème
 data/tons.json          séries de mots pour l'exercice des tons
 data/quotidien.json     routines et phrases du quotidien
@@ -134,6 +137,8 @@ node outils/audit-contraste.mjs http://localhost:8000/
    ```
 
    `astuce` est facultative. L'`id` doit être unique dans toute l'appli.
+   Un champ `"image": "assets/illustrations/…svg"` remplace l'emoji à l'affichage
+   (les illustrations de la famille se régénèrent avec `node outils/illustrations.mjs`).
 
 2. Pour un nouveau thème, l'ajouter dans `data/vocabulaire/index.json` :
    il devient automatiquement une nouvelle unité du parcours.

@@ -11,6 +11,7 @@ import {
 } from "./profils.js";
 import { rubyHTML } from "./pinyin.js";
 import { mascotte } from "./mascotte.js";
+import { visuel } from "./visuel.js";
 import { NIVEAUX, BADGES, niveauPour, quetesDuJour, ouvrirCoffre, evenement, verifierBadges } from "./gamification.js";
 
 const $ = (id) => document.getElementById(id);
@@ -478,7 +479,7 @@ function afficherProfil() {
   for (const m of semaine.slice(0, 40)) {
     const puce = document.createElement("button");
     puce.className = "puce-mot";
-    puce.innerHTML = `${m.emoji} ${rubyHTML(m.hanzi, m.pinyin)}`;
+    puce.innerHTML = `${visuel(m)} ${rubyHTML(m.hanzi, m.pinyin)}`;
     puce.title = m.fr;
     puce.addEventListener("click", () => prononcer(m.hanzi));
     zone.appendChild(puce);

@@ -21,6 +21,7 @@ import { mascotte } from "./mascotte.js";
 import { rubyHTML, variantesTon } from "./pinyin.js";
 import { sonJuste, sonFaux, sonVictoire } from "./sons.js";
 import { boutonsMicro } from "./micro.js";
+import { visuel, cleVisuel } from "./visuel.js";
 
 const $ = (id) => document.getElementById(id);
 const alea = (liste) => liste[Math.floor(Math.random() * liste.length)];
@@ -65,17 +66,18 @@ const motsSession = new Map();
 
 // Mauvaises réponses : de préférence du même thème, toutes différentes.
 function leurres(mot, nb, champ) {
-  const deja = new Set([mot[champ]]);
+  const val = (m) => (champ === "emoji" ? cleVisuel(m) : m[champ]);
+  const deja = new Set([val(mot)]);
   const resultat = [];
   // Une phrase a pour leurres d'autres phrases, un mot d'autres mots.
   const pool = tousLesMots.filter((m) => !!m.phrase === !!mot.phrase);
   const candidats = [...melanger(pool.filter((m) => m.theme === mot.theme)), ...melanger(pool)];
   for (const m of candidats) {
     if (resultat.length >= nb) break;
-    if (!m[champ] || deja.has(m[champ])) continue;
+    if (!val(m) || deja.has(val(m))) continue;
     // Évite les choix ambigus comme « bonjour » / « bonjour (le matin) ».
     if (champ === "fr" && (m.fr.includes(mot.fr) || mot.fr.includes(m.fr))) continue;
-    deja.add(m[champ]);
+    deja.add(val(m));
     resultat.push(m);
   }
   return resultat;
@@ -92,7 +94,7 @@ function exercice(type, mot) {
     case "ecoute-image":
       return { type, mot, bonne: mot.id, audio: true,
         consigne: "Écoute et touche la bonne image",
-        options: options(mot, "emoji", (m) => m.emoji, "choix-emoji") };
+        options: options(mot, "emoji", (m) => visuel(m), "choix-emoji") };
     case "hanzi-fr":
       return { type, mot, bonne: mot.id, audio: true,
         consigne: "Que veut dire ce mot ?",
@@ -101,7 +103,7 @@ function exercice(type, mot) {
     case "image-hanzi":
       return { type, mot, bonne: mot.id, audio: enfant,
         consigne: enfant ? "Touche le bon caractère" : `Comment dit-on « ${mot.fr} » ?`,
-        question: `<div class="q-emoji">${mot.emoji}</div>${enfant ? "" : `<div class="q-fr">${mot.fr}</div>`}`,
+        question: `<div class="q-emoji">${visuel(mot)}</div>${enfant ? "" : `<div class="q-fr">${mot.fr}</div>`}`,
         options: options(mot, "hanzi", (m) => m.hanzi, "choix-hanzi") };
     case "ecoute-hanzi":
       return { type, mot, bonne: mot.id, audio: true,
@@ -112,7 +114,7 @@ function exercice(type, mot) {
       if (variantes.length < 2) return exercice("image-hanzi", mot);
       return { type, mot, bonne: mot.pinyin, audio: false,
         consigne: "Quel est le bon pinyin ? Attention aux tons !",
-        question: `<div class="q-emoji petit">${mot.emoji}</div><div class="q-hanzi">${mot.hanzi}</div>`,
+        question: `<div class="q-emoji petit">${visuel(mot)}</div><div class="q-hanzi">${mot.hanzi}</div>`,
         options: melanger([mot.pinyin, ...variantes]).map((p) => ({ id: p, html: p, classe: "choix-pinyin" })) };
     }
     case "ecoute-fr":
@@ -122,12 +124,12 @@ function exercice(type, mot) {
     case "fr-phrase":
       return { type, mot, bonne: mot.id, audio: false,
         consigne: "Comment dit-on en chinois…",
-        question: `<div class="q-emoji petit">${mot.emoji}</div><div class="q-fr">« ${mot.fr} »</div>`,
+        question: `<div class="q-emoji petit">${visuel(mot)}</div><div class="q-fr">« ${mot.fr} »</div>`,
         options: options(mot, "hanzi", (m) => (debutant ? rubyHTML(m.hanzi, m.pinyin) : m.hanzi), "choix-phrase") };
     case "ordre":
       return { type, mot, bonne: mot.morceaux.join(""), audio: false,
         consigne: "Remets la phrase dans l'ordre",
-        question: `<div class="q-emoji petit">${mot.emoji}</div><div class="q-fr">« ${mot.fr} »</div>`,
+        question: `<div class="q-emoji petit">${visuel(mot)}</div><div class="q-fr">« ${mot.fr} »</div>`,
         morceaux: melanger(mot.morceaux) };
   }
 }
@@ -256,7 +258,7 @@ function afficherDecouverte({ mot }) {
   zone.innerHTML = `
     <p class="etiquette">✨ Nouveau mot</p>
     <div class="decouverte">
-      <div class="d-emoji">${mot.emoji}</div>
+      <div class="d-emoji">${visuel(mot)}</div>
       <div class="d-hanzi">${rubyHTML(mot.hanzi, mot.pinyin)}</div>
       <div class="d-fr">${mot.fr}</div>
     </div>
@@ -298,7 +300,7 @@ function afficherChoix(etape) {
 }
 
 function detailMot(mot) {
-  return `<span class="b-mot">${mot.emoji} ${rubyHTML(mot.hanzi, mot.pinyin)}</span> = ${mot.fr}`;
+  return `<span class="b-mot">${visuel(mot)} ${rubyHTML(mot.hanzi, mot.pinyin)}</span> = ${mot.fr}`;
 }
 
 function repondre(etape, choix, bouton) {
@@ -382,7 +384,7 @@ function afficherPaires(etape) {
   };
 
   for (const mot of melanger(etape.mots)) creer("gauche", mot, mot.hanzi, "choix-hanzi");
-  for (const mot of melanger(etape.mots)) creer("droite", mot, enfant ? mot.emoji : `${mot.emoji} ${mot.fr}`, enfant ? "choix-emoji" : "");
+  for (const mot of melanger(etape.mots)) creer("droite", mot, enfant ? visuel(mot) : `${visuel(mot)} ${mot.fr}`, enfant ? "choix-emoji" : "");
 }
 
 // ---------- Fin de leçon ----------
@@ -447,7 +449,7 @@ function terminer() {
   for (const mot of motsSession.values()) {
     const puce = document.createElement("button");
     puce.className = "puce-mot" + (erreurs.has(mot.id) ? " a-revoir" : "");
-    puce.innerHTML = `${mot.emoji} ${rubyHTML(mot.hanzi, mot.pinyin)}`;
+    puce.innerHTML = `${visuel(mot)} ${rubyHTML(mot.hanzi, mot.pinyin)}`;
     puce.title = mot.fr;
     puce.addEventListener("click", () => prononcer(mot.hanzi));
     liste.appendChild(puce);

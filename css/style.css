@@ -1507,3 +1507,11 @@ header h1 { font-size: 1.3rem; }
 }
 
 .cache { display: none !important; }
+
+/* ---------- Illustrations (famille, pronoms) ---------- */
+/* Elles remplacent l'emoji et suivent la taille de police de leur conteneur. */
+.illu { height: 1.2em; width: auto; vertical-align: middle; display: inline-block; user-select: none; -webkit-user-drag: none; }
+.q-emoji .illu, .d-emoji .illu, .grand-emoji .illu, .choix-emoji .illu { height: 1.5em; }
+.ii-emoji .illu { height: 1.35em; }
+.lx-emoji .illu { height: 1.4em; }
+.puce-mot .illu, .b-mot .illu, #retour .illu, .flashcard .emoji .illu { height: 1.6em; margin-right: 2px; }

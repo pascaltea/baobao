@@ -5,6 +5,7 @@ import { prononcer, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { chargerParcours, chargerRoutines } from "./parcours.js";
 import { profilActif, niveauMot, NIVEAU_MAX } from "./profils.js";
 import { rubyHTML } from "./pinyin.js";
+import { visuel } from "./visuel.js";
 
 const $ = (id) => document.getElementById(id);
 let elements = [];
@@ -28,7 +29,7 @@ function afficher() {
     const li = document.createElement("li");
     li.innerHTML = `
       <button class="lx-mot" aria-label="Écouter">
-        <span class="lx-emoji">${e.emoji}</span>
+        <span class="lx-emoji">${visuel(e)}</span>
         <span class="lx-hanzi">${rubyHTML(e.hanzi, e.pinyin)}</span>
         <span class="lx-fr"></span>
       </button>

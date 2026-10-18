@@ -4,6 +4,7 @@
 import { chargerJSON, prononcer, melanger, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { profilActif, marquerMot, motsConnus } from "./profils.js";
 import { gagnerXP } from "./gamification.js";
+import { visuel } from "./visuel.js";
 
 const DATA = "../data/vocabulaire/";
 const $ = (id) => document.getElementById(id);
@@ -51,7 +52,7 @@ function suivante() {
   retournee = false;
   $("hanzi").textContent = courant.hanzi;
   $("hanzi-verso").textContent = courant.hanzi;
-  $("emoji").textContent = courant.emoji || "";
+  $("emoji").innerHTML = visuel(courant);
   $("pinyin").textContent = courant.pinyin;
   $("fr").textContent = courant.fr;
   $("recto").classList.remove("cache");

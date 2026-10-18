@@ -6,6 +6,7 @@
 import { chargerJSON, prononcer, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { pinyinColore } from "./pinyin.js";
 import { evenement } from "./gamification.js";
+import { visuel } from "./visuel.js";
 
 const DATA = "../data/vocabulaire/";
 const DUREE = 5 * 60 * 1000;
@@ -68,7 +69,7 @@ async function ouvrir(theme) {
 
 function afficherImage() {
   const mot = mots[position];
-  $("ii-emoji").textContent = mot.emoji;
+  $("ii-emoji").innerHTML = visuel(mot);
   $("ii-hanzi").textContent = mot.hanzi;
   $("ii-fr").innerHTML = `${$("voir-pinyin").checked ? pinyinColore(mot.pinyin, mot.hanzi) + " · " : ""}${mot.fr}`;
   $("position").textContent = `${position + 1} / ${mots.length}`;

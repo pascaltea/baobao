@@ -1,7 +1,7 @@
 // Mode hors-ligne : on garde en cache les fichiers de l'appli.
 // Pensez à changer VERSION quand vous modifiez des fichiers, pour forcer la mise à jour.
 
-const VERSION = "v14";
+const VERSION = "v15";
 const FICHIERS = [
   "./",
   "./index.html",
@@ -18,6 +18,30 @@ const FICHIERS = [
   "./js/micro.js",
   "./js/gamification.js",
   "./js/mascotte.js",
+  "./js/visuel.js",
+  "./assets/illustrations/famille/ayi.svg",
+  "./assets/illustrations/famille/baba.svg",
+  "./assets/illustrations/famille/baobao.svg",
+  "./assets/illustrations/famille/didi.svg",
+  "./assets/illustrations/famille/erzi.svg",
+  "./assets/illustrations/famille/gege.svg",
+  "./assets/illustrations/famille/jia.svg",
+  "./assets/illustrations/famille/jiejie.svg",
+  "./assets/illustrations/famille/laoshi.svg",
+  "./assets/illustrations/famille/mama.svg",
+  "./assets/illustrations/famille/meimei.svg",
+  "./assets/illustrations/famille/nainai.svg",
+  "./assets/illustrations/famille/nver.svg",
+  "./assets/illustrations/famille/pengyou.svg",
+  "./assets/illustrations/famille/shushu.svg",
+  "./assets/illustrations/famille/waigong.svg",
+  "./assets/illustrations/famille/waipo.svg",
+  "./assets/illustrations/famille/yeye.svg",
+  "./assets/illustrations/pronoms/ni.svg",
+  "./assets/illustrations/pronoms/ta-elle.svg",
+  "./assets/illustrations/pronoms/ta.svg",
+  "./assets/illustrations/pronoms/wo.svg",
+  "./assets/illustrations/pronoms/women.svg",
   "./js/quotidien.js",
   "./js/comptines.js",
   "./js/imagier.js",
