@@ -419,7 +419,7 @@ $("exporter").addEventListener("click", () => {
   const blob = new Blob([exporterDonnees()], { type: "application/json" });
   const lien = document.createElement("a");
   lien.href = URL.createObjectURL(blob);
-  lien.download = `mandarin-famille-${aujourdhui()}.json`;
+  lien.download = `baobao-${aujourdhui()}.json`;
   lien.click();
   setTimeout(() => URL.revokeObjectURL(lien.href), 1000);
   $("sauvegarde-info").textContent = "✅ Fichier enregistré dans tes téléchargements.";

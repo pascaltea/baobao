@@ -8,7 +8,7 @@ inspirée de Duolingo, sans publicité, sans abonnement et sans « vies » perdu
 Le nom vient de 宝宝 bǎobao, « bébé, mon trésor » : un des premiers mots que les
 parents chinois disent à leurs enfants.
 
-👉 **https://pascaltea.github.io/mandarin-famille/**
+👉 **https://pascaltea.github.io/baobao/**
 
 ## Pour qui ?
 
