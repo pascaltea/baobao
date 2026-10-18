@@ -32,6 +32,34 @@ function montrer(ecran) {
   document.body.classList.toggle("avec-onglets", ecran === "accueil");
 }
 
+// ---------- Gestes ----------
+
+// Détecte un glissement horizontal net (pas un défilement vertical) et appelle
+// action(+1) vers la gauche (suivant) ou action(-1) vers la droite (précédent).
+function glisser(zone, action) {
+  let depart = null;
+  zone.addEventListener("touchstart", (e) => {
+    // On ignore les gestes qui commencent sur un champ ou une zone qui défile en largeur.
+    if (e.touches.length !== 1 || e.target.closest("input, select, textarea, .defile-x")) { depart = null; return; }
+    depart = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+  }, { passive: true });
+  zone.addEventListener("touchend", (e) => {
+    if (!depart) return;
+    const dx = e.changedTouches[0].clientX - depart.x;
+    const dy = e.changedTouches[0].clientY - depart.y;
+    const rapide = Date.now() - depart.t < 600;
+    depart = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.8 && rapide) action(dx < 0 ? 1 : -1);
+  }, { passive: true });
+}
+
+// Fait glisser l'écran qui arrive depuis le côté du geste.
+function animerEntree(element, sens) {
+  element.classList.remove("depuis-droite", "depuis-gauche");
+  void element.offsetWidth;
+  element.classList.add(sens);
+}
+
 // ---------- Premier lancement ----------
 
 const CLE_BIENVENUE = "mandarin-famille-bienvenue";
@@ -47,15 +75,25 @@ function finirBienvenue() {
   afficherProfils();
 }
 
-$("bienvenue-suivant").addEventListener("click", () => {
-  if (diapo === 2) return finirBienvenue();
-  diapo++;
-  document.querySelectorAll(".diapo").forEach((d) => d.classList.toggle("cache", Number(d.dataset.diapo) !== diapo));
+function allerDiapo(numero) {
+  if (numero < 0 || numero > 2) return;
+  const sens = numero > diapo ? "depuis-droite" : "depuis-gauche";
+  diapo = numero;
+  document.querySelectorAll(".diapo").forEach((d) => {
+    const visible = Number(d.dataset.diapo) === diapo;
+    d.classList.toggle("cache", !visible);
+    if (visible) animerEntree(d, sens);
+  });
   document.querySelectorAll("#points i").forEach((p, i) => p.classList.toggle("actif", i === diapo));
   $("mascotte-bienvenue").innerHTML = mascotte(["bravo", "parle", "content"][diapo], "respire");
-  if (diapo === 2) $("bienvenue-suivant").textContent = "Créer mon profil";
-});
+  $("bienvenue-suivant").textContent = diapo === 2 ? "Créer mon profil" : "Continuer";
+}
+
+$("bienvenue-suivant").addEventListener("click", () => (diapo === 2 ? finirBienvenue() : allerDiapo(diapo + 1)));
 $("bienvenue-passer").addEventListener("click", finirBienvenue);
+// Les petits points se touchent aussi pour changer d'écran.
+document.querySelectorAll("#points i").forEach((p, i) => p.addEventListener("click", () => allerDiapo(i)));
+glisser($("ecran-bienvenue"), (sens) => allerDiapo(diapo + sens));
 
 // ---------- Profils ----------
 
@@ -102,15 +140,49 @@ $("r-objectif").addEventListener("change", (e) => { changerObjectif(Number(e.tar
 
 // ---------- Onglets ----------
 
+let ongletActuel = "apprendre";
+
+// Onglets visibles pour ce profil, dans l'ordre de la barre du bas.
+const ongletsVisibles = () =>
+  [...document.querySelectorAll(".onglet")].filter((b) => !b.classList.contains("cache")).map((b) => b.dataset.cible);
+
 function ouvrirOnglet(nom) {
+  const liste = ongletsVisibles();
+  const sens = liste.indexOf(nom) >= liste.indexOf(ongletActuel) ? "depuis-droite" : "depuis-gauche";
+  const change = nom !== ongletActuel;
+  ongletActuel = nom;
   for (const section of document.querySelectorAll(".onglet-contenu")) {
-    section.classList.toggle("cache", section.id !== `onglet-${nom}`);
+    const visible = section.id === `onglet-${nom}`;
+    section.classList.toggle("cache", !visible);
+    if (visible && change) animerEntree(section, sens);
   }
-  for (const b of document.querySelectorAll(".onglet")) b.classList.toggle("actif", b.dataset.cible === nom);
+  for (const b of document.querySelectorAll(".onglet")) {
+    b.classList.toggle("actif", b.dataset.cible === nom);
+    b.setAttribute("aria-current", b.dataset.cible === nom ? "page" : "false");
+  }
   history.replaceState(null, "", `#${nom}`);
   scrollTo(0, 0);
 }
 for (const b of document.querySelectorAll(".onglet")) b.addEventListener("click", () => ouvrirOnglet(b.dataset.cible));
+
+// Glisser vers la gauche ou la droite pour passer à l'onglet voisin.
+glisser($("ecran-accueil"), (sens) => {
+  const liste = ongletsVisibles();
+  const cible = liste[liste.indexOf(ongletActuel) + sens];
+  if (cible) { ouvrirOnglet(cible); masquerAstuceGlisser(); }
+});
+
+// Petite astuce affichée une seule fois, pour faire découvrir le geste.
+const CLE_ASTUCE = "mandarin-famille-astuce-glisser";
+function montrerAstuceGlisser() {
+  try { if (localStorage.getItem(CLE_ASTUCE)) return; } catch { return; }
+  $("astuce-glisser").classList.remove("cache");
+  setTimeout(masquerAstuceGlisser, 6000);
+}
+function masquerAstuceGlisser() {
+  $("astuce-glisser").classList.add("cache");
+  try { localStorage.setItem(CLE_ASTUCE, "1"); } catch { /* pas de stockage */ }
+}
 
 function appliquerMode(mode) {
   for (const bloc of document.querySelectorAll("[data-modes]")) {
@@ -527,6 +599,7 @@ function afficherAccueil(onglet) {
   const demande = onglet ?? location.hash.slice(1);
   const disponible = ["apprendre", "famille", "profil", ...(profil.mode !== "bebe" ? ["succes"] : [])];
   ouvrirOnglet(disponible.includes(demande) ? demande : "apprendre");
+  montrerAstuceGlisser();
 }
 
 [unites, phrases] = await Promise.all([

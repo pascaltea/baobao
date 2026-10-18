@@ -1423,6 +1423,32 @@ header h1 { font-size: 1.3rem; }
   :root[data-sombre="auto"][data-theme="adulte"] :is(.pastille, .bouton-entete, main h2, .titre-etape, .filtre:not(.actif), .bouton.secondaire, .choix button, .paires button, .morceau, .salut .bulle, .bulle, .infobulle, .quete-verre, .onglets) { background: var(--carte); }
 }
 
+/* Navigation par glissement : l'écran arrive du côté du geste */
+.depuis-droite { animation: depuis-droite 0.28s cubic-bezier(.2, .8, .3, 1); }
+.depuis-gauche { animation: depuis-gauche 0.28s cubic-bezier(.2, .8, .3, 1); }
+@keyframes depuis-droite { from { opacity: 0; transform: translateX(40px); } }
+@keyframes depuis-gauche { from { opacity: 0; transform: translateX(-40px); } }
+#ecran-accueil, #ecran-bienvenue { touch-action: pan-y; }
+.points i { cursor: pointer; }
+.astuce-glisser {
+  position: fixed;
+  left: 50%;
+  bottom: calc(92px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 7;
+  background: var(--marine);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(45, 42, 50, 0.25);
+  animation: flotte 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+:root[data-sombre="oui"] .astuce-glisser { background: #fff; color: #2d2a32; }
+
 /* Partage */
 .partage { background: #fff; text-align: center; }
 .partage > p:first-child { text-align: left; margin-top: 0; }
