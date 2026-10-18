@@ -4,8 +4,8 @@
 import { chargerJSON } from "./app.js";
 
 const MOTS_PAR_LECON = 5;
-// Palette chaude et joyeuse, une couleur par unité.
-const COULEURS = ["#ff9f0f", "#f4615a", "#1fb8b0", "#6c5ce7", "#ffb703", "#ef5d8a", "#20b26b", "#3d8bfd"];
+// Couleurs douces et gaies, une par unité.
+const COULEURS = ["#f25c54", "#3fb871", "#4aa8e8", "#f5a524", "#9b6ee8", "#ef6fa0", "#2bb3a3", "#e8784a"];
 
 export async function chargerParcours(dossier) {
   const themes = await chargerJSON(`${dossier}index.json`);
