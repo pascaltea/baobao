@@ -34,9 +34,20 @@ Duolingo, sans publicité, sans abonnement et sans « vies » perdues.
 - 🧠 **Répétition espacée** et révision du jour
 
 ### Rester motivé, sans pression
+- 🐼 **Bao**, le panda mascotte : il salue, parle pendant les exercices d'écoute,
+  saute de joie ou console après une erreur
+- 🏮 **Niveaux du zodiaque chinois** : on progresse du Rat 鼠 au Cochon 猪, puis Grand maître
+- ⚔️ **Quêtes du jour** (dont « dis une phrase à tes enfants ») et 🎁 coffre à ouvrir
+- 🏆 **16 badges** à débloquer, 🌟 album d'autocollants pour les enfants
 - ⭐ XP, 🔥 série (un jour de repos ne la casse pas), 🎯 objectif réglable
 - 🤝 **Équipe famille** : un objectif commun de la semaine plutôt qu'un classement
 - Pas de vies, pas de pub, pas d'abonnement, utilisable hors-ligne
+
+### Design
+Inspiré de Duolingo (boutons en relief, chemin, mascotte), de Khan Academy Kids et
+Lingokids (thème ciel pastel et grandes zones tactiles pour les enfants) et de
+Headspace (sobriété pour les adultes). Navigation par onglets comme une appli mobile,
+vibrations, sons et confettis.
 
 Voir [docs/critiques.md](docs/critiques.md) : les critiques faites à Duolingo et aux
 autres applis, et comment l'appli y répond.
@@ -69,6 +80,8 @@ js/
   pinyin.js             syllabes, couleurs des tons, variantes de tons
   sons.js               petits sons de jeu
   micro.js              « Je répète » : enregistrement et comparaison
+  gamification.js       niveaux, quêtes du jour, coffre, badges, notifications
+  mascotte.js           Bao le panda (SVG animé, plusieurs expressions)
 data/vocabulaire/       le contenu, un fichier JSON par thème
 data/tons.json          séries de mots pour l'exercice des tons
 data/quotidien.json     routines et phrases du quotidien

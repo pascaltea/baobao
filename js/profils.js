@@ -30,6 +30,9 @@ function normaliser(p) {
   if (p.mode === "normal") p.mode = "adulte";
   p.autocollants ??= [];
   p.dites ??= { date: null, ids: [] };
+  p.badges ??= [];
+  p.compteurs ??= {};
+  p.quetes ??= null;
   p.mots ??= {};
   if (Array.isArray(p.connus)) {
     for (const id of p.connus) p.mots[id] ??= { niveau: 1, prochaine: aujourdhui() };
@@ -57,7 +60,7 @@ function ecrireEtat(etat) {
 }
 
 // Applique une modification au profil actif et l'enregistre.
-function modifierActif(modif) {
+export function modifierActif(modif) {
   const etat = lireEtat();
   const profil = etat.profils.find((p) => p.id === etat.actif);
   if (!profil) return null;
@@ -107,8 +110,8 @@ export function changerObjectif(xp) {
 
 // ---------- Vie réelle et récompenses ----------
 
-// « Je l'ai dite aujourd'hui » : une phrase utilisée avec les enfants rapporte 2 XP
-// (une seule fois par phrase et par jour).
+// « Je l'ai dite aujourd'hui » : une seule fois par phrase et par jour
+// (les XP sont donnés par gamification.js).
 export function phrasesDitesAujourdhui() {
   const p = profilActif();
   return new Set(p?.dites.date === aujourdhui() ? p.dites.ids : []);
@@ -120,7 +123,6 @@ export function marquerPhraseDite(id) {
     if (p.dites.date !== aujourdhui()) p.dites = { date: aujourdhui(), ids: [] };
     if (!p.dites.ids.includes(id)) { p.dites.ids.push(id); nouvelle = true; }
   });
-  if (nouvelle) ajouterXP(2);
   return nouvelle;
 }
 

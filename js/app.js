@@ -2,6 +2,17 @@
 
 import { profilActif } from "./profils.js";
 
+// Thème visuel selon le profil : sobre pour les adultes, doux et coloré pour les enfants.
+export function appliquerTheme() {
+  document.documentElement.dataset.theme = profilActif()?.mode ?? "adulte";
+}
+appliquerTheme();
+
+// Petite vibration sur mobile (bonne réponse, erreur), si l'appareil le permet.
+export function vibrer(motif) {
+  try { navigator.vibrate?.(motif); } catch { /* pas de vibration */ }
+}
+
 // Prononce un texte en chinois avec la synthèse vocale du navigateur.
 // `vitesse` : 0.8 par défaut, 0.45 pour le mode « tortue ».
 export function prononcer(texte, vitesse = 0.8) {

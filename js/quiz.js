@@ -4,7 +4,8 @@
 // Le quiz porte uniquement sur les mots déjà découverts dans les leçons.
 
 import { chargerJSON, chargerTousLesMots, prononcer, melanger, afficherProfilActif, activerHorsLigne } from "./app.js";
-import { profilActif, enregistrerReponse, motsConnus, ajouterXP } from "./profils.js";
+import { profilActif, enregistrerReponse, motsConnus } from "./profils.js";
+import { gagnerXP, evenement } from "./gamification.js";
 
 const DATA = "../data/vocabulaire/";
 const NB_QUESTIONS = 10;
@@ -120,7 +121,8 @@ function terminer() {
   $("fin-emoji").textContent = ratio >= 0.8 ? "🏆" : ratio >= 0.5 ? "🎉" : "💪";
   $("fin-titre").textContent = ratio >= 0.8 ? "太棒了 (tài bàng le) !" : ratio >= 0.5 ? "Bien joué !" : "Continue, tu progresses !";
   $("bilan").textContent = `${points} bonne(s) réponse(s) sur ${total} · ⭐ +${points} XP`;
-  ajouterXP(points);
+  gagnerXP(points);
+  evenement("quiz", { justes: points });
   montrer("fin");
 }
 

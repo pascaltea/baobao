@@ -3,10 +3,17 @@
 
 import { chargerJSON, prononcer, prononcerPuis, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { rubyHTML } from "./pinyin.js";
+import { evenement } from "./gamification.js";
 
 const $ = (id) => document.getElementById(id);
 let comptines = [];
 let lectureEnCours = 0; // permet d'interrompre « Tout écouter »
+let compte = false;     // la quête « comptine » ne compte qu'une fois par visite
+
+function ecoute(complete = false) {
+  if (!compte || complete) evenement("comptine", { complete });
+  compte = true;
+}
 
 function afficherListe() {
   const zone = $("comptines");
@@ -31,11 +38,12 @@ function afficherComptine(c) {
     const li = document.createElement("li");
     li.innerHTML = `<button class="ligne-comptine"><span class="lc-hanzi">${rubyHTML(ligne.hanzi, ligne.pinyin)}</span><span class="lc-fr"></span></button>`;
     li.querySelector(".lc-fr").textContent = ligne.fr;
-    li.querySelector("button").addEventListener("click", () => { lectureEnCours++; prononcer(ligne.hanzi, 0.7); });
+    li.querySelector("button").addEventListener("click", () => { lectureEnCours++; ecoute(); prononcer(ligne.hanzi, 0.7); });
     zone.appendChild(li);
   });
   $("tout").onclick = async () => {
     const moi = ++lectureEnCours;
+    ecoute();
     const elements = [...zone.querySelectorAll(".ligne-comptine")];
     for (const [i, ligne] of c.lignes.entries()) {
       if (moi !== lectureEnCours) break;
@@ -43,6 +51,7 @@ function afficherComptine(c) {
       await prononcerPuis(ligne.hanzi, 0.7);
     }
     elements.forEach((e) => e.classList.remove("en-cours"));
+    if (moi === lectureEnCours) ecoute(true);
   };
   $("liste").classList.add("cache");
   $("detail").classList.remove("cache");

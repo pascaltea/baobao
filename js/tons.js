@@ -2,7 +2,7 @@
 // Chaque série de data/tons.json contient 4 mots, rangés du 1er au 4e ton.
 
 import { chargerJSON, prononcer, afficherProfilActif, activerHorsLigne } from "./app.js";
-import { ajouterXP } from "./profils.js";
+import { gagnerXP, evenement } from "./gamification.js";
 
 const NB_QUESTIONS = 10;
 const $ = (id) => document.getElementById(id);
@@ -52,7 +52,8 @@ function terminer() {
   $("fin-emoji").textContent = super_ ? "🏆" : points >= 5 ? "🎉" : "💪";
   $("fin-titre").textContent = super_ ? "太棒了 (tài bàng le) !" : points >= 5 ? "Bien joué !" : "Continue, tu progresses !";
   $("bilan").textContent = `Tu as reconnu ${points} ton(s) sur ${NB_QUESTIONS} · ⭐ +${points} XP`;
-  ajouterXP(points);
+  gagnerXP(points);
+  evenement("tons", { score: points });
 }
 
 function demarrer() {

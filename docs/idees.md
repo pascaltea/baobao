@@ -14,12 +14,13 @@
 - [x] Comptines, imagier avec pause sans écran
 - [x] « Je répète » au micro, exercice « remettre dans l'ordre », notes de grammaire
 - [x] Série tolérante, objectif réglable, équipe famille, autocollants
+- [x] Refonte du design : mascotte Bao, onglets, niveaux du zodiaque, quêtes et coffre, badges
 
 ## Prochaines étapes
 - [ ] **Écriture** : ordre des traits animé et tracé au doigt (bibliothèque Hanzi Writer)
 - [ ] Plus de routines : voiture, courses, chez le médecin, anniversaire
 - [ ] Histoires courtes illustrées à lire aux enfants
 - [ ] Nouvelles unités : météo, école, vêtements, jours, verbes courants
-- [ ] Badges (première semaine, 100 mots…)
+- [ ] Mode sombre pour les révisions du soir
 - [ ] Synchronisation de la progression entre appareils
 - [ ] Vrais enregistrements audio dans `assets/audio/`

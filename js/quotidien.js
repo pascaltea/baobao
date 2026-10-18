@@ -6,6 +6,7 @@ import { chargerRoutines } from "./parcours.js";
 import { profilActif, niveauMot, phrasesDitesAujourdhui, marquerPhraseDite } from "./profils.js";
 import { rubyHTML } from "./pinyin.js";
 import { boutonsMicro } from "./micro.js";
+import { evenement } from "./gamification.js";
 
 const $ = (id) => document.getElementById(id);
 let routines = [];
@@ -61,7 +62,7 @@ function afficherRoutine(r) {
       dite.disabled = fait;
     };
     majDite(dites.has(p.id));
-    dite.addEventListener("click", () => { marquerPhraseDite(p.id); majDite(true); });
+    dite.addEventListener("click", () => { if (marquerPhraseDite(p.id)) evenement("phrase"); majDite(true); });
     zone.appendChild(carte);
   }
   $("liste").classList.add("cache");

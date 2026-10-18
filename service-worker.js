@@ -1,7 +1,7 @@
 // Mode hors-ligne : on garde en cache les fichiers de l'appli.
 // Pensez à changer VERSION quand vous modifiez des fichiers, pour forcer la mise à jour.
 
-const VERSION = "v4";
+const VERSION = "v5";
 const FICHIERS = [
   "./",
   "./index.html",
@@ -16,6 +16,8 @@ const FICHIERS = [
   "./js/pinyin.js",
   "./js/sons.js",
   "./js/micro.js",
+  "./js/gamification.js",
+  "./js/mascotte.js",
   "./js/quotidien.js",
   "./js/comptines.js",
   "./js/imagier.js",

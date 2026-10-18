@@ -10,11 +10,13 @@
 //   lecon.html?revision=jour         les mots à réviser aujourd'hui
 //   lecon.html?routine=repas         les phrases du quotidien d'une routine
 
-import { prononcer, melanger, activerHorsLigne } from "./app.js";
+import { prononcer, melanger, activerHorsLigne, vibrer } from "./app.js";
 import { chargerParcours, chargerRoutines, toutesLesLecons } from "./parcours.js";
 import {
-  profilActif, niveauMot, enregistrerReponse, terminerLecon, ajouterXP, motsARevoir, statistiques, gagnerAutocollant,
+  profilActif, niveauMot, enregistrerReponse, terminerLecon, motsARevoir, statistiques, gagnerAutocollant,
 } from "./profils.js";
+import { gagnerXP, evenement, niveauPour } from "./gamification.js";
+import { mascotte } from "./mascotte.js";
 import { rubyHTML, variantesTon } from "./pinyin.js";
 import { sonJuste, sonFaux, sonVictoire } from "./sons.js";
 import { boutonsMicro } from "./micro.js";
@@ -50,6 +52,7 @@ let total = 0;             // nombre d'étapes prévues au départ
 let index = 0;
 let faits = 0;             // étapes réussies (fait avancer la barre)
 let combo = 0;
+let comboMax = 0;
 let nbReponses = 0;
 let nbJustes = 0;
 const erreurs = new Set(); // mots sur lesquels on s'est trompé
@@ -178,6 +181,7 @@ function boutonsSon(texte) {
 function afficherBandeau(etat, titre, detail, texteBouton = "Continuer") {
   const bandeau = $("bandeau");
   bandeau.className = `bandeau ${etat}`;
+  $("b-mascotte").innerHTML = etat === "ok" ? mascotte("bravo", "saute") : etat === "ko" ? mascotte("oups", "penche") : "";
   $("b-titre").textContent = titre;
   $("b-detail").innerHTML = detail;
   $("continuer").textContent = texteBouton;
@@ -204,7 +208,7 @@ function afficherNote({ texte }) {
   $("zone").innerHTML = `
     <p class="etiquette">📖 À savoir avant de commencer</p>
     <div class="carte note-lecon"></div>
-    <div class="mascotte"><span class="panda">🐼</span><p class="bulle">Pas besoin de tout retenir : on le reverra en pratiquant !</p></div>`;
+    <div class="mascotte"><div class="avatar-mascotte">${mascotte("content", "respire")}</div><p class="bulle">Pas besoin de tout retenir : on le reverra en pratiquant !</p></div>`;
   $("zone").querySelector(".note-lecon").textContent = texte;
   afficherBandeau("neutre", "", "", "C'est parti !");
   pas[index].reussi = true;
@@ -253,7 +257,7 @@ function afficherDecouverte({ mot }) {
       <div class="d-hanzi">${rubyHTML(mot.hanzi, mot.pinyin)}</div>
       <div class="d-fr">${mot.fr}</div>
     </div>
-    <div class="mascotte"><span class="panda">🐼</span><p class="bulle"></p></div>`;
+    <div class="mascotte"><div class="avatar-mascotte">${mascotte("parle", "respire")}</div><p class="bulle"></p></div>`;
   zone.querySelector(".decouverte").appendChild(boutonsSon(mot.hanzi));
   if (!enfant) zone.querySelector(".decouverte").appendChild(boutonsMicro(mot.hanzi));
   zone.querySelector(".bulle").textContent = mot.astuce || (mot.phrase && routine?.conseil) || alea(MASCOTTE);
@@ -267,7 +271,15 @@ function afficherChoix(etape) {
   const zone = $("zone");
   zone.innerHTML = `<p class="consigne"></p><div class="question">${etape.question ?? ""}</div><div class="choix"></div>`;
   zone.querySelector(".consigne").textContent = etape.consigne;
-  if (etape.audio) {
+  if (etape.audio && !etape.question) {
+    // Exercice d'écoute : c'est Bao qui parle, les boutons son sont dans sa bulle.
+    const parle = document.createElement("div");
+    parle.className = "q-parle";
+    parle.innerHTML = `<div class="avatar-mascotte">${mascotte("parle", "respire")}</div><div class="bulle"></div>`;
+    parle.querySelector(".bulle").appendChild(boutonsSon(etape.mot.hanzi));
+    zone.querySelector(".question").appendChild(parle);
+    setTimeout(() => prononcer(etape.mot.hanzi), 250);
+  } else if (etape.audio) {
     zone.querySelector(".question").appendChild(boutonsSon(etape.mot.hanzi));
     setTimeout(() => prononcer(etape.mot.hanzi), 250);
   }
@@ -298,9 +310,11 @@ function repondre(etape, choix, bouton) {
   if (juste) {
     nbJustes++;
     combo++;
+    comboMax = Math.max(comboMax, combo);
     faits++;
     etape.reussi = true;
     sonJuste();
+    vibrer(25);
     const titre = alea(BRAVO) + (combo >= 3 ? ` 🔥 ${combo} d'affilée !` : "");
     afficherBandeau("ok", titre, detailMot(etape.mot));
   } else {
@@ -308,6 +322,7 @@ function repondre(etape, choix, bouton) {
     bouton?.classList.add("faux");
     erreurs.add(etape.mot.id);
     sonFaux();
+    vibrer([40, 60, 40]);
     // L'exercice reviendra (mélangé autrement) à la fin de la leçon.
     pas.push(exercice(etape.type, etape.mot));
     afficherBandeau("ko", "Bonne réponse :", detailMot(etape.mot));
@@ -344,6 +359,7 @@ function afficherPaires(etape) {
         if (restantes === 0) {
           faits++;
           combo++;
+          comboMax = Math.max(comboMax, combo);
           etape.reussi = true;
           majBarre();
           afficherBandeau("ok", alea(BRAVO), "Toutes les paires sont trouvées !");
@@ -390,8 +406,10 @@ function terminer() {
   const parfait = erreurs.size === 0;
   const xp = 10 + (parfait ? 5 : 0);
   const avant = statistiques();
-  ajouterXP(xp);
+  const niveaux = gagnerXP(xp);
+  evenement("lecon", { parfait, revision: !lecon || lecon.revision, justes: nbJustes, comboMax });
   const apres = statistiques();
+  const niveau = niveauPour(profilActif().xp);
   const objectifAtteint = avant.xpJour < apres.objectif && apres.xpJour >= apres.objectif;
   const precision = nbReponses ? Math.round((nbJustes / nbReponses) * 100) : 100;
 
@@ -400,7 +418,7 @@ function terminer() {
   const zone = $("zone");
   zone.innerHTML = `
     <div class="fin">
-      <div class="fin-emoji">${parfait ? "🏆" : "🎉"}</div>
+      <div class="fin-mascotte">${mascotte("bravo", "saute")}</div>
       <h2>${routine ? `${routine.emoji} ${routine.titre} : entraînement terminé !` : lecon && !lecon.revision ? "Leçon terminée !" : "Révision terminée !"}</h2>
       <p>${parfait ? "Sans aucune faute, 太棒了 (tài bàng le) !" : "Les mots difficiles reviendront dans tes révisions."}</p>
       ${autocollant ? `<div class="autocollant-gagne"><span>${autocollant}</span>Tu gagnes un autocollant !</div>` : ""}
@@ -411,6 +429,11 @@ function terminer() {
         <div class="tuile-fin rouge"><small>Série</small><strong>🔥 ${apres.serie} j</strong></div>
       </div>
       ${objectifAtteint ? `<p class="objectif-atteint">🎯 Objectif du jour atteint !</p>` : ""}
+      ${niveaux && niveaux.apres.numero > niveaux.avant.numero ? `<p class="objectif-atteint">🎊 Niveau supérieur : ${niveau.emoji} ${niveau.nom} ${niveau.hanzi} !</p>` : ""}
+      <div class="carte fin-niveau">
+        <div class="objectif-texte"><span>${niveau.emoji} Niveau ${niveau.numero} · ${niveau.nom}</span><span>${niveau.suivant ? `${niveau.xpDansNiveau} / ${niveau.xpPourSuivant} XP` : "MAX"}</span></div>
+        <div class="barre"><span id="fin-barre"></span></div>
+      </div>
       <div class="mots-fin"></div>
     </div>`;
   const liste = zone.querySelector(".mots-fin");
@@ -424,7 +447,9 @@ function terminer() {
   }
   afficherBandeau("neutre", "", "", "Continuer");
   $("continuer").onclick = () => { location.href = "../index.html"; };
+  requestAnimationFrame(() => setTimeout(() => { $("fin-barre").style.width = `${niveau.progression * 100}%`; }, 300));
   sonVictoire();
+  vibrer([30, 50, 30, 50, 60]);
   confettis();
 }
 

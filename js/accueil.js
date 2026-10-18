@@ -1,20 +1,23 @@
-// Page d'accueil : choix du profil et tableau de bord, adapté au type de profil
-// (adulte, enfant 3-6 ans, bébé 0-2 ans). Les blocs portent un attribut
-// data-modes qui liste les profils pour lesquels ils s'affichent.
+// Page d'accueil : choix du profil puis tableau de bord en 4 onglets
+// (Apprendre, Famille, Succès, Profil), adapté au type de profil.
+// Les blocs portent un attribut data-modes qui liste les profils concernés.
 
-import { prononcer, activerHorsLigne } from "./app.js";
+import { prononcer, activerHorsLigne, appliquerTheme } from "./app.js";
 import { chargerParcours, chargerRoutines, etatsLecons } from "./parcours.js";
 import {
   listerProfils, ajouterProfil, choisirProfil, supprimerProfil, profilActif, changerMode, changerObjectif,
   statistiques, leconsTerminees, motsARevoir, motsConnus, phrasesDitesAujourdhui, marquerPhraseDite, aujourdhui,
 } from "./profils.js";
 import { rubyHTML } from "./pinyin.js";
+import { mascotte } from "./mascotte.js";
+import { NIVEAUX, BADGES, niveauPour, quetesDuJour, ouvrirCoffre, evenement, verifierBadges } from "./gamification.js";
 
 const $ = (id) => document.getElementById(id);
-const ICONES_MODE = { adulte: "🧑", enfant: "🧒", bebe: "👶" };
+const MODES = { adulte: "🧑 Adulte", enfant: "🧒 Enfant 3-6 ans", bebe: "👶 Bébé 0-2 ans" };
 
 // Décalage horizontal des leçons pour dessiner un chemin qui serpente.
-const ZIGZAG = [0, 45, 70, 45, 0, -45, -70, -45];
+const ZIGZAG = [0, 50, 75, 50, 0, -50, -75, -50];
+const DECORS = ["🏮", "🎋", "🐉", "🧧", "🥮", "🍵", "🪁", "🌸"];
 
 let unites = [];
 let phrases = [];
@@ -22,32 +25,35 @@ let phrases = [];
 function montrer(ecran) {
   $("ecran-profils").classList.toggle("cache", ecran !== "profils");
   $("ecran-accueil").classList.toggle("cache", ecran !== "accueil");
-  const profil = profilActif();
-  $("b-profil").classList.toggle("cache", !profil);
-  if (profil) $("b-profil").textContent = `${profil.avatar} ${profil.nom}`;
+  $("onglets").classList.toggle("cache", ecran !== "accueil");
+  document.body.classList.toggle("avec-onglets", ecran === "accueil");
 }
 
 // ---------- Profils ----------
 
 function afficherProfils() {
+  appliquerTheme();
+  $("mascotte-profils").innerHTML = mascotte("content", "respire");
   const actif = profilActif();
   const zone = $("profils");
   zone.innerHTML = "";
   for (const p of listerProfils()) {
     const stats = statistiques(p);
+    const niveau = niveauPour(p.xp);
     const tuile = document.createElement("button");
     tuile.className = "tuile" + (actif?.id === p.id ? " active" : "");
-    const detail = p.mode === "bebe" ? "👶 avec un parent" : `⭐ ${stats.xp} XP · 🔥 ${stats.serie} j`;
-    tuile.innerHTML = `<span class="grand"></span><strong></strong><br><small>${ICONES_MODE[p.mode]} ${detail}</small>`;
+    const detail = p.mode === "bebe" ? "👶 avec un parent" : `${niveau.emoji} Niv. ${niveau.numero} · 🔥 ${stats.serie}`;
+    tuile.innerHTML = `<span class="grand"></span><strong></strong><br><small>${detail}</small>`;
     tuile.querySelector(".grand").textContent = p.avatar;
     tuile.querySelector("strong").textContent = p.nom;
-    tuile.addEventListener("click", () => { choisirProfil(p.id); afficherAccueil(); });
+    tuile.addEventListener("click", () => { choisirProfil(p.id); afficherAccueil("apprendre"); });
     tuile.addEventListener("contextmenu", (e) => {
       e.preventDefault();
       if (confirm(`Supprimer le profil ${p.nom} et toute sa progression ?`)) { supprimerProfil(p.id); afficherProfils(); }
     });
     zone.appendChild(tuile);
   }
+  $("pastilles").classList.add("cache");
   montrer("profils");
 }
 
@@ -59,36 +65,178 @@ $("form-profil").addEventListener("submit", (e) => {
   const avatarParDefaut = { adulte: "🙂", enfant: "🐼", bebe: "🐣" }[mode];
   ajouterProfil(nom, $("avatar").value.trim() || avatarParDefaut, mode);
   e.target.reset();
-  afficherAccueil();
+  afficherAccueil("apprendre");
 });
 
-$("b-profil").addEventListener("click", afficherProfils);
-$("r-mode").addEventListener("change", (e) => { changerMode(e.target.value); afficherAccueil(); });
-$("r-objectif").addEventListener("change", (e) => { changerObjectif(Number(e.target.value)); afficherStats(); });
+$("b-changer").addEventListener("click", afficherProfils);
+$("r-mode").addEventListener("change", (e) => { changerMode(e.target.value); afficherAccueil("profil"); });
+$("r-objectif").addEventListener("change", (e) => { changerObjectif(Number(e.target.value)); afficherAccueil("profil"); });
 
-// ---------- Tableau de bord ----------
+// ---------- Onglets ----------
+
+function ouvrirOnglet(nom) {
+  for (const section of document.querySelectorAll(".onglet-contenu")) {
+    section.classList.toggle("cache", section.id !== `onglet-${nom}`);
+  }
+  for (const b of document.querySelectorAll(".onglet")) b.classList.toggle("actif", b.dataset.cible === nom);
+  history.replaceState(null, "", `#${nom}`);
+  scrollTo(0, 0);
+}
+for (const b of document.querySelectorAll(".onglet")) b.addEventListener("click", () => ouvrirOnglet(b.dataset.cible));
 
 function appliquerMode(mode) {
   for (const bloc of document.querySelectorAll("[data-modes]")) {
     bloc.classList.toggle("cache", !bloc.dataset.modes.split(" ").includes(mode));
   }
+  $("nom-onglet-famille").textContent = mode === "enfant" ? "Jeux" : "Famille";
 }
 
-function afficherStats() {
+// ---------- En-tête et salutation ----------
+
+function afficherEntete() {
   const p = profilActif();
   const s = statistiques();
-  $("s-serie").textContent = s.serie;
-  $("s-xp").textContent = s.xp;
-  $("s-mots").textContent = s.nbMots;
-  $("o-texte").textContent = `${Math.min(s.xpJour, s.objectif)} / ${s.objectif} XP`;
-  $("o-barre").style.width = `${Math.min(100, (s.xpJour / s.objectif) * 100)}%`;
+  const niveau = niveauPour(p.xp);
+  const bebe = p.mode === "bebe";
+  $("pastilles").classList.toggle("cache", bebe);
+  $("sous-titre").textContent = bebe ? `${p.avatar} ${p.nom}` : "";
+  $("p-niveau").textContent = `${niveau.emoji} ${niveau.numero}`;
+  $("p-serie").textContent = `🔥 ${s.serie}`;
+  $("p-serie").classList.toggle("eteinte", s.xpJour === 0);
+  $("p-xp").textContent = `⭐ ${s.xp}`;
+}
+
+function texteSalut(p, s, quetes) {
+  const heure = new Date().getHours();
+  const bonjour = heure < 12 ? "早上好 zǎoshang hǎo" : heure < 18 ? "你好 nǐ hǎo" : "晚上好 wǎnshang hǎo";
+  if (p.mode === "bebe") return `${bonjour} ! Aujourd'hui, chantons une comptine avec ${p.nom} ?`;
+  if (p.mode === "enfant") return s.xpJour === 0 ? `${bonjour} ${p.nom} ! On joue ensemble ? 🎈` : `Bravo ${p.nom} ! Tu as gagné ${s.xpJour} étoiles aujourd'hui ⭐`;
+  if (s.xpJour === 0) return `${bonjour}, ${p.nom} ! Une petite leçon pour lancer la journée ?`;
+  if (s.xpJour < s.objectif) return `Plus que ${s.objectif - s.xpJour} XP pour ton objectif du jour. 加油 jiāyóu !`;
+  if (quetes && !quetes.toutesFaites) return "Objectif atteint ! Il reste des quêtes pour ouvrir le coffre 🎁";
+  return "Journée parfaite ! Pense à dire une phrase en chinois à tes enfants 💬";
+}
+
+function afficherSalut() {
+  const p = profilActif();
+  const s = statistiques();
+  const quetes = quetesDuJour();
+  const humeur = p.mode !== "bebe" && s.xpJour >= s.objectif ? "bravo" : "content";
+  $("mascotte-salut").innerHTML = mascotte(humeur, humeur === "bravo" ? "saute" : "respire");
+  $("salut-texte").textContent = texteSalut(p, s, quetes);
+}
+
+// ---------- Onglet Apprendre ----------
+
+function afficherObjectif() {
+  const s = statistiques();
+  const ratio = Math.min(1, s.xpJour / s.objectif);
+  const circonference = 2 * Math.PI * 42;
+  const plein = $("anneau-plein");
+  plein.style.strokeDasharray = circonference;
+  plein.style.strokeDashoffset = circonference * (1 - ratio);
+  $("anneau").classList.toggle("complet", ratio >= 1);
+  $("anneau-xp").textContent = s.xpJour;
+  $("anneau-obj").textContent = `/ ${s.objectif} XP`;
+  $("objectif-texte").textContent = ratio >= 1 ? "Bravo, objectif atteint ! 🎉" : `Encore ${s.objectif - s.xpJour} XP, environ ${Math.ceil((s.objectif - s.xpJour) / 10)} leçon(s).`;
 
   const nbRevision = motsARevoir().length;
-  $("revision").classList.toggle("cache", nbRevision === 0 || p.mode === "bebe");
+  $("revision").classList.toggle("cache", nbRevision === 0 || profilActif().mode === "bebe");
   $("r-texte").textContent = `${nbRevision} élément${nbRevision > 1 ? "s" : ""} à revoir pour ne pas oublier`;
-  $("r-mode").value = p.mode;
-  $("r-objectif").value = String(p.objectif);
 }
+
+function afficherQuetes() {
+  const quetes = quetesDuJour();
+  if (!quetes) return;
+  const zone = $("quetes");
+  zone.innerHTML = "";
+  for (const q of quetes.liste) {
+    const div = document.createElement("div");
+    div.className = `quete${q.fait ? " faite" : ""}`;
+    div.innerHTML = `<span class="quete-emoji">${q.fait ? "✅" : q.emoji}</span>
+      <div><div class="quete-texte"></div><div class="barre"><span style="width:${Math.min(100, (q.progres / q.objectif) * 100)}%"></span></div></div>
+      <span class="quete-compte">${Math.min(q.progres, q.objectif)}/${q.objectif}</span>`;
+    div.querySelector(".quete-texte").textContent = q.texte;
+    zone.appendChild(div);
+  }
+  const coffre = $("coffre");
+  const pret = quetes.toutesFaites && !quetes.coffre;
+  coffre.classList.toggle("pret", pret);
+  $("coffre-ouvrir").classList.toggle("cache", !pret);
+  coffre.querySelector(".coffre-emoji").textContent = quetes.coffre ? "🪙" : "🎁";
+  $("coffre-texte").textContent = quetes.coffre
+    ? "Coffre ouvert ! Reviens demain pour de nouvelles quêtes."
+    : pret ? "Toutes les quêtes sont réussies !" : "Réussis les 3 quêtes pour ouvrir le coffre !";
+}
+
+$("coffre-ouvrir").addEventListener("click", () => {
+  const gain = ouvrirCoffre();
+  if (gain) {
+    $("coffre-texte").textContent = `+${gain} XP ! 🎉`;
+    confettis();
+    setTimeout(() => afficherAccueil("apprendre"), 1400);
+  }
+});
+
+function afficherParcours() {
+  const etats = etatsLecons(unites, leconsTerminees());
+  const connus = motsConnus();
+  const enfant = profilActif().mode === "enfant";
+  const zone = $("parcours");
+  zone.innerHTML = "";
+  let n = 0;
+
+  for (const unite of unites) {
+    const section = document.createElement("section");
+    section.className = "unite";
+    section.style.setProperty("--couleur", unite.couleur);
+    const vus = unite.mots.filter((m) => connus.has(m.id)).length;
+    section.innerHTML = `
+      <div class="unite-entete">
+        <small>Unité ${unite.numero}</small>
+        <h3>${unite.emoji} ${unite.titre}</h3>
+        <small>${vus} / ${unite.mots.length} mots découverts</small>
+      </div>
+      ${unite.note && !enfant ? `<details class="note-unite"><summary>📖 À savoir</summary><p></p></details>` : ""}
+      <div class="chemin"></div>`;
+    if (unite.note && !enfant) section.querySelector(".note-unite p").textContent = unite.note;
+    const chemin = section.querySelector(".chemin");
+
+    unite.lecons.forEach((lecon, i) => {
+      const etat = etats.get(lecon.cle);
+      const decalage = ZIGZAG[n++ % ZIGZAG.length];
+      const noeud = document.createElement(etat === "verrou" ? "span" : "a");
+      noeud.className = `noeud ${etat}${lecon.revision ? " revision-unite" : ""}`;
+      noeud.style.setProperty("--decalage", `${decalage}px`);
+      if (etat !== "verrou") noeud.href = `pages/lecon.html?cle=${encodeURIComponent(lecon.cle)}`;
+      const icone = lecon.revision ? "🏆" : etat === "fait" ? "✓" : etat === "actuel" ? "★" : "🔒";
+      noeud.innerHTML = `
+        ${etat === "actuel" ? `<span class="infobulle">${lecon.revision ? "Révision !" : "Commencer"}</span>` : ""}
+        <span class="rond">${icone}</span>
+        <span class="noeud-titre">${lecon.titre}</span>`;
+      noeud.setAttribute("aria-label", `${unite.titre}, ${lecon.titre}${etat === "verrou" ? " (verrouillée)" : ""}`);
+      // Bao attend à côté de la leçon à faire, un décor chinois de l'autre côté sinon.
+      if (etat === "actuel") {
+        const bao = document.createElement("span");
+        bao.className = "mascotte-chemin";
+        bao.style[decalage >= 0 ? "right" : "left"] = "100%";
+        bao.innerHTML = mascotte("content", "respire");
+        noeud.appendChild(bao);
+      } else if (i === 1) {
+        const deco = document.createElement("span");
+        deco.className = "deco";
+        deco.style[decalage >= 0 ? "right" : "left"] = "calc(100% + 30px)";
+        deco.style.top = "8px";
+        deco.textContent = DECORS[unite.numero % DECORS.length];
+        noeud.appendChild(deco);
+      }
+      chemin.appendChild(noeud);
+    });
+    zone.appendChild(section);
+  }
+}
+
+// ---------- Onglet Famille ----------
 
 // La phrase du jour change chaque jour, la même pour toute la famille.
 function afficherPhraseDuJour() {
@@ -106,70 +254,15 @@ function afficherPhraseDuJour() {
     dite.classList.toggle("fait", fait);
     dite.disabled = fait;
   };
-  dite.onclick = () => { marquerPhraseDite(phrase.id); maj(); afficherStats(); afficherEquipe(); };
+  dite.onclick = () => {
+    if (marquerPhraseDite(phrase.id)) evenement("phrase");
+    maj();
+    afficherEntete();
+    afficherEquipe();
+  };
   maj();
   // Sur un profil bébé, c'est le parent qui parle : les XP vont sur son propre profil.
   dite.classList.toggle("cache", profilActif().mode === "bebe");
-}
-
-function afficherParcours() {
-  const etats = etatsLecons(unites, leconsTerminees());
-  const connus = motsConnus();
-  const enfant = profilActif().mode === "enfant";
-  const zone = $("parcours");
-  zone.innerHTML = "";
-  let n = 0;
-
-  for (const unite of unites) {
-    const section = document.createElement("section");
-    section.className = "unite";
-    section.style.setProperty("--couleur", unite.couleur);
-    const vus = unite.mots.filter((m) => connus.has(m.id)).length;
-    section.innerHTML = `
-      <div class="unite-entete">
-        <div>
-          <small>Unité ${unite.numero}</small>
-          <h3>${unite.emoji} ${unite.titre}</h3>
-          <small>${vus} / ${unite.mots.length} mots découverts</small>
-        </div>
-      </div>
-      ${unite.note && !enfant ? `<details class="note-unite"><summary>📖 À savoir</summary><p></p></details>` : ""}
-      <div class="chemin"></div>`;
-    if (unite.note && !enfant) section.querySelector(".note-unite p").textContent = unite.note;
-    const chemin = section.querySelector(".chemin");
-
-    for (const lecon of unite.lecons) {
-      const etat = etats.get(lecon.cle);
-      const noeud = document.createElement(etat === "verrou" ? "span" : "a");
-      noeud.className = `noeud ${etat}${lecon.revision ? " revision-unite" : ""}`;
-      noeud.style.setProperty("--decalage", `${ZIGZAG[n++ % ZIGZAG.length]}px`);
-      if (etat !== "verrou") noeud.href = `pages/lecon.html?cle=${encodeURIComponent(lecon.cle)}`;
-      const icone = lecon.revision ? "🏆" : etat === "fait" ? "✓" : etat === "actuel" ? "★" : "🔒";
-      noeud.innerHTML = `
-        ${etat === "actuel" ? `<span class="infobulle">${lecon.revision ? "Révision !" : "Commencer"}</span>` : ""}
-        <span class="rond">${icone}</span>
-        <span class="noeud-titre">${lecon.titre}</span>`;
-      noeud.setAttribute("aria-label", `${unite.titre}, ${lecon.titre}${etat === "verrou" ? " (verrouillée)" : ""}`);
-      chemin.appendChild(noeud);
-    }
-    zone.appendChild(section);
-  }
-}
-
-function afficherAlbum() {
-  const p = profilActif();
-  const zone = $("album");
-  zone.innerHTML = "";
-  if (p.autocollants.length === 0) {
-    zone.innerHTML = `<p class="petit">Termine une leçon pour gagner ton premier autocollant !</p>`;
-    return;
-  }
-  for (const a of p.autocollants) {
-    const s = document.createElement("span");
-    s.className = "autocollant";
-    s.textContent = a;
-    zone.appendChild(s);
-  }
 }
 
 // Coopératif plutôt que compétitif : un objectif commun pour la semaine.
@@ -188,21 +281,110 @@ function afficherEquipe() {
     if (p.id === actif.id) li.className = "moi";
     li.innerHTML = `<span class="rang"></span><span class="qui"></span><span class="pts">+${s.xpSemaine} XP</span>`;
     li.querySelector(".rang").textContent = p.avatar;
-    li.querySelector(".qui").textContent = `${p.nom}${s.serie ? ` · 🔥 ${s.serie}` : ""}`;
+    li.querySelector(".qui").textContent = `${p.nom} · ${niveauPour(p.xp).emoji}${s.serie ? ` · 🔥 ${s.serie}` : ""}`;
     zone.appendChild(li);
   }
 }
 
-function afficherAccueil() {
+// ---------- Onglet Succès ----------
+
+function afficherSucces() {
+  const p = profilActif();
+  const niveau = niveauPour(p.xp);
+  $("niveau-emoji").textContent = niveau.emoji;
+  $("niveau-numero").textContent = niveau.numero;
+  $("niveau-nom").innerHTML = `${niveau.nom} <span class="hanzi-niveau">${niveau.hanzi}</span> <small class="petit">${niveau.pinyin}</small>`;
+  $("niveau-barre").style.width = `${niveau.progression * 100}%`;
+  $("niveau-suivant").textContent = niveau.suivant
+    ? `Encore ${niveau.xpPourSuivant - niveau.xpDansNiveau} XP pour devenir ${niveau.suivant.emoji} ${niveau.suivant.nom}`
+    : "Tu as atteint le plus haut niveau. 了不起 liǎobuqǐ !";
+  $("zodiaque").innerHTML = NIVEAUX.map((n, i) => `<span class="${i < niveau.numero ? "atteint" : ""}" title="${n.nom} ${n.hanzi}">${n.emoji}</span>`).join("");
+
+  const zone = $("badges");
+  zone.innerHTML = "";
+  for (const b of BADGES) {
+    if (b.id === "album" && p.mode !== "enfant") continue;
+    const obtenu = p.badges.includes(b.id);
+    const div = document.createElement("div");
+    div.className = `badge${obtenu ? " obtenu" : ""}`;
+    div.innerHTML = `<div class="badge-medaille">${obtenu ? b.emoji : "🔒"}</div><strong></strong><small></small>`;
+    div.querySelector("strong").textContent = b.titre;
+    div.querySelector("small").textContent = b.texte;
+    zone.appendChild(div);
+  }
+
+  if (p.mode === "enfant") {
+    const album = $("album");
+    album.innerHTML = "";
+    for (const a of p.autocollants) {
+      const s = document.createElement("span");
+      s.className = "autocollant";
+      s.textContent = a;
+      album.appendChild(s);
+    }
+    // Emplacements vides : donne envie de compléter l'album.
+    for (let i = p.autocollants.length; i < Math.max(8, p.autocollants.length + 2); i++) {
+      const s = document.createElement("span");
+      s.className = "autocollant vide";
+      s.textContent = "?";
+      album.appendChild(s);
+    }
+  }
+}
+
+// ---------- Onglet Profil ----------
+
+function afficherProfil() {
+  const p = profilActif();
+  const s = statistiques();
+  $("profil-avatar").textContent = p.avatar;
+  $("profil-nom").textContent = p.nom;
+  $("profil-resume").textContent = p.mode === "bebe"
+    ? MODES[p.mode]
+    : `${MODES[p.mode]} · ${s.nbMots} mots et phrases appris · ${p.badges.length} badge(s)`;
+  $("r-mode").value = p.mode;
+  $("r-objectif").value = String(p.objectif);
+}
+
+// ---------- Effets ----------
+
+function confettis() {
+  const couleurs = ["#e8423f", "#ffc83d", "#2bb673", "#33b5f0", "#8e6cef"];
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement("span");
+    c.className = "confetti";
+    c.style.left = `${Math.random() * 100}vw`;
+    c.style.background = couleurs[i % couleurs.length];
+    c.style.animationDelay = `${Math.random() * 0.5}s`;
+    c.style.animationDuration = `${2 + Math.random() * 1.5}s`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4200);
+  }
+}
+
+// ---------- Assemblage ----------
+
+function afficherAccueil(onglet) {
   const profil = profilActif();
   if (!profil) return afficherProfils();
+  appliquerTheme();
+  verifierBadges();
   montrer("accueil");
   appliquerMode(profil.mode);
-  afficherStats();
+  afficherEntete();
+  afficherSalut();
   afficherPhraseDuJour();
-  if (profil.mode !== "bebe") afficherParcours();
-  if (profil.mode === "enfant") afficherAlbum();
   afficherEquipe();
+  afficherProfil();
+  if (profil.mode !== "bebe") {
+    afficherObjectif();
+    afficherQuetes();
+    afficherParcours();
+    afficherSucces();
+  }
+  const demande = onglet ?? location.hash.slice(1);
+  const disponible = ["apprendre", "famille", "profil", ...(profil.mode !== "bebe" ? ["succes"] : [])];
+  ouvrirOnglet(disponible.includes(demande) ? demande : "apprendre");
 }
 
 [unites, phrases] = await Promise.all([

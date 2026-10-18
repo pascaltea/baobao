@@ -2,7 +2,8 @@
 // Les mots « à revoir » reviennent en fin de paquet jusqu'à ce qu'ils soient sus.
 
 import { chargerJSON, prononcer, melanger, afficherProfilActif, activerHorsLigne } from "./app.js";
-import { profilActif, marquerMot, motsConnus, ajouterXP } from "./profils.js";
+import { profilActif, marquerMot, motsConnus } from "./profils.js";
+import { gagnerXP } from "./gamification.js";
 
 const DATA = "../data/vocabulaire/";
 const $ = (id) => document.getElementById(id);
@@ -85,7 +86,7 @@ function terminer() {
   const connus = motsConnus();
   const appris = mots.filter((m) => connus.has(m.id)).length;
   $("bilan").textContent = `Tu connais ${appris} mot(s) sur ${mots.length} dans « ${theme.titre} » · ⭐ +5 XP`;
-  ajouterXP(5);
+  gagnerXP(5);
   montrer("fin");
 }
 

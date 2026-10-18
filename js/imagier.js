@@ -5,6 +5,7 @@
 
 import { chargerJSON, prononcer, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { pinyinColore } from "./pinyin.js";
+import { evenement } from "./gamification.js";
 
 const DATA = "../data/vocabulaire/";
 const DUREE = 5 * 60 * 1000;
@@ -48,6 +49,7 @@ function afficherThemes() {
 
 async function ouvrir(theme) {
   themeActuel = theme.id;
+  evenement("imagier");
   mots = await chargerJSON(DATA + theme.fichier);
   position = 0;
   $("themes-imagier").classList.add("cache");
