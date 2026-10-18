@@ -1,7 +1,7 @@
 // Mode hors-ligne : on garde en cache les fichiers de l'appli.
 // Pensez à changer VERSION quand vous modifiez des fichiers, pour forcer la mise à jour.
 
-const VERSION = "v7";
+const VERSION = "v8";
 const FICHIERS = [
   "./",
   "./index.html",

@@ -47,7 +47,8 @@ export function mascotte(humeur = "content", classe = "") {
     <circle cx="89" cy="79" r="6" fill="#ffb3c1" opacity=".8"/>
     <ellipse cx="60" cy="76" rx="6" ry="4.2" fill="#2d2a32"/>
     ${BOUCHES[humeur] ?? BOUCHES.content}
-    <path d="M24 101 Q60 119 96 101 L93 111 Q60 127 27 111 Z" fill="#e8423f"/>
-    <circle cx="60" cy="114" r="4" fill="#ffc83d"/>
+    <path d="M24 101 Q60 119 96 101 L93 111 Q60 127 27 111 Z" fill="#f4615a"/>
+    <circle cx="60" cy="114" r="4.5" fill="#ffa90a"/>
+    <ellipse cx="44" cy="40" rx="10" ry="5" transform="rotate(-25 44 40)" fill="#fff" opacity=".7"/>
   </svg>`;
 }

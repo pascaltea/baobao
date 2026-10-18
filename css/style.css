@@ -1091,6 +1091,333 @@ rt { font-family: var(--police); font-size: 0.32em; font-weight: 800; letter-spa
 
 .bilan-mots { justify-content: flex-start; }
 
+/* =========================================================
+   Thème « Soleil » : illustration flat et immersive
+   Fond turquoise, cartes pêche, orange solaire, bleu marine, corail.
+   Titres dans des pastilles blanches, grosse police ronde (Fredoka).
+   ========================================================= */
+:root, :root[data-theme="enfant"], :root[data-theme="bebe"] {
+  --turquoise: #6fe7ec;
+  --turquoise-fonce: #3cc9d0;
+  --turquoise-pale: #d6fbfc;
+  --menthe: #bff5e2;
+  --peche: #ffd99a;
+  --peche-clair: #ffe9c4;
+  --orange: #ffa90a;
+  --orange-fonce: #e58a00;
+  --marine: #2c2a6b;
+  --marine-doux: #5a588f;
+  --corail: #f4615a;
+  --corail-fonce: #d1453f;
+
+  --fond: var(--turquoise);
+  --carte: #ffffff;
+  --texte: var(--marine);
+  --doux: var(--marine-doux);
+  --bord: #ffffff;
+  --bord-fonce: rgba(44, 42, 107, 0.16);
+  --piste: #e6fbfb;
+  --champ: #ffffff;
+  --verrou: #e9f6f6;
+  --verrou-fonce: #b9dcdd;
+  --or: var(--orange);
+  --or-fonce: var(--orange-fonce);
+  --or-clair: var(--peche-clair);
+  --jade: #22c08a;
+  --jade-fonce: #129368;
+  --jade-clair: #d9fbe9;
+  --rouge: var(--corail);
+  --rouge-fonce: var(--corail-fonce);
+  --bandeau-ok: #d9fbe9;
+  --bandeau-ok-bord: #8fe8c2;
+  --bandeau-ok-texte: #128a5f;
+  --bandeau-ko: #ffe1de;
+  --bandeau-ko-bord: #ffb3ad;
+  --bandeau-ko-texte: #c63b35;
+  --police-titre: "Fredoka", "Nunito", system-ui, sans-serif;
+  --rayon: 28px;
+  --rayon-petit: 20px;
+}
+:root[data-theme="enfant"], :root[data-theme="bebe"] { --rayon: 32px; }
+
+body, :root[data-theme="enfant"] body, :root[data-theme="bebe"] body {
+  background-color: var(--fond);
+  background-image:
+    radial-gradient(circle at 12% 6%, rgba(255, 255, 255, 0.35) 0 60px, transparent 61px),
+    radial-gradient(circle at 92% 22%, rgba(255, 255, 255, 0.25) 0 90px, transparent 91px),
+    radial-gradient(circle at 80% 88%, rgba(255, 255, 255, 0.22) 0 70px, transparent 71px);
+  background-size: auto;
+  background-attachment: fixed;
+  color: var(--texte);
+}
+h1, h2, h3, .consigne, .bouton, .onglet, .tuile strong, .quete-texte, .infobulle, .niveau-infos h3, .toast strong, .d-fr, .fin h2 {
+  font-family: var(--police-titre);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Titres de section : pastille blanche centrée, comme « MY GOALS » */
+main h2 {
+  display: table;
+  margin: 30px auto 14px;
+  padding: 8px 26px;
+  background: #fff;
+  border-radius: 999px;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--marine);
+  box-shadow: 0 4px 0 rgba(44, 42, 107, 0.12);
+}
+main section > h2:first-child { margin-top: 4px; }
+
+/* En-tête turquoise, logo et stats en pastilles blanches */
+header {
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  color: var(--marine);
+  padding: 12px 16px 6px;
+  position: sticky;
+  backdrop-filter: blur(6px);
+  background-color: color-mix(in srgb, var(--turquoise) 85%, transparent);
+}
+header a, .marque { color: var(--marine); }
+header h1 { font-size: 1.3rem; }
+.marque img { box-shadow: 0 3px 0 rgba(44, 42, 107, 0.18); }
+.sous-titre { color: var(--marine-doux); opacity: 1; }
+.pastille { background: #fff; color: var(--marine); box-shadow: 0 3px 0 rgba(44, 42, 107, 0.12); padding: 5px 11px; }
+.profil-actif, .bouton-entete { color: var(--marine); }
+.bouton-entete { background: #fff; border: none; box-shadow: 0 3px 0 rgba(44, 42, 107, 0.12); }
+
+/* Cartes : blanches ou pêche, sans bordure, ombre douce et franche */
+.carte, .tuile, .decouverte, .page-histoire, .flashcard, .image-imagier, .album, .classement li, .lexique li, .ligne-comptine, .carte-phrase, .note-unite, .liste-etapes li {
+  border: none;
+  box-shadow: 0 6px 0 rgba(44, 42, 107, 0.12);
+}
+.carte { background: var(--peche); }
+.carte.reglages, .carte.alerte, .carte.intro, .carte.conseil, .carte-phrase { background: #fff; }
+
+/* Tuiles d'activité : rangées horizontales illustrées (« Drink Water ») */
+.grille { grid-template-columns: 1fr; gap: 14px; }
+.tuile {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "titre image" "texte image";
+  align-items: center;
+  text-align: left;
+  padding: 18px 20px;
+  min-height: 104px;
+  background: var(--peche);
+  overflow: hidden;
+  position: relative;
+}
+.tuile br { display: none; }
+.tuile .grand {
+  grid-area: image;
+  font-size: 3.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 0 rgba(44, 42, 107, 0.12));
+  transform: rotate(-6deg);
+}
+.tuile strong { grid-area: titre; font-size: 1.35rem; color: var(--marine); }
+.tuile small { grid-area: texte; color: var(--marine-doux); font-weight: 800; font-size: 0.95rem; }
+.tuile::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  bottom: -40px;
+  width: 150px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+.tuile:nth-child(3n+2) { background: #ffe3a8; }
+.tuile:nth-child(3n) { background: #ffcf86; }
+.tuile-vedette { background: var(--orange) !important; }
+.tuile-vedette strong { color: #fff; }
+.tuile-vedette small { color: var(--marine); text-shadow: none; }
+.tuile.active { background: var(--turquoise-pale); box-shadow: 0 6px 0 var(--turquoise-fonce); }
+.tuile.verrouille { filter: grayscale(0.6); }
+/* Les choix de profils et de thèmes restent en grille de cartes */
+#profils, #themes, #routines, #comptines, #histoires { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+/* Boutons : orange solaire, corail pour l'action principale des leçons */
+.bouton { background: var(--orange); box-shadow: 0 6px 0 var(--orange-fonce); color: #fff; border-radius: 999px; text-transform: none; font-size: 1.15rem; letter-spacing: 0.02em; }
+.bouton:active:not(:disabled) { box-shadow: 0 2px 0 var(--orange-fonce); }
+.bouton.secondaire { background: #fff; color: var(--marine); border: none; box-shadow: 0 5px 0 rgba(44, 42, 107, 0.14); }
+.bouton-son { background: var(--corail); box-shadow: 0 5px 0 var(--corail-fonce); border-radius: 50%; }
+.bouton-son.lent { background: var(--orange); box-shadow: 0 5px 0 var(--orange-fonce); }
+.bouton-rond { background: var(--orange); box-shadow: 0 6px 0 var(--orange-fonce); }
+
+/* Pastilles segmentées (Year / Month / Today) : filtres et onglets */
+.filtres { justify-content: center; background: transparent; }
+.filtre { background: #fff; border: none; color: var(--marine); box-shadow: 0 3px 0 rgba(44, 42, 107, 0.12); font-family: var(--police-titre); font-weight: 600; font-size: 1rem; }
+.filtre.actif { background: var(--corail); color: #fff; box-shadow: 0 3px 0 var(--corail-fonce); }
+
+.onglets {
+  left: 12px;
+  right: 12px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  border: none;
+  border-radius: 999px;
+  padding: 6px;
+  box-shadow: 0 6px 0 rgba(44, 42, 107, 0.15), 0 10px 30px rgba(44, 42, 107, 0.12);
+}
+.onglet { border-radius: 999px; color: var(--marine); font-size: 0.78rem; }
+.onglet.actif { background: var(--corail); border-color: transparent; color: #fff; }
+.onglet span { filter: none; opacity: 1; font-size: 1.4rem; }
+
+/* Barres : épaisses, corail, comme « Total Tasks » */
+.barre { height: 18px; background: #fff; box-shadow: inset 0 0 0 2px rgba(44, 42, 107, 0.06); }
+.barre > span { background: var(--corail); }
+.lecon-haut .barre > span { background: var(--orange); }
+.quete.faite .barre > span { background: var(--jade); }
+
+/* Accueil : héros avec Bao en grand et bulle blanche */
+.salut { align-items: flex-end; }
+#onglet-apprendre > .salut, #ecran-profils > .salut {
+  position: relative;
+  background: var(--orange);
+  border-radius: var(--rayon);
+  padding: 16px 16px 0;
+  min-height: 170px;
+  overflow: hidden;
+  box-shadow: 0 6px 0 var(--orange-fonce);
+}
+#onglet-apprendre > .salut::before, #ecran-profils > .salut::before {
+  /* rayons de soleil derrière Bao */
+  content: "";
+  position: absolute;
+  left: -40px;
+  bottom: -90px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255, 255, 255, 0.22) 0 12deg, transparent 12deg 30deg);
+}
+#onglet-apprendre > .salut .avatar-mascotte, #ecran-profils > .salut .avatar-mascotte { width: 140px; height: 146px; position: relative; margin-bottom: -6px; }
+.salut .bulle { align-self: center; border: none; border-radius: 24px; font-family: var(--police-titre); font-weight: 600; font-size: 1.1rem; color: var(--marine); box-shadow: 0 4px 0 rgba(44, 42, 107, 0.12); }
+.bulle { border: none; box-shadow: 0 4px 0 rgba(44, 42, 107, 0.12); }
+.bulle::before { border: none; }
+
+/* Objectif du jour */
+.anneau .fond-anneau { stroke: #fff; }
+.anneau .plein { stroke: var(--corail); }
+.anneau-centre { color: var(--marine); }
+
+/* Quêtes : verres qui se remplissent (« 80 % ») */
+.quetes { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.quete { display: flex; flex-direction: column; align-items: stretch; border-radius: 22px; overflow: hidden; background: var(--turquoise-pale); box-shadow: 0 5px 0 rgba(44, 42, 107, 0.12); }
+.quete-titre { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px 8px; text-align: center; min-height: 92px; }
+.quete-emoji { font-size: 1.5rem; }
+.quete-texte { font-size: 0.86rem; line-height: 1.2; color: var(--marine); }
+.quete-verre { position: relative; width: 100%; height: 76px; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.quete-liquide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--orange);
+  transition: height 0.8s cubic-bezier(.2, .8, .3, 1);
+}
+.quete-liquide::before {
+  /* petite vague à la surface */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px;
+  height: 12px;
+  background: radial-gradient(circle at 10px -2px, transparent 8px, var(--orange) 9px) 0 0 / 20px 12px repeat-x;
+}
+.quete.faite .quete-liquide { background: var(--jade); }
+.quete.faite .quete-liquide::before { background-image: radial-gradient(circle at 10px -2px, transparent 8px, var(--jade) 9px); }
+.quete-compte { position: relative; font-family: var(--police-titre); font-size: 1.5rem; color: var(--marine); text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8); }
+.quete.faite .quete-compte { color: #fff; text-shadow: 0 2px 0 rgba(18, 147, 104, 0.6); }
+.coffre { border: none; background: #fff; box-shadow: 0 5px 0 rgba(44, 42, 107, 0.12); }
+
+.revision { background: #fff; box-shadow: 0 6px 0 rgba(44, 42, 107, 0.12); border: none; }
+.phrase-jour { background: #fff; border: none; box-shadow: 0 6px 0 rgba(44, 42, 107, 0.12); }
+.phrase-jour .etiquette { color: var(--corail); }
+.niveau-carte { background: var(--peche); border: none; }
+.niveau-infos .hanzi-niveau { color: var(--corail); }
+.bebe-intro { background: #fff; border: none; }
+
+/* Parcours */
+.titre-etape {
+  display: table;
+  margin: 34px auto 8px;
+  padding: 8px 22px;
+  background: #fff;
+  border-radius: 999px;
+  color: var(--marine);
+  font-family: var(--police-titre);
+  box-shadow: 0 4px 0 rgba(44, 42, 107, 0.12);
+}
+.titre-etape::before, .titre-etape::after { display: none; }
+.unite-entete { box-shadow: 0 6px 0 rgba(44, 42, 107, 0.18); border-radius: var(--rayon); }
+.unite-entete h3 { font-family: var(--police-titre); font-size: 1.5rem; }
+.unite-entete::after { background: radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.25) 0 50px, transparent 51px); }
+.noeud .rond { width: 82px; height: 76px; box-shadow: 0 8px 0 color-mix(in srgb, var(--couleur) 70%, #2c2a6b); border: 4px solid #fff; }
+.noeud.fait .rond { background: var(--orange); color: #fff; box-shadow: 0 8px 0 var(--orange-fonce); }
+.noeud.verrou .rond { background: #e9f6f6; color: #8fb9bb; box-shadow: 0 8px 0 #b9dcdd; }
+.noeud-titre { color: var(--marine); background: rgba(255, 255, 255, 0.7); padding: 1px 10px; border-radius: 99px; }
+.infobulle { border: none; color: var(--corail); box-shadow: 0 4px 0 rgba(44, 42, 107, 0.12); }
+.note-unite { background: #fff; }
+.note-unite summary { color: var(--marine); }
+
+/* Leçons */
+.consigne { color: var(--marine); font-size: 1.45rem; }
+.etiquette { color: var(--corail); }
+.choix button, .paires button, .morceau {
+  border: none;
+  background: #fff;
+  color: var(--marine);
+  box-shadow: 0 6px 0 rgba(44, 42, 107, 0.14);
+  border-radius: 24px;
+}
+.choix button.choisi, .paires button.choisi { background: var(--turquoise-pale); box-shadow: 0 6px 0 var(--turquoise-fonce); }
+.choix button.bon, .paires button.bon { background: var(--jade-clair); box-shadow: 0 6px 0 var(--jade); }
+.choix button.faux, .paires button.faux { background: #ffe1de; box-shadow: 0 6px 0 var(--corail); }
+.decouverte { background: var(--peche); }
+.d-hanzi, .q-hanzi { color: var(--marine); }
+.bandeau { border: none; border-radius: 28px 28px 0 0; box-shadow: 0 -6px 20px rgba(44, 42, 107, 0.12); }
+.bandeau.ok #continuer { background: var(--jade); box-shadow: 0 6px 0 var(--jade-fonce); }
+.bandeau.ko #continuer { background: var(--corail); box-shadow: 0 6px 0 var(--corail-fonce); }
+.fermer { color: var(--marine); }
+.tuile-fin small { font-family: var(--police-titre); }
+.tuile-fin { background: #fff; }
+
+/* Badges et autocollants */
+.badge.obtenu .badge-medaille { background: var(--orange); box-shadow: 0 5px 0 var(--orange-fonce); }
+.badge-medaille { border-radius: 24px; }
+.album { background: var(--peche); }
+
+/* Divers */
+.petit { color: var(--marine-doux); }
+.toast { border: none; box-shadow: 0 6px 0 var(--orange), 0 10px 30px rgba(44, 42, 107, 0.2); }
+.lexique li { background: #fff; }
+.jauge i.plein { background: var(--jade); }
+.jauge i { background: var(--turquoise-pale); }
+.coffre .bouton { background: var(--corail); box-shadow: 0 5px 0 var(--corail-fonce); color: #fff; }
+.page-histoire, .flashcard, .image-imagier { background: var(--peche); }
+.ligne-comptine.en-cours { background: var(--peche); box-shadow: 0 4px 0 var(--orange); }
+.choix-mode label { border: none; background: #fff; box-shadow: 0 4px 0 rgba(44, 42, 107, 0.12); }
+.choix-mode label:has(input:checked) { background: var(--turquoise-pale); box-shadow: 0 4px 0 var(--turquoise-fonce); }
+.ajout input { border: none; box-shadow: inset 0 0 0 2px rgba(44, 42, 107, 0.1); }
+
+/* Mode sombre : nuit étoilée, mêmes couleurs vives */
+:root[data-sombre="oui"][data-theme="adulte"] { --fond: #1d1b4a; --carte: #2a2766; --texte: #f3f1ff; --doux: #b9b6e6; --marine: #f3f1ff; --marine-doux: #b9b6e6; --peche: #3a3680; --peche-clair: #3a3680; --turquoise-pale: #2f2c72; --piste: #3a3680; }
+@media (prefers-color-scheme: dark) {
+  :root[data-sombre="auto"][data-theme="adulte"] { --fond: #1d1b4a; --carte: #2a2766; --texte: #f3f1ff; --doux: #b9b6e6; --marine: #f3f1ff; --marine-doux: #b9b6e6; --peche: #3a3680; --peche-clair: #3a3680; --turquoise-pale: #2f2c72; --piste: #3a3680; }
+}
+:root[data-sombre="oui"][data-theme="adulte"] :is(.pastille, .bouton-entete, main h2, .titre-etape, .filtre:not(.actif), .bouton.secondaire, .choix button, .paires button, .morceau, .salut .bulle, .bulle, .infobulle, .quete-verre, .onglets) { background: var(--carte); }
+@media (prefers-color-scheme: dark) {
+  :root[data-sombre="auto"][data-theme="adulte"] :is(.pastille, .bouton-entete, main h2, .titre-etape, .filtre:not(.actif), .bouton.secondaire, .choix button, .paires button, .morceau, .salut .bulle, .bulle, .infobulle, .quete-verre, .onglets) { background: var(--carte); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }

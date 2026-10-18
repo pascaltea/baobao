@@ -179,11 +179,13 @@ function afficherQuetes() {
   const zone = $("quetes");
   zone.innerHTML = "";
   for (const q of quetes.liste) {
+    // Tuile « verre qui se remplit » : le liquide monte avec la progression.
+    const pourcent = Math.min(100, Math.round((q.progres / q.objectif) * 100));
     const div = document.createElement("div");
     div.className = `quete${q.fait ? " faite" : ""}`;
-    div.innerHTML = `<span class="quete-emoji">${q.fait ? "✅" : q.emoji}</span>
-      <div><div class="quete-texte"></div><div class="barre"><span style="width:${Math.min(100, (q.progres / q.objectif) * 100)}%"></span></div></div>
-      <span class="quete-compte">${Math.min(q.progres, q.objectif)}/${q.objectif}</span>`;
+    div.innerHTML = `<div class="quete-titre"><span class="quete-emoji">${q.fait ? "✅" : q.emoji}</span><span class="quete-texte"></span></div>
+      <div class="quete-verre"><span class="quete-liquide" style="height:${Math.max(pourcent, 6)}%"></span>
+        <strong class="quete-compte">${q.objectif > 1 ? `${Math.min(q.progres, q.objectif)}/${q.objectif}` : `${pourcent}%`}</strong></div>`;
     div.querySelector(".quete-texte").textContent = q.texte;
     zone.appendChild(div);
   }
