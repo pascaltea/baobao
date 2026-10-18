@@ -231,7 +231,7 @@ export function exporterDonnees() {
 export function importerDonnees(texte) {
   const donnees = JSON.parse(texte);
   if (donnees.appli !== "mandarin-famille" || !Array.isArray(donnees.profils)) {
-    throw new Error("Ce fichier n'est pas une sauvegarde de Mandarin en famille.");
+    throw new Error("Ce fichier n'est pas une sauvegarde de BaoBao.");
   }
   const etat = { profils: donnees.profils.map(normaliser), actif: donnees.actif ?? donnees.profils[0]?.id ?? null };
   ecrireEtat(etat);

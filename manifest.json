@@ -1,7 +1,7 @@
 {
-  "name": "Mandarin en famille",
-  "short_name": "学中文",
-  "description": "Apprendre le chinois mandarin en famille",
+  "name": "BaoBao 宝宝 · Le chinois en famille",
+  "short_name": "BaoBao",
+  "description": "Apprendre le chinois mandarin en famille, avec Bao le panda",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -9,6 +9,29 @@
   "theme_color": "#e8423f",
   "lang": "fr",
   "icons": [
-    { "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

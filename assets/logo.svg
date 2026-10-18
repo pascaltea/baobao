@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-label="BaoBao 宝宝 · Le chinois en famille">
+  <image href="icons/icon.svg" x="10" y="10" width="160" height="160"/>
+  <text x="196" y="102" font-family="Nunito, 'Arial Rounded MT Bold', system-ui, sans-serif" font-weight="900" font-size="78" fill="#2d2a32" letter-spacing="-1">Bao<tspan fill="#e8423f">Bao</tspan></text>
+  <text x="200" y="148" font-family="Nunito, system-ui, sans-serif" font-weight="800" font-size="27" fill="#77707f">宝宝 · Le chinois en famille</text>
+</svg>

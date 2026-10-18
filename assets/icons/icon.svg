@@ -1,5 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#e8423f"/>
-  <text x="256" y="350" font-size="300" text-anchor="middle" fill="#ffffff"
-        font-family="'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif">学</text>
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f45b52"/>
+      <stop offset="1" stop-color="#d3302d"/>
+    </linearGradient>
+    <clipPath id="arrondi"><rect width="512" height="512" rx="116"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#fond)"/>
+  <circle cx="420" cy="92" r="120" fill="#ffc83d" opacity=".22" clip-path="url(#arrondi)"/>
+  <!-- Bao -->
+  <circle cx="150" cy="168" r="58" fill="#2d2a32"/>
+  <circle cx="362" cy="168" r="58" fill="#2d2a32"/>
+  <ellipse cx="256" cy="292" rx="168" ry="150" fill="#fff"/>
+  <ellipse cx="192" cy="282" rx="44" ry="56" transform="rotate(-25 192 282)" fill="#2d2a32"/>
+  <ellipse cx="320" cy="282" rx="44" ry="56" transform="rotate(25 320 282)" fill="#2d2a32"/>
+  <circle cx="198" cy="276" r="19" fill="#fff"/>
+  <circle cx="314" cy="276" r="19" fill="#fff"/>
+  <circle cx="201" cy="280" r="10" fill="#2d2a32"/>
+  <circle cx="311" cy="280" r="10" fill="#2d2a32"/>
+  <circle cx="148" cy="348" r="21" fill="#ffb3c1"/>
+  <circle cx="364" cy="348" r="21" fill="#ffb3c1"/>
+  <ellipse cx="256" cy="336" rx="21" ry="15" fill="#2d2a32"/>
+  <path d="M222 366 Q256 400 290 366" fill="none" stroke="#2d2a32" stroke-width="12" stroke-linecap="round"/>
 </svg>

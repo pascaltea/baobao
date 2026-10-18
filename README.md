@@ -1,7 +1,12 @@
-# 学中文 · Mandarin en famille
+<p align="center"><img src="assets/logo.svg" alt="BaoBao 宝宝 · Le chinois en famille" width="420"></p>
 
-Application web pour apprendre le chinois mandarin en famille, inspirée de
-Duolingo, sans publicité, sans abonnement et sans « vies » perdues.
+# BaoBao 宝宝 · Le chinois en famille
+
+Application web pour apprendre le chinois mandarin en famille avec **Bao**, le panda,
+inspirée de Duolingo, sans publicité, sans abonnement et sans « vies » perdues.
+
+Le nom vient de 宝宝 bǎobao, « bébé, mon trésor » : un des premiers mots que les
+parents chinois disent à leurs enfants.
 
 👉 **https://pascaltea.github.io/mandarin-famille/**
 

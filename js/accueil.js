@@ -127,7 +127,7 @@ function afficherEntete() {
   const niveau = niveauPour(p.xp);
   const bebe = p.mode === "bebe";
   $("pastilles").classList.toggle("cache", bebe);
-  $("sous-titre").textContent = bebe ? `${p.avatar} ${p.nom}` : "";
+  $("sous-titre").textContent = bebe ? `${p.avatar} ${p.nom}` : "宝宝";
   $("p-niveau").textContent = `${niveau.emoji} ${niveau.numero}`;
   $("p-serie").textContent = `🔥 ${s.serie}`;
   $("p-serie").classList.toggle("eteinte", s.xpJour === 0);
