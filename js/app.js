@@ -5,8 +5,31 @@ import { profilActif } from "./profils.js";
 // Thème visuel selon le profil : sobre pour les adultes, doux et coloré pour les enfants.
 export function appliquerTheme() {
   document.documentElement.dataset.theme = profilActif()?.mode ?? "adulte";
+  document.documentElement.dataset.sombre = preferenceSombre();
+}
+
+// Mode sombre (adultes) : « auto » suit le réglage du téléphone.
+const CLE_SOMBRE = "mandarin-famille-sombre";
+export function preferenceSombre() {
+  try { return localStorage.getItem(CLE_SOMBRE) || "auto"; } catch { return "auto"; }
+}
+export function changerSombre(valeur) {
+  try { localStorage.setItem(CLE_SOMBRE, valeur); } catch { /* pas de stockage */ }
+  appliquerTheme();
 }
 appliquerTheme();
+
+// Vérifie qu'une voix chinoise est installée sur l'appareil (les listes de voix
+// arrivent parfois en retard, d'où l'attente).
+export function verifierVoixChinoise() {
+  return new Promise((repondre) => {
+    if (!("speechSynthesis" in window)) return repondre(false);
+    const tester = () => speechSynthesis.getVoices().some((v) => v.lang.toLowerCase().startsWith("zh"));
+    if (tester()) return repondre(true);
+    speechSynthesis.addEventListener?.("voiceschanged", () => tester() && repondre(true));
+    setTimeout(() => repondre(tester()), 2000);
+  });
+}
 
 // Petite vibration sur mobile (bonne réponse, erreur), si l'appareil le permet.
 export function vibrer(motif) {
@@ -21,9 +44,17 @@ export function prononcer(texte, vitesse = 0.8) {
   const phrase = new SpeechSynthesisUtterance(texte);
   phrase.lang = "zh-CN";
   phrase.rate = vitesse;
-  const voix = speechSynthesis.getVoices().find((v) => v.lang.startsWith("zh"));
+  const voix = meilleureVoix();
   if (voix) phrase.voice = voix;
   speechSynthesis.speak(phrase);
+}
+
+// Préfère une voix de Chine continentale, et les voix de meilleure qualité
+// (« Google », « Natural », « Premium »…) quand il y en a plusieurs.
+function meilleureVoix() {
+  const voix = speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("zh"));
+  const score = (v) => (/zh[-_]cn/i.test(v.lang) ? 2 : 0) + (/google|natural|premium|enhanced|neural/i.test(v.name) ? 1 : 0);
+  return voix.sort((a, b) => score(b) - score(a))[0];
 }
 
 // Comme prononcer, mais renvoie une promesse résolue à la fin de la lecture.
@@ -34,7 +65,7 @@ export function prononcerPuis(texte, vitesse = 0.8) {
     const phrase = new SpeechSynthesisUtterance(texte);
     phrase.lang = "zh-CN";
     phrase.rate = vitesse;
-    const voix = speechSynthesis.getVoices().find((v) => v.lang.startsWith("zh"));
+    const voix = meilleureVoix();
     if (voix) phrase.voice = voix;
     const secours = setTimeout(fini, 1500 + texte.length * 600);
     phrase.onend = phrase.onerror = () => { clearTimeout(secours); fini(); };

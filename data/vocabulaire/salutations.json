@@ -8,5 +8,8 @@
   {"id": "qing", "hanzi": "请", "pinyin": "qǐng", "fr": "s'il te plaît", "emoji": "🤲"},
   {"id": "duibuqi", "hanzi": "对不起", "pinyin": "duìbuqǐ", "fr": "pardon", "emoji": "😔", "astuce": "Mot à mot : « je ne peux pas te faire face »."},
   {"id": "meiguanxi", "hanzi": "没关系", "pinyin": "méi guānxi", "fr": "ce n'est pas grave", "emoji": "🙂", "astuce": "Mot à mot : « pas de rapport », donc ce n'est pas grave."},
-  {"id": "woaini", "hanzi": "我爱你", "pinyin": "wǒ ài nǐ", "fr": "je t'aime", "emoji": "❤️", "astuce": "我 = moi, 爱 = aimer, 你 = toi. Même ordre qu'en français !"}
+  {"id": "woaini", "hanzi": "我爱你", "pinyin": "wǒ ài nǐ", "fr": "je t'aime", "emoji": "❤️", "astuce": "我 = moi, 爱 = aimer, 你 = toi. Même ordre qu'en français !"},
+  {"id": "haode", "hanzi": "好的", "pinyin": "hǎo de", "fr": "d'accord", "emoji": "👌"},
+  {"id": "dui", "hanzi": "对", "pinyin": "duì", "fr": "oui, c'est ça", "emoji": "✔️", "astuce": "En chinois, on dit rarement « oui » tout court : on répète le verbe ou on dit 对 (c'est juste)."},
+  {"id": "budui", "hanzi": "不对", "pinyin": "bú duì", "fr": "non, ce n'est pas ça", "emoji": "❌", "astuce": "不 se prononce bú devant un 4e ton : bú duì."}
 ]

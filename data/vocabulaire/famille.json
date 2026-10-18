@@ -6,5 +6,15 @@
   {"id": "didi", "hanzi": "弟弟", "pinyin": "dìdi", "fr": "petit frère", "emoji": "🧒"},
   {"id": "meimei", "hanzi": "妹妹", "pinyin": "mèimei", "fr": "petite sœur", "emoji": "👶"},
   {"id": "yeye", "hanzi": "爷爷", "pinyin": "yéye", "fr": "grand-père (paternel)", "emoji": "👴"},
-  {"id": "nainai", "hanzi": "奶奶", "pinyin": "nǎinai", "fr": "grand-mère (paternelle)", "emoji": "👵"}
+  {"id": "nainai", "hanzi": "奶奶", "pinyin": "nǎinai", "fr": "grand-mère (paternelle)", "emoji": "👵"},
+  {"id": "baobao", "hanzi": "宝宝", "pinyin": "bǎobao", "fr": "bébé (mon trésor)", "emoji": "🍼", "astuce": "宝 = trésor : on appelle tendrement les petits « trésor-trésor »."},
+  {"id": "waigong", "hanzi": "外公", "pinyin": "wàigōng", "fr": "grand-père (maternel)", "emoji": "🧓", "astuce": "外 = dehors : la famille de la maman est « à l'extérieur » dans la tradition."},
+  {"id": "waipo", "hanzi": "外婆", "pinyin": "wàipó", "fr": "grand-mère (maternelle)", "emoji": "👩‍🦳"},
+  {"id": "jia", "hanzi": "家", "pinyin": "jiā", "fr": "maison, famille", "emoji": "🏡", "astuce": "家 : un toit (宀) au-dessus d'un cochon (豕). Autrefois, un foyer avait toujours son cochon !"},
+  {"id": "erzi", "hanzi": "儿子", "pinyin": "érzi", "fr": "fils", "emoji": "🙋‍♂️"},
+  {"id": "nver", "hanzi": "女儿", "pinyin": "nǚ'ér", "fr": "fille (enfant)", "emoji": "🙋‍♀️", "astuce": "女 = femme : on le retrouve dans 妈妈, 姐姐, 妹妹…"},
+  {"id": "shushu", "hanzi": "叔叔", "pinyin": "shūshu", "fr": "tonton, monsieur", "emoji": "🧔", "astuce": "Les enfants appellent tous les messieurs « tonton » 叔叔."},
+  {"id": "ayi", "hanzi": "阿姨", "pinyin": "āyí", "fr": "tata, madame", "emoji": "👩‍🦰", "astuce": "Les enfants appellent toutes les dames « tata » 阿姨."},
+  {"id": "pengyou", "hanzi": "朋友", "pinyin": "péngyou", "fr": "ami", "emoji": "🤝"},
+  {"id": "laoshi", "hanzi": "老师", "pinyin": "lǎoshī", "fr": "maîtresse, professeur", "emoji": "👩‍🏫"}
 ]

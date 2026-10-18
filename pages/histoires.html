@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Histoires · Mandarin en famille</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500&display=swap">
+  <meta name="theme-color" content="#e8423f">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <section id="liste">
+      <h2>📚 Histoires</h2>
+      <p class="carte intro">De petites histoires avec les mots du parcours. Lisez-les à voix haute à vos enfants,
+        le soir ou dans la journée : écouter une histoire, c'est entendre la langue « en vrai ».</p>
+      <div id="histoires" class="grille"></div>
+    </section>
+
+    <section id="lecteur" class="cache">
+      <div class="imagier-haut">
+        <button class="bouton secondaire" id="retour">← Histoires</button>
+        <span class="petit" id="position"></span>
+      </div>
+      <div class="barre"><span id="barre"></span></div>
+      <article class="page-histoire" id="page">
+        <div class="ph-emoji" id="ph-emoji"></div>
+        <div class="ph-hanzi" id="ph-hanzi"></div>
+        <button class="lien" id="traduire">Voir la traduction</button>
+        <div class="ph-fr cache" id="ph-fr"></div>
+      </article>
+      <div class="sons">
+        <button class="bouton-son" id="son" aria-label="Écouter">🔊</button>
+        <button class="bouton-son lent" id="lent" aria-label="Écouter lentement">🐢</button>
+      </div>
+      <label class="case petit centre"><input type="checkbox" id="voir-pinyin" checked> Afficher le pinyin</label>
+      <div class="imagier-nav">
+        <button class="bouton-rond" id="precedent" aria-label="Page précédente">‹</button>
+        <button class="bouton-rond" id="suivant" aria-label="Page suivante">›</button>
+      </div>
+    </section>
+
+    <section id="question" class="cache">
+      <div class="salut">
+        <div class="avatar-mascotte" id="q-mascotte"></div>
+        <p class="bulle" id="q-texte"></p>
+      </div>
+      <div class="choix choix-colonne" id="q-options"></div>
+      <div id="q-fin" class="fin cache">
+        <p class="objectif-atteint" id="q-resultat"></p>
+        <div class="actions">
+          <button class="bouton" id="relire">Relire</button>
+          <button class="bouton secondaire" id="autre">Autre histoire</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../js/histoires.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 // Mode hors-ligne : on garde en cache les fichiers de l'appli.
 // Pensez à changer VERSION quand vous modifiez des fichiers, pour forcer la mise à jour.
 
-const VERSION = "v5";
+const VERSION = "v6";
 const FICHIERS = [
   "./",
   "./index.html",
@@ -21,6 +21,8 @@ const FICHIERS = [
   "./js/quotidien.js",
   "./js/comptines.js",
   "./js/imagier.js",
+  "./js/histoires.js",
+  "./js/lexique.js",
   "./js/tons.js",
   "./js/quiz.js",
   "./pages/flashcards.html",
@@ -28,13 +30,24 @@ const FICHIERS = [
   "./pages/quotidien.html",
   "./pages/comptines.html",
   "./pages/imagier.html",
+  "./pages/histoires.html",
+  "./pages/lexique.html",
   "./pages/tons.html",
   "./pages/quiz.html",
   "./assets/icons/icon.svg",
   "./data/tons.json",
   "./data/quotidien.json",
   "./data/comptines.json",
+  "./data/histoires.json",
   "./data/vocabulaire/index.json",
+  "./data/vocabulaire/temps.json",
+  "./data/vocabulaire/dehors.json",
+  "./data/vocabulaire/maison.json",
+  "./data/vocabulaire/decrire.json",
+  "./data/vocabulaire/vetements.json",
+  "./data/vocabulaire/objets.json",
+  "./data/vocabulaire/petitsmots.json",
+  "./data/vocabulaire/actions.json",
   "./data/vocabulaire/salutations.json",
   "./data/vocabulaire/animaux.json",
   "./data/vocabulaire/couleurs.json",

@@ -1,0 +1,15 @@
+[
+  {"id": "fangjian", "hanzi": "房间", "pinyin": "fángjiān", "fr": "chambre, pièce", "emoji": "🛌"},
+  {"id": "keting", "hanzi": "客厅", "pinyin": "kètīng", "fr": "salon", "emoji": "🏠", "astuce": "客 = invité + 厅 = salle : la salle des invités."},
+  {"id": "chufang", "hanzi": "厨房", "pinyin": "chúfáng", "fr": "cuisine", "emoji": "🍳"},
+  {"id": "yushi", "hanzi": "浴室", "pinyin": "yùshì", "fr": "salle de bain", "emoji": "🛁"},
+  {"id": "cesuo", "hanzi": "厕所", "pinyin": "cèsuǒ", "fr": "toilettes", "emoji": "🚽"},
+  {"id": "men", "hanzi": "门", "pinyin": "mén", "fr": "porte", "emoji": "🚪", "astuce": "门 dessine une porte de saloon à deux battants."},
+  {"id": "chuanghu", "hanzi": "窗户", "pinyin": "chuānghu", "fr": "fenêtre", "emoji": "🪟"},
+  {"id": "deng", "hanzi": "灯", "pinyin": "dēng", "fr": "lampe, lumière", "emoji": "💡", "astuce": "灯 contient 火 (feu) : les premières lampes étaient des flammes."},
+  {"id": "zhuozi", "hanzi": "桌子", "pinyin": "zhuōzi", "fr": "table", "emoji": "🍽️"},
+  {"id": "yizi", "hanzi": "椅子", "pinyin": "yǐzi", "fr": "chaise", "emoji": "🪑"},
+  {"id": "dianshi", "hanzi": "电视", "pinyin": "diànshì", "fr": "télévision", "emoji": "📺", "astuce": "电 = électricité + 视 = voir."},
+  {"id": "shafa", "hanzi": "沙发", "pinyin": "shāfā", "fr": "canapé", "emoji": "🛋️", "astuce": "沙发 shāfā vient du mot anglais « sofa »."},
+  {"id": "yaoshi", "hanzi": "钥匙", "pinyin": "yàoshi", "fr": "clé", "emoji": "🔑"}
+]

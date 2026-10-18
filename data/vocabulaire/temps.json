@@ -1,0 +1,13 @@
+[
+  {"id": "jintian", "hanzi": "今天", "pinyin": "jīntiān", "fr": "aujourd'hui", "emoji": "📅", "astuce": "天 = jour. 今天 aujourd'hui, 明天 demain, 昨天 hier."},
+  {"id": "mingtian", "hanzi": "明天", "pinyin": "míngtiān", "fr": "demain", "emoji": "⏭️"},
+  {"id": "zuotian", "hanzi": "昨天", "pinyin": "zuótiān", "fr": "hier", "emoji": "⏮️"},
+  {"id": "xianzai", "hanzi": "现在", "pinyin": "xiànzài", "fr": "maintenant", "emoji": "⏱️"},
+  {"id": "zaoshang", "hanzi": "早上", "pinyin": "zǎoshang", "fr": "le matin", "emoji": "🌄"},
+  {"id": "zhongwu", "hanzi": "中午", "pinyin": "zhōngwǔ", "fr": "midi", "emoji": "🕛"},
+  {"id": "wanshang", "hanzi": "晚上", "pinyin": "wǎnshang", "fr": "le soir", "emoji": "🌆"},
+  {"id": "xingqi", "hanzi": "星期", "pinyin": "xīngqī", "fr": "semaine", "emoji": "🗓️", "astuce": "Les jours se comptent : 星期一 lundi, 星期二 mardi… et 星期天 dimanche."},
+  {"id": "shengri", "hanzi": "生日", "pinyin": "shēngrì", "fr": "anniversaire", "emoji": "🎂", "astuce": "生 = naître + 日 = jour : le « jour de naissance »."},
+  {"id": "dengyixia", "hanzi": "等一下", "pinyin": "děng yíxià", "fr": "attends un peu", "emoji": "⏳"},
+  {"id": "kuaidian", "hanzi": "快点", "pinyin": "kuài diǎn", "fr": "dépêche-toi", "emoji": "🏃‍♀️"}
+]

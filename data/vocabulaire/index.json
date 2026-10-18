@@ -1,16 +1,122 @@
 [
-  { "id": "salutations", "titre": "Salutations", "emoji": "👋", "fichier": "salutations.json",
-    "note": "Le chinois a 4 tons : la même syllabe change de sens selon la mélodie (mā = maman, mǎ = cheval). La couleur du pinyin vous indique le ton. Quand deux 3e tons se suivent, le premier se prononce comme un 2e ton : 你好 nǐ hǎo se dit « ní hǎo »." },
-  { "id": "animaux", "titre": "Animaux", "emoji": "🐼", "fichier": "animaux.json",
-    "note": "Pour compter, on place un « classificateur » entre le nombre et le nom. Pour la plupart des animaux, c'est 只 zhī : 一只猫 yì zhī māo = un chat, 两只狗 liǎng zhī gǒu = deux chiens." },
-  { "id": "couleurs", "titre": "Couleurs", "emoji": "🎨", "fichier": "couleurs.json",
-    "note": "Les couleurs finissent par 色 (couleur). L'adjectif se place avant le nom, relié par 的 : 红色的苹果 hóngsè de píngguǒ = une pomme rouge." },
-  { "id": "nombres", "titre": "Nombres", "emoji": "🔢", "fichier": "nombres.json",
-    "note": "Les nombres sont très logiques : 十一 (10+1) = 11, 二十 (2×10) = 20, 二十三 = 23. Devant un nom, « deux » se dit 两 liǎng et non 二 : 两只猫 = deux chats." },
-  { "id": "famille", "titre": "Famille", "emoji": "👨‍👩‍👧", "fichier": "famille.json",
-    "note": "Le chinois distingue les aînés et les cadets (哥哥 grand frère, 弟弟 petit frère), et les grands-parents paternels (爷爷, 奶奶) des maternels (外公 wàigōng, 外婆 wàipó)." },
-  { "id": "nourriture", "titre": "Nourriture", "emoji": "🥟", "fichier": "nourriture.json",
-    "note": "Deux verbes essentiels : 吃 chī (manger) et 喝 hē (boire). « Je veux… » se dit 我要… wǒ yào : 我要苹果 = je veux une pomme. Bonne nouvelle : il n'y a pas de conjugaison en chinois !" },
-  { "id": "corps", "titre": "Corps", "emoji": "✋", "fichier": "corps.json",
-    "note": "Pour « mon / ma », on ajoute 的 : 我的手 wǒ de shǒu = ma main. « J'ai mal à la tête » : 我头疼 wǒ tóu téng (mot à mot : moi tête mal)." }
+  {
+    "id": "famille",
+    "titre": "Famille",
+    "emoji": "👨‍👩‍👧",
+    "fichier": "famille.json",
+    "section": "Étape 1 · Les premiers mots",
+    "note": "Les tout premiers mots des enfants chinois sont des mots de famille : 7 des 10 premiers mots appris ! Le chinois distingue les aînés et les cadets (哥哥 grand frère, 弟弟 petit frère), et les grands-parents paternels (爷爷, 奶奶) des maternels (外公, 外婆)."
+  },
+  {
+    "id": "salutations",
+    "titre": "Salutations",
+    "emoji": "👋",
+    "fichier": "salutations.json",
+    "section": "Étape 1 · Les premiers mots",
+    "note": "Le chinois a 4 tons : la même syllabe change de sens selon la mélodie (mā = maman, mǎ = cheval). La couleur du pinyin vous indique le ton. Quand deux 3e tons se suivent, le premier se prononce comme un 2e ton : 你好 nǐ hǎo se dit « ní hǎo »."
+  },
+  {
+    "id": "actions",
+    "titre": "Besoins et actions",
+    "emoji": "🙋",
+    "fichier": "actions.json",
+    "section": "Étape 1 · Les premiers mots",
+    "note": "Les verbes ne se conjuguent jamais : 吃 = je mange, tu manges, il a mangé… Pour dire non, on met 不 devant : 不要 = je ne veux pas, 不吃 = je ne mange pas. Les enfants chinois apprennent les verbes très tôt !"
+  },
+  {
+    "id": "petitsmots",
+    "titre": "Moi, toi et les questions",
+    "emoji": "❓",
+    "fichier": "petitsmots.json",
+    "section": "Étape 1 · Les premiers mots",
+    "note": "La phrase suit l'ordre sujet-verbe-complément, comme en français : 我爱你. Pour une question oui/non, on ajoute 吗 à la fin : 你饿吗 ? Les mots interrogatifs restent à leur place : 你吃什么 ? = tu manges quoi ?"
+  },
+  {
+    "id": "nourriture",
+    "titre": "Nourriture",
+    "emoji": "🥟",
+    "fichier": "nourriture.json",
+    "section": "Étape 2 · Le monde de l'enfant",
+    "note": "Deux verbes essentiels : 吃 chī (manger) et 喝 hē (boire). « Je veux… » se dit 我要… wǒ yào : 我要苹果 = je veux une pomme."
+  },
+  {
+    "id": "corps",
+    "titre": "Corps",
+    "emoji": "✋",
+    "fichier": "corps.json",
+    "section": "Étape 2 · Le monde de l'enfant",
+    "note": "Pour « mon / ma », on ajoute 的 : 我的手 wǒ de shǒu = ma main. « J'ai mal à la tête » : 我头疼 wǒ tóu téng (mot à mot : moi tête mal)."
+  },
+  {
+    "id": "animaux",
+    "titre": "Animaux",
+    "emoji": "🐼",
+    "fichier": "animaux.json",
+    "section": "Étape 2 · Le monde de l'enfant",
+    "note": "Pour compter, on place un « classificateur » entre le nombre et le nom. Pour la plupart des animaux, c'est 只 zhī : 一只猫 = un chat, 两只狗 = deux chiens."
+  },
+  {
+    "id": "objets",
+    "titre": "Jouets et objets",
+    "emoji": "🧸",
+    "fichier": "objets.json",
+    "section": "Étape 2 · Le monde de l'enfant",
+    "note": "Chaque objet a son classificateur : 一本书 (un livre), 一辆车 (une voiture), 一个球 (un ballon). En cas de doute, 个 gè marche presque partout !"
+  },
+  {
+    "id": "vetements",
+    "titre": "Vêtements",
+    "emoji": "👕",
+    "fichier": "vetements.json",
+    "section": "Étape 2 · Le monde de l'enfant",
+    "note": "« Mettre » se dit différemment : 穿 chuān pour les habits et les chaussures (穿鞋子), 戴 dài pour les accessoires (戴帽子, 戴手套)."
+  },
+  {
+    "id": "decrire",
+    "titre": "Décrire et ressentir",
+    "emoji": "😄",
+    "fichier": "decrire.json",
+    "section": "Étape 3 · Décrire le monde",
+    "note": "Un adjectif s'utilise avec 很 (très), sans verbe « être » : 我很累 = je suis fatigué. Avec les petits, on redouble pour faire doux : 慢慢 doucement, 小小的 tout petit."
+  },
+  {
+    "id": "couleurs",
+    "titre": "Couleurs",
+    "emoji": "🎨",
+    "fichier": "couleurs.json",
+    "section": "Étape 3 · Décrire le monde",
+    "note": "Les couleurs finissent par 色 (couleur). L'adjectif se place avant le nom, relié par 的 : 红色的苹果 hóngsè de píngguǒ = une pomme rouge."
+  },
+  {
+    "id": "nombres",
+    "titre": "Nombres",
+    "emoji": "🔢",
+    "fichier": "nombres.json",
+    "section": "Étape 3 · Décrire le monde",
+    "note": "Les nombres sont très logiques : 十一 (10+1) = 11, 二十 (2×10) = 20, 二十三 = 23. Devant un nom, « deux » se dit 两 liǎng et non 二 : 两只猫 = deux chats."
+  },
+  {
+    "id": "maison",
+    "titre": "La maison",
+    "emoji": "🏠",
+    "fichier": "maison.json",
+    "section": "Étape 4 · La vie de tous les jours",
+    "note": "Pour dire où se trouve quelque chose : 在 zài + lieu. 妈妈在厨房 = maman est dans la cuisine. 你在哪里 ? = où es-tu ?"
+  },
+  {
+    "id": "dehors",
+    "titre": "Dehors et nature",
+    "emoji": "🌳",
+    "fichier": "dehors.json",
+    "section": "Étape 4 · La vie de tous les jours",
+    "note": "La météo : 下雨了 xià yǔ le = il pleut, 下雪了 = il neige. Le 了 final annonce un changement : « ça y est, il pleut ! »"
+  },
+  {
+    "id": "temps",
+    "titre": "Le temps qui passe",
+    "emoji": "⏰",
+    "fichier": "temps.json",
+    "section": "Étape 4 · La vie de tous les jours",
+    "note": "Les mots de temps se placent au début ou juste après le sujet : 明天我们去公园 = demain, on va au parc. Pas de conjugaison : c'est le mot de temps qui dit quand."
+  }
 ]

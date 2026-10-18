@@ -8,5 +8,14 @@
   {"id": "shui", "hanzi": "水", "pinyin": "shuǐ", "fr": "eau", "emoji": "💧", "astuce": "水 dessine de l'eau qui coule, avec des gouttes de chaque côté."},
   {"id": "jidan", "hanzi": "鸡蛋", "pinyin": "jīdàn", "fr": "œuf", "emoji": "🥚", "astuce": "鸡 = poule, 蛋 = œuf : « œuf de poule »."},
   {"id": "mianbao", "hanzi": "面包", "pinyin": "miànbāo", "fr": "pain", "emoji": "🍞", "astuce": "面 = farine, 包 = envelopper."},
-  {"id": "cha", "hanzi": "茶", "pinyin": "chá", "fr": "thé", "emoji": "🍵"}
+  {"id": "cha", "hanzi": "茶", "pinyin": "chá", "fr": "thé", "emoji": "🍵"},
+  {"id": "shuiguo", "hanzi": "水果", "pinyin": "shuǐguǒ", "fr": "fruits", "emoji": "🍇", "astuce": "水 = eau + 果 = fruit : les fruits sont « pleins d'eau »."},
+  {"id": "shucai", "hanzi": "蔬菜", "pinyin": "shūcài", "fr": "légumes", "emoji": "🥦"},
+  {"id": "rou", "hanzi": "肉", "pinyin": "ròu", "fr": "viande", "emoji": "🍖"},
+  {"id": "tang", "hanzi": "汤", "pinyin": "tāng", "fr": "soupe", "emoji": "🍲"},
+  {"id": "binggan", "hanzi": "饼干", "pinyin": "bǐnggān", "fr": "biscuit", "emoji": "🍪"},
+  {"id": "tangguo", "hanzi": "糖", "pinyin": "táng", "fr": "bonbon", "emoji": "🍬", "astuce": "汤 tāng (soupe) et 糖 táng (bonbon) ne diffèrent que par le ton !"},
+  {"id": "caomei", "hanzi": "草莓", "pinyin": "cǎoméi", "fr": "fraise", "emoji": "🍓"},
+  {"id": "xigua", "hanzi": "西瓜", "pinyin": "xīguā", "fr": "pastèque", "emoji": "🍉", "astuce": "西 = ouest, 瓜 = melon : le « melon de l'Ouest »."},
+  {"id": "guozhi", "hanzi": "果汁", "pinyin": "guǒzhī", "fr": "jus de fruits", "emoji": "🧃"}
 ]

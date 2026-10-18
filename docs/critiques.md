@@ -25,3 +25,33 @@ enfant peut répéter des mots entendus sur un écran, mais qu'il a besoin d'éc
 avec une vraie personne pour apprendre à communiquer. Pour les tout-petits,
 l'appli sert donc surtout au **parent** : apprendre les phrases et les comptines,
 puis les dire et les chanter dans la vie de tous les jours.
+
+## Choix du vocabulaire
+
+L'ordre du parcours suit les études sur l'acquisition du mandarin (inventaire de
+vocabulaire précoce de Hao, Shu, Xing et Li ; Hao et al., 2015, *Journal of Child Language*) :
+
+1. **Étape 1 · Les premiers mots** : famille (7 des 10 premiers mots des enfants chinois
+   sont des mots de parenté), salutations, besoins et actions (les verbes arrivent tôt en
+   chinois : 要, 不要, 吃, 喝, 抱…), pronoms et questions.
+2. **Étape 2 · Le monde de l'enfant** : nourriture, corps, animaux, jouets, vêtements.
+3. **Étape 3 · Décrire le monde** : sensations, couleurs, nombres.
+4. **Étape 4 · La vie de tous les jours** : maison, dehors et météo, temps qui passe.
+
+Les mots sont courts et fréquents, comme dans le langage adressé aux enfants, et
+reviennent dans les phrases du quotidien et les histoires (la répétition dans des
+phrases successives aide l'apprentissage).
+
+## Bonnes pratiques ajoutées
+
+| Bonne pratique | Dans l'appli |
+|---|---|
+| Lecture « en contexte » (Duolingo Stories) | Histoires courtes avec question de compréhension |
+| Ne pas forcer à refaire ce qu'on sait (« sauter » une unité) | Test de passage à 80 % |
+| Rendre la mémoire visible (Anki, Memrise) | Lexique avec jauge de mémoire par mot |
+| Accueil guidé (onboarding) | 3 écrans avec Bao au premier lancement |
+| Ne jamais perdre sa progression | Sauvegarde et restauration par fichier |
+| Impliquer le parent | Bilan de la semaine avec les mots à redire à l'enfant |
+| Confort du soir | Mode sombre automatique |
+| Robustesse de l'audio | Choix de la meilleure voix, alerte et mode d'emploi si aucune voix chinoise |
+| Accessibilité | Focus clavier visible, respect de « réduire les animations » |

@@ -1,0 +1,17 @@
+[
+  {"id": "qiu", "hanzi": "球", "pinyin": "qiú", "fr": "ballon", "emoji": "⚽"},
+  {"id": "che", "hanzi": "车", "pinyin": "chē", "fr": "voiture", "emoji": "🚗", "astuce": "车 vu d'en haut : une charrette avec son essieu."},
+  {"id": "shu-livre", "hanzi": "书", "pinyin": "shū", "fr": "livre", "emoji": "📖"},
+  {"id": "wawa", "hanzi": "娃娃", "pinyin": "wáwa", "fr": "poupée", "emoji": "🪆"},
+  {"id": "jimu", "hanzi": "积木", "pinyin": "jīmù", "fr": "cubes (jeu de construction)", "emoji": "🧱", "astuce": "木 = bois : les premiers cubes étaient en bois."},
+  {"id": "xiaoxiong", "hanzi": "小熊", "pinyin": "xiǎoxióng", "fr": "nounours", "emoji": "🧸"},
+  {"id": "qiqiu", "hanzi": "气球", "pinyin": "qìqiú", "fr": "ballon de baudruche", "emoji": "🎈", "astuce": "气 = air + 球 = ballon : un « ballon d'air »."},
+  {"id": "beizi", "hanzi": "杯子", "pinyin": "bēizi", "fr": "verre, tasse", "emoji": "☕"},
+  {"id": "shaozi", "hanzi": "勺子", "pinyin": "sháozi", "fr": "cuillère", "emoji": "🥄"},
+  {"id": "wan-bol", "hanzi": "碗", "pinyin": "wǎn", "fr": "bol", "emoji": "🥣"},
+  {"id": "chuang", "hanzi": "床", "pinyin": "chuáng", "fr": "lit", "emoji": "🛏️", "astuce": "床 : un toit (广) avec du bois (木) dessous."},
+  {"id": "shouji", "hanzi": "手机", "pinyin": "shǒujī", "fr": "téléphone", "emoji": "📱", "astuce": "手 = main + 机 = machine : la « machine de la main »."},
+  {"id": "hua", "hanzi": "画", "pinyin": "huà", "fr": "dessin, dessiner", "emoji": "🖍️"},
+  {"id": "feiji", "hanzi": "飞机", "pinyin": "fēijī", "fr": "avion", "emoji": "✈️", "astuce": "飞 = voler + 机 = machine : la « machine qui vole »."},
+  {"id": "huoche", "hanzi": "火车", "pinyin": "huǒchē", "fr": "train", "emoji": "🚂", "astuce": "火 = feu + 车 = voiture : la « voiture à feu », comme les locomotives à vapeur."}
+]

@@ -9,6 +9,7 @@
 //   lecon.html?cle=animaux:revision  la révision d'une unité
 //   lecon.html?revision=jour         les mots à réviser aujourd'hui
 //   lecon.html?routine=repas         les phrases du quotidien d'une routine
+//   lecon.html?test=animaux          test de passage : valider une unité d'un coup
 
 import { prononcer, melanger, activerHorsLigne, vibrer } from "./app.js";
 import { chargerParcours, chargerRoutines, toutesLesLecons } from "./parcours.js";
@@ -46,6 +47,8 @@ const choisirType = (mot, difficulte) => {
 
 let tousLesMots = [];
 let routine = null;
+let testUnite = null;      // unité visée par un test de passage
+const SEUIL_TEST = 0.8;    // 80 % de bonnes réponses pour valider
 let lecon = null;          // la leçon du parcours (null pour la révision du jour)
 let pas = [];              // la file des étapes
 let total = 0;             // nombre d'étapes prévues au départ
@@ -401,6 +404,9 @@ function confettis() {
 function terminer() {
   for (const mot of motsSession.values()) enregistrerReponse(mot.id, !erreurs.has(mot.id));
   if (lecon) terminerLecon(lecon.cle);
+  const precisionTest = nbReponses ? nbJustes / nbReponses : 0;
+  const testReussi = testUnite && precisionTest >= SEUIL_TEST;
+  if (testReussi) for (const l of testUnite.lecons) terminerLecon(l.cle);
   const autocollant = enfant ? gagnerAutocollant() : null;
 
   const parfait = erreurs.size === 0;
@@ -419,7 +425,8 @@ function terminer() {
   zone.innerHTML = `
     <div class="fin">
       <div class="fin-mascotte">${mascotte("bravo", "saute")}</div>
-      <h2>${routine ? `${routine.emoji} ${routine.titre} : entraînement terminé !` : lecon && !lecon.revision ? "Leçon terminée !" : "Révision terminée !"}</h2>
+      <h2>${testUnite ? (testReussi ? `${testUnite.emoji} Unité « ${testUnite.titre} » validée !` : "Pas encore… mais bien essayé !") : routine ? `${routine.emoji} ${routine.titre} : entraînement terminé !` : lecon && !lecon.revision ? "Leçon terminée !" : "Révision terminée !"}</h2>
+      ${testUnite && !testReussi ? `<p>Il faut 80 % de bonnes réponses pour sauter l'unité. Les leçons t'aideront à y arriver !</p>` : ""}
       <p>${parfait ? "Sans aucune faute, 太棒了 (tài bàng le) !" : "Les mots difficiles reviendront dans tes révisions."}</p>
       ${autocollant ? `<div class="autocollant-gagne"><span>${autocollant}</span>Tu gagnes un autocollant !</div>` : ""}
       ${routine ? `<p class="carte defi">💬 <strong>Défi :</strong> utilise une de ces phrases avec tes enfants aujourd'hui, puis coche-la dans « Au quotidien » (+2 XP).</p>` : ""}
@@ -470,7 +477,13 @@ async function demarrer() {
   tousLesMots = [...unites.flatMap((u) => u.mots), ...routines.flatMap((r) => r.phrases)];
   const params = new URLSearchParams(location.search);
 
-  if (params.get("routine")) {
+  if (params.get("test")) {
+    testUnite = unites.find((u) => u.id === params.get("test"));
+    if (!testUnite) { location.href = "../index.html"; return; }
+    // 10 mots de l'unité, exercices difficiles uniquement, sans découverte.
+    const choisis = melanger(testUnite.mots).slice(0, 10);
+    pas = choisis.map((mot) => exercice(choisirType(mot, "difficile"), mot));
+  } else if (params.get("routine")) {
     routine = routines.find((r) => r.id === params.get("routine"));
     if (!routine) { location.href = "../index.html"; return; }
     // Les phrases jamais vues sont découvertes, les autres seulement révisées.

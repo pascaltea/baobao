@@ -1,0 +1,19 @@
+[
+  {"id": "wo", "hanzi": "我", "pinyin": "wǒ", "fr": "moi, je", "emoji": "🙋‍♂️"},
+  {"id": "ni", "hanzi": "你", "pinyin": "nǐ", "fr": "toi, tu", "emoji": "🫵"},
+  {"id": "ta", "hanzi": "他", "pinyin": "tā", "fr": "il, lui", "emoji": "👨‍🦱"},
+  {"id": "ta-elle", "hanzi": "她", "pinyin": "tā", "fr": "elle", "emoji": "👩‍🦱", "astuce": "他 et 她 se prononcent pareil : seul l'écrit change (女 = femme)."},
+  {"id": "women", "hanzi": "我们", "pinyin": "wǒmen", "fr": "nous", "emoji": "👨‍👩‍👦", "astuce": "们 met au pluriel : 我们 nous, 你们 vous, 他们 ils."},
+  {"id": "zhege", "hanzi": "这个", "pinyin": "zhège", "fr": "ceci, celui-ci", "emoji": "👇"},
+  {"id": "nage", "hanzi": "那个", "pinyin": "nàge", "fr": "cela, celui-là", "emoji": "👉"},
+  {"id": "shenme", "hanzi": "什么", "pinyin": "shénme", "fr": "quoi", "emoji": "❓", "astuce": "这是什么 ? zhè shì shénme = qu'est-ce que c'est ?"},
+  {"id": "shei", "hanzi": "谁", "pinyin": "shéi", "fr": "qui", "emoji": "🕵️"},
+  {"id": "nali", "hanzi": "哪里", "pinyin": "nǎlǐ", "fr": "où", "emoji": "🗺️"},
+  {"id": "shi-etre", "hanzi": "是", "pinyin": "shì", "fr": "être, c'est", "emoji": "🟰"},
+  {"id": "bu", "hanzi": "不", "pinyin": "bù", "fr": "non, ne… pas", "emoji": "🚫"},
+  {"id": "you", "hanzi": "有", "pinyin": "yǒu", "fr": "avoir, il y a", "emoji": "🎁"},
+  {"id": "meiyou", "hanzi": "没有", "pinyin": "méiyǒu", "fr": "ne pas avoir, il n'y en a plus", "emoji": "🫙", "astuce": "没有了 méiyǒu le = y'en a plus ! Très utile à table."},
+  {"id": "ye", "hanzi": "也", "pinyin": "yě", "fr": "aussi", "emoji": "➕"},
+  {"id": "hen", "hanzi": "很", "pinyin": "hěn", "fr": "très", "emoji": "💪"},
+  {"id": "he-et", "hanzi": "和", "pinyin": "hé", "fr": "et (avec)", "emoji": "🔗", "astuce": "和 relie seulement des noms : 爸爸和妈妈 = papa et maman."}
+]

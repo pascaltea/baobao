@@ -8,5 +8,8 @@
   {"id": "qi", "hanzi": "七", "pinyin": "qī", "fr": "sept", "emoji": "7️⃣"},
   {"id": "ba", "hanzi": "八", "pinyin": "bā", "fr": "huit", "emoji": "8️⃣"},
   {"id": "jiu", "hanzi": "九", "pinyin": "jiǔ", "fr": "neuf", "emoji": "9️⃣"},
-  {"id": "shi", "hanzi": "十", "pinyin": "shí", "fr": "dix", "emoji": "🔟", "astuce": "Une croix = 10, comme le X des chiffres romains."}
+  {"id": "shi", "hanzi": "十", "pinyin": "shí", "fr": "dix", "emoji": "🔟", "astuce": "Une croix = 10, comme le X des chiffres romains."},
+  {"id": "ling", "hanzi": "零", "pinyin": "líng", "fr": "zéro", "emoji": "0️⃣"},
+  {"id": "liang", "hanzi": "两", "pinyin": "liǎng", "fr": "deux (devant un nom)", "emoji": "✌️", "astuce": "Pour compter on dit 二, mais « deux chats » se dit 两只猫."},
+  {"id": "bai", "hanzi": "百", "pinyin": "bǎi", "fr": "cent", "emoji": "💯"}
 ]

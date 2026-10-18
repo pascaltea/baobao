@@ -151,7 +151,7 @@ export function niveauMot(id) {
 // Erreur : il retombe au niveau 1 et reviendra dès demain.
 export function enregistrerReponse(id, juste) {
   modifierActif((p) => {
-    const mot = p.mots[id] ?? { niveau: 0 };
+    const mot = p.mots[id] ?? { niveau: 0, debut: aujourdhui() };
     mot.niveau = juste ? Math.min(NIVEAU_MAX, mot.niveau + 1) : 1;
     mot.prochaine = aujourdhui(INTERVALLES[mot.niveau]);
     p.mots[id] = mot;
@@ -161,6 +161,12 @@ export function enregistrerReponse(id, juste) {
 // Compatibilité avec les flashcards : « Je sais » / « À revoir ».
 export function marquerMot(id, connu) {
   enregistrerReponse(id, connu);
+}
+
+// Mots découverts ces 7 derniers jours (pour le bilan de la semaine).
+export function motsDeLaSemaine(p = profilActif()) {
+  const limite = aujourdhui(-6);
+  return Object.entries(p?.mots ?? {}).filter(([, m]) => m.debut && m.debut >= limite).map(([id]) => id);
 }
 
 export function motsARevoir() {
@@ -213,4 +219,21 @@ export function statistiques(p = profilActif()) {
     xpSemaine,
     nbMots: Object.keys(p.mots).length,
   };
+}
+
+// ---------- Sauvegarde ----------
+
+// Toute la famille dans un fichier, pour changer d'appareil ou ne rien perdre.
+export function exporterDonnees() {
+  return JSON.stringify({ appli: "mandarin-famille", version: 1, date: new Date().toISOString(), ...lireEtat() }, null, 1);
+}
+
+export function importerDonnees(texte) {
+  const donnees = JSON.parse(texte);
+  if (donnees.appli !== "mandarin-famille" || !Array.isArray(donnees.profils)) {
+    throw new Error("Ce fichier n'est pas une sauvegarde de Mandarin en famille.");
+  }
+  const etat = { profils: donnees.profils.map(normaliser), actif: donnees.actif ?? donnees.profils[0]?.id ?? null };
+  ecrireEtat(etat);
+  return etat.profils.length;
 }

@@ -1,0 +1,13 @@
+[
+  {"id": "yifu", "hanzi": "衣服", "pinyin": "yīfu", "fr": "vêtements", "emoji": "👕"},
+  {"id": "kuzi", "hanzi": "裤子", "pinyin": "kùzi", "fr": "pantalon", "emoji": "👖"},
+  {"id": "qunzi", "hanzi": "裙子", "pinyin": "qúnzi", "fr": "robe, jupe", "emoji": "👗"},
+  {"id": "xiezi", "hanzi": "鞋子", "pinyin": "xiézi", "fr": "chaussures", "emoji": "👟"},
+  {"id": "wazi", "hanzi": "袜子", "pinyin": "wàzi", "fr": "chaussettes", "emoji": "🧦"},
+  {"id": "maozi", "hanzi": "帽子", "pinyin": "màozi", "fr": "bonnet, chapeau", "emoji": "🧢"},
+  {"id": "waitao", "hanzi": "外套", "pinyin": "wàitào", "fr": "manteau", "emoji": "🧥", "astuce": "外 = dehors : le vêtement « du dehors »."},
+  {"id": "shoutao", "hanzi": "手套", "pinyin": "shǒutào", "fr": "gants", "emoji": "🧤", "astuce": "手 = main + 套 = enveloppe."},
+  {"id": "weijin", "hanzi": "围巾", "pinyin": "wéijīn", "fr": "écharpe", "emoji": "🧣"},
+  {"id": "shuiyi", "hanzi": "睡衣", "pinyin": "shuìyī", "fr": "pyjama", "emoji": "🛌", "astuce": "睡 = dormir + 衣 = vêtement."},
+  {"id": "niaobu", "hanzi": "尿布", "pinyin": "niàobù", "fr": "couche", "emoji": "🧷"}
+]

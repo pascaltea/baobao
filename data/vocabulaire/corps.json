@@ -6,5 +6,11 @@
   {"id": "bizi", "hanzi": "鼻子", "pinyin": "bízi", "fr": "nez", "emoji": "👃"},
   {"id": "zuiba", "hanzi": "嘴巴", "pinyin": "zuǐba", "fr": "bouche", "emoji": "👄", "astuce": "嘴 = bouche. Le carré 口 tout à gauche est aussi une bouche !"},
   {"id": "shou", "hanzi": "手", "pinyin": "shǒu", "fr": "main", "emoji": "✋", "astuce": "手 ressemble à une main avec ses doigts."},
-  {"id": "jiao", "hanzi": "脚", "pinyin": "jiǎo", "fr": "pied", "emoji": "🦶"}
+  {"id": "jiao", "hanzi": "脚", "pinyin": "jiǎo", "fr": "pied", "emoji": "🦶"},
+  {"id": "duzi", "hanzi": "肚子", "pinyin": "dùzi", "fr": "ventre", "emoji": "🎈", "astuce": "肚子饿了 dùzi è le = j'ai le ventre qui a faim."},
+  {"id": "yachi", "hanzi": "牙齿", "pinyin": "yáchǐ", "fr": "dents", "emoji": "🦷"},
+  {"id": "lian", "hanzi": "脸", "pinyin": "liǎn", "fr": "visage", "emoji": "😊"},
+  {"id": "tui", "hanzi": "腿", "pinyin": "tuǐ", "fr": "jambe", "emoji": "🦵"},
+  {"id": "pigu", "hanzi": "屁股", "pinyin": "pìgu", "fr": "fesses", "emoji": "🍑", "astuce": "Le mot préféré des enfants… effet garanti !"},
+  {"id": "shouzhi", "hanzi": "手指", "pinyin": "shǒuzhǐ", "fr": "doigt", "emoji": "👆", "astuce": "手 = main, 指 = montrer : le doigt sert à montrer."}
 ]

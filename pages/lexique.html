@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes mots · Mandarin en famille</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500&display=swap">
+  <meta name="theme-color" content="#e8423f">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <h2>📒 Mes mots</h2>
+    <p class="petit" id="resume"></p>
+    <div class="ajout recherche">
+      <input id="recherche" type="search" placeholder="Chercher (français, pinyin ou caractère)…" aria-label="Chercher un mot">
+    </div>
+    <div class="filtres" id="filtres">
+      <button class="filtre actif" data-filtre="appris">Appris</button>
+      <button class="filtre" data-filtre="fragiles">À consolider</button>
+      <button class="filtre" data-filtre="tous">Tous</button>
+    </div>
+    <ul id="liste" class="lexique"></ul>
+    <p class="petit">💡 La jauge montre la solidité de la mémoire. Elle monte à chaque bonne réponse en révision,
+      et les mots reviennent juste avant d'être oubliés (répétition espacée).</p>
+  </main>
+
+  <script type="module" src="../js/lexique.js"></script>
+</body>
+</html>

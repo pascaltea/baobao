@@ -1,0 +1,224 @@
+[
+  {
+    "id": "panda-faim",
+    "titre": "Le petit panda a faim",
+    "chinois": "小熊猫饿了",
+    "emoji": "🐼",
+    "niveau": "Facile",
+    "pages": [
+      {
+        "emoji": "🐼",
+        "hanzi": "这是小熊猫。",
+        "pinyin": "zhè shì xiǎo xióngmāo",
+        "fr": "Voici le petit panda."
+      },
+      {
+        "emoji": "😋",
+        "hanzi": "小熊猫饿了。",
+        "pinyin": "xiǎo xióngmāo è le",
+        "fr": "Le petit panda a faim."
+      },
+      {
+        "emoji": "🍎",
+        "hanzi": "「妈妈，我要苹果！」",
+        "pinyin": "māma wǒ yào píngguǒ",
+        "fr": "« Maman, je veux une pomme ! »"
+      },
+      {
+        "emoji": "🙅",
+        "hanzi": "「没有苹果了。」",
+        "pinyin": "méiyǒu píngguǒ le",
+        "fr": "« Il n'y a plus de pommes. »"
+      },
+      {
+        "emoji": "🍌",
+        "hanzi": "「你要香蕉吗？」",
+        "pinyin": "nǐ yào xiāngjiāo ma",
+        "fr": "« Tu veux une banane ? »"
+      },
+      {
+        "emoji": "😄",
+        "hanzi": "「要！谢谢妈妈！」",
+        "pinyin": "yào xièxie māma",
+        "fr": "« Oui ! Merci maman ! »"
+      },
+      {
+        "emoji": "😴",
+        "hanzi": "小熊猫吃饱了，睡觉了。",
+        "pinyin": "xiǎo xióngmāo chībǎo le shuìjiào le",
+        "fr": "Le petit panda a bien mangé. Il s'endort."
+      }
+    ],
+    "question": {
+      "texte": "Qu'est-ce que le petit panda mange à la fin ?",
+      "options": [
+        "🍌 Une banane",
+        "🍎 Une pomme",
+        "🍚 Du riz"
+      ],
+      "bonne": 0
+    }
+  },
+  {
+    "id": "pluie",
+    "titre": "Il pleut !",
+    "chinois": "下雨了",
+    "emoji": "🌧️",
+    "niveau": "Facile",
+    "pages": [
+      {
+        "emoji": "🌧️",
+        "hanzi": "下雨了！",
+        "pinyin": "xià yǔ le",
+        "fr": "Il pleut !"
+      },
+      {
+        "emoji": "😢",
+        "hanzi": "哥哥不开心。",
+        "pinyin": "gēge bù kāixīn",
+        "fr": "Grand frère n'est pas content."
+      },
+      {
+        "emoji": "🛝",
+        "hanzi": "「我要去公园！」",
+        "pinyin": "wǒ yào qù gōngyuán",
+        "fr": "« Je veux aller au parc ! »"
+      },
+      {
+        "emoji": "👩",
+        "hanzi": "「等一下。」",
+        "pinyin": "děng yíxià",
+        "fr": "« Attends un peu. »"
+      },
+      {
+        "emoji": "☀️",
+        "hanzi": "太阳出来了！",
+        "pinyin": "tàiyáng chūlai le",
+        "fr": "Le soleil est sorti !"
+      },
+      {
+        "emoji": "🏃",
+        "hanzi": "「我们去公园吧！」",
+        "pinyin": "wǒmen qù gōngyuán ba",
+        "fr": "« Allons au parc ! »"
+      }
+    ],
+    "question": {
+      "texte": "Pourquoi grand frère n'est-il pas content ?",
+      "options": [
+        "🌧️ Il pleut",
+        "😋 Il a faim",
+        "🥱 Il a sommeil"
+      ],
+      "bonne": 0
+    }
+  },
+  {
+    "id": "bonne-nuit",
+    "titre": "Bonne nuit, bébé",
+    "chinois": "晚安，宝宝",
+    "emoji": "🌙",
+    "niveau": "Facile",
+    "pages": [
+      {
+        "emoji": "🌆",
+        "hanzi": "晚上了。",
+        "pinyin": "wǎnshang le",
+        "fr": "C'est le soir."
+      },
+      {
+        "emoji": "🛁",
+        "hanzi": "宝宝洗澡。",
+        "pinyin": "bǎobao xǐzǎo",
+        "fr": "Bébé prend son bain."
+      },
+      {
+        "emoji": "🪥",
+        "hanzi": "宝宝刷牙。",
+        "pinyin": "bǎobao shuā yá",
+        "fr": "Bébé se brosse les dents."
+      },
+      {
+        "emoji": "📖",
+        "hanzi": "爸爸看书。",
+        "pinyin": "bàba kàn shū",
+        "fr": "Papa lit un livre."
+      },
+      {
+        "emoji": "😘",
+        "hanzi": "妈妈亲一个。",
+        "pinyin": "māma qīn yí ge",
+        "fr": "Maman fait un bisou."
+      },
+      {
+        "emoji": "⭐",
+        "hanzi": "「晚安，宝宝！」",
+        "pinyin": "wǎn'ān bǎobao",
+        "fr": "« Bonne nuit, bébé ! »"
+      }
+    ],
+    "question": {
+      "texte": "Qui lit un livre ?",
+      "options": [
+        "👨 Papa",
+        "👩 Maman",
+        "👶 Bébé"
+      ],
+      "bonne": 0
+    }
+  },
+  {
+    "id": "ou-est-chat",
+    "titre": "Où est le chat ?",
+    "chinois": "小猫在哪里？",
+    "emoji": "🐱",
+    "niveau": "Moyen",
+    "pages": [
+      {
+        "emoji": "🐱",
+        "hanzi": "小猫在哪里？",
+        "pinyin": "xiǎo māo zài nǎlǐ",
+        "fr": "Où est le petit chat ?"
+      },
+      {
+        "emoji": "🛏️",
+        "hanzi": "在床上吗？不在。",
+        "pinyin": "zài chuáng shang ma bú zài",
+        "fr": "Sur le lit ? Non."
+      },
+      {
+        "emoji": "🍳",
+        "hanzi": "在厨房吗？不在。",
+        "pinyin": "zài chúfáng ma bú zài",
+        "fr": "Dans la cuisine ? Non."
+      },
+      {
+        "emoji": "🛋️",
+        "hanzi": "在沙发上吗？不在。",
+        "pinyin": "zài shāfā shang ma bú zài",
+        "fr": "Sur le canapé ? Non."
+      },
+      {
+        "emoji": "📦",
+        "hanzi": "在这里！",
+        "pinyin": "zài zhèlǐ",
+        "fr": "Il est là !"
+      },
+      {
+        "emoji": "😆",
+        "hanzi": "小猫在盒子里睡觉。",
+        "pinyin": "xiǎo māo zài hézi lǐ shuìjiào",
+        "fr": "Le petit chat dort dans la boîte."
+      }
+    ],
+    "question": {
+      "texte": "Où dort le petit chat ?",
+      "options": [
+        "📦 Dans une boîte",
+        "🛏️ Sur le lit",
+        "🛋️ Sur le canapé"
+      ],
+      "bonne": 0
+    }
+  }
+]

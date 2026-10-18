@@ -25,6 +25,30 @@
 
   <main>
     <!-- ============ Choix du profil ============ -->
+    <section id="ecran-bienvenue" class="cache">
+      <div class="bienvenue-mascotte" id="mascotte-bienvenue"></div>
+      <div class="diapo" data-diapo="0">
+        <h2>你好 ! Je suis Bao 🐼</h2>
+        <p>Je vais t'aider à apprendre le chinois… et à le transmettre à tes enfants, au quotidien.</p>
+      </div>
+      <div class="diapo cache" data-diapo="1">
+        <h2>Comment ça marche ?</h2>
+        <ul class="liste-etapes">
+          <li><span>🗺️</span>Des leçons de 5 minutes, dans l'ordre des mots que les enfants apprennent en premier</li>
+          <li><span>💬</span>Des phrases à dire à tes enfants pendant le repas, le bain, le coucher…</li>
+          <li><span>🧠</span>Des révisions au bon moment, pour ne rien oublier</li>
+        </ul>
+      </div>
+      <div class="diapo cache" data-diapo="2">
+        <h2>Un profil par personne</h2>
+        <p>Crée un profil pour toi, puis un pour chaque enfant : <strong>enfant 3-6 ans</strong> (images et sons, sans lecture)
+          ou <strong>bébé 0-2 ans</strong> (imagier et comptines à faire ensemble).</p>
+      </div>
+      <div class="points" id="points"><i class="actif"></i><i></i><i></i></div>
+      <button class="bouton" id="bienvenue-suivant" style="width:100%">Continuer</button>
+      <button class="lien" id="bienvenue-passer">Passer</button>
+    </section>
+
     <section id="ecran-profils" class="cache">
       <div class="salut">
         <div class="avatar-mascotte" id="mascotte-profils"></div>
@@ -47,6 +71,7 @@
         <button class="bouton" type="submit">C'est parti !</button>
       </form>
       <p class="petit">Appui long (ou clic droit) sur un profil pour le supprimer.</p>
+      <button class="lien" id="restaurer-accueil">📥 Restaurer une sauvegarde</button>
     </section>
 
     <!-- ============ Tableau de bord ============ -->
@@ -57,6 +82,14 @@
         <div class="salut">
           <div class="avatar-mascotte" id="mascotte-salut"></div>
           <p class="bulle" id="salut-texte"></p>
+        </div>
+
+        <div id="alerte-voix" class="carte alerte cache">
+          <strong>🔇 Aucune voix chinoise sur cet appareil</strong>
+          <p class="petit">Sans elle, l'appli ne peut pas prononcer les mots. Pour l'installer :
+            <br>• <strong>Android</strong> : Paramètres › Système › Langues › Synthèse vocale › moteur Google › installer « Chinois (Mandarin) ».
+            <br>• <strong>iPhone/iPad</strong> : Réglages › Accessibilité › Contenu énoncé › Voix › Chinois.
+            <br>• <strong>Ordinateur</strong> : utiliser Chrome ou Edge, qui ont des voix chinoises intégrées.</p>
         </div>
 
         <div data-modes="adulte enfant" class="carte">
@@ -111,6 +144,8 @@
             <a class="tuile" href="pages/flashcards.html"><span class="grand">🃏</span><strong>Flashcards</strong><br><small>révise à ton rythme</small></a>
             <a class="tuile" href="pages/tons.html"><span class="grand">🎵</span><strong>Les 4 tons</strong><br><small>écoute et reconnais</small></a>
             <a class="tuile" href="pages/quiz.html"><span class="grand">❓</span><strong>Quiz</strong><br><small>sur les mots appris</small></a>
+            <a class="tuile" href="pages/histoires.html"><span class="grand">📚</span><strong>Histoires</strong><br><small>lire et comprendre</small></a>
+            <a class="tuile" href="pages/lexique.html"><span class="grand">📒</span><strong>Mes mots</strong><br><small>lexique et mémoire</small></a>
           </div>
         </div>
       </section>
@@ -136,6 +171,7 @@
             <a class="tuile tuile-vedette" href="pages/quotidien.html"><span class="grand">💬</span><strong>Au quotidien</strong><br><small>repas, bain, dodo…</small></a>
             <a class="tuile" href="pages/comptines.html"><span class="grand">🎶</span><strong>Comptines</strong><br><small>à chanter ensemble</small></a>
             <a class="tuile" href="pages/imagier.html"><span class="grand">🖼️</span><strong>Imagier</strong><br><small>à regarder ensemble</small></a>
+            <a class="tuile" href="pages/histoires.html"><span class="grand">📚</span><strong>Histoires</strong><br><small>à lire aux enfants</small></a>
           </div>
         </div>
 
@@ -145,6 +181,7 @@
             <a class="tuile tuile-vedette" href="pages/imagier.html"><span class="grand">🖼️</span><strong>Imagier</strong></a>
             <a class="tuile" href="pages/comptines.html"><span class="grand">🎶</span><strong>Comptines</strong></a>
             <a class="tuile" href="pages/tons.html"><span class="grand">🎵</span><strong>Les tons</strong></a>
+            <a class="tuile" href="pages/histoires.html"><span class="grand">📚</span><strong>Histoires</strong></a>
           </div>
         </div>
 
@@ -194,6 +231,12 @@
         </div>
         <button class="bouton secondaire" id="b-changer" style="width:100%;margin-bottom:14px">👥 Changer de profil</button>
 
+        <div class="carte" id="bilan-semaine">
+          <h3 style="margin-top:0">📅 Cette semaine</h3>
+          <p class="petit" id="bilan-texte"></p>
+          <div class="mots-fin bilan-mots" id="bilan-mots"></div>
+        </div>
+
         <div class="carte reglages">
           <h3>⚙️ Réglages</h3>
           <label>Type de profil
@@ -211,6 +254,23 @@
               <option value="50">🔥 Intense : 50 XP</option>
             </select>
           </label>
+          <label data-modes="adulte">Apparence
+            <select id="r-sombre">
+              <option value="auto">🌓 Comme le téléphone</option>
+              <option value="non">☀️ Clair</option>
+              <option value="oui">🌙 Sombre</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="carte reglages">
+          <h3>💾 Sauvegarde</h3>
+          <p class="petit">La progression est gardée sur cet appareil. Sauvegarde-la régulièrement pour ne rien perdre,
+            ou pour la transférer sur un autre téléphone ou une tablette.</p>
+          <button class="bouton secondaire" id="exporter">📤 Sauvegarder toute la famille</button>
+          <button class="bouton secondaire" id="importer">📥 Restaurer une sauvegarde</button>
+          <input type="file" id="fichier-import" accept="application/json,.json" class="cache">
+          <p class="petit" id="sauvegarde-info"></p>
         </div>
         <p class="petit">Gratuit, sans publicité, sans abonnement. Ta progression reste sur cet appareil.</p>
       </section>

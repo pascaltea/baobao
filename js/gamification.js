@@ -55,12 +55,13 @@ const QUETES = {
   imagier: { emoji: "🖼️", texte: "Regarde l'imagier", objectif: 1 },
   comptine: { emoji: "🎶", texte: "Écoute une comptine", objectif: 1 },
   justesEnfant: { emoji: "🌟", texte: "Trouve 10 bonnes réponses", objectif: 10 },
+  histoire: { emoji: "📚", texte: "Lis une histoire", objectif: 1 },
 };
 
 // Adultes : toujours apprendre + parler aux enfants, plus une quête variée.
 const TIRAGES = {
-  adulte: { fixes: ["lecon", "phrase"], variees: ["justes", "revision", "combo", "tons", "xp", "comptine"] },
-  enfant: { fixes: ["lecon"], variees: ["imagier", "comptine", "justesEnfant", "tons"] },
+  adulte: { fixes: ["lecon", "phrase"], variees: ["justes", "revision", "combo", "tons", "xp", "comptine", "histoire"] },
+  enfant: { fixes: ["lecon"], variees: ["imagier", "comptine", "justesEnfant", "tons", "histoire"] },
 };
 
 function tirerQuetes(mode) {
@@ -133,6 +134,8 @@ export const BADGES = [
   { id: "tons", emoji: "🎵", titre: "Oreille d'or", texte: "8 tons sur 10 reconnus", test: (p) => (p.compteurs.meilleurTons ?? 0) >= 8 },
   { id: "parent", emoji: "💬", titre: "Parent bilingue", texte: "Dire 10 phrases à ses enfants", test: (p) => (p.compteurs.dites ?? 0) >= 10 },
   { id: "chanteur", emoji: "🎶", titre: "Rossignol", texte: "Écouter une comptine en entier", test: (p) => (p.compteurs.comptines ?? 0) >= 1 },
+  { id: "lecteur", emoji: "📚", titre: "Rat de bibliothèque", texte: "Lire 3 histoires", test: (p) => (p.compteurs.histoires ?? 0) >= 3 },
+  { id: "polyglotte", emoji: "🌏", titre: "Petit polyglotte", texte: "Apprendre 200 mots ou phrases", test: (p, s) => s.nbMots >= 200 },
   { id: "coffres", emoji: "🎁", titre: "Chasseur de trésors", texte: "Ouvrir 3 coffres de quêtes", test: (p) => (p.compteurs.coffres ?? 0) >= 3 },
   { id: "dragon", emoji: "🐲", titre: "Année du dragon", texte: "Atteindre le niveau Dragon", test: (p) => niveauPour(p.xp).numero >= 5 },
   { id: "album", emoji: "🦄", titre: "Collectionneur", texte: "Gagner 10 autocollants", test: (p) => p.autocollants.length >= 10 },
@@ -203,6 +206,10 @@ export function evenement(type, details = {}) {
       break;
     case "imagier":
       avancerQuete("imagier", 1);
+      break;
+    case "histoire":
+      avancerQuete("histoire", 1);
+      compter("histoires");
       break;
   }
   verifierBadges();

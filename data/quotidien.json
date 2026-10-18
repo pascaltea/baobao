@@ -1,101 +1,559 @@
 [
   {
-    "id": "reveil", "titre": "Le réveil", "emoji": "☀️",
+    "id": "reveil",
+    "titre": "Le réveil",
+    "emoji": "☀️",
     "conseil": "Dites ces phrases chaque matin, au même moment : la répétition dans la routine aide l'enfant à associer les mots aux situations.",
     "phrases": [
-      {"id": "q-zaoshanghao", "decoupe": "早上 好 ！", "pinyin": "zǎoshang hǎo", "fr": "Bonjour ! (le matin)", "emoji": "🌅"},
-      {"id": "q-qichuang", "decoupe": "起床 了 ！", "pinyin": "qǐchuáng le", "fr": "C'est l'heure de se lever !", "emoji": "⏰"},
-      {"id": "q-shuidehao", "decoupe": "你 睡 得 好 吗 ？", "pinyin": "nǐ shuì de hǎo ma", "fr": "Tu as bien dormi ?", "emoji": "😴"},
-      {"id": "q-baobao", "decoupe": "宝宝 ， 我 爱 你 。", "pinyin": "bǎobao wǒ ài nǐ", "fr": "Mon bébé, je t'aime.", "emoji": "❤️"},
-      {"id": "q-baoyibao", "decoupe": "抱一抱 ！", "pinyin": "bào yi bào", "fr": "Un câlin !", "emoji": "🤗"},
-      {"id": "q-niaobu", "decoupe": "我们 换 尿布 吧 。", "pinyin": "wǒmen huàn niàobù ba", "fr": "On change la couche.", "emoji": "🧷"}
+      {
+        "id": "q-zaoshanghao",
+        "decoupe": "早上 好 ！",
+        "pinyin": "zǎoshang hǎo",
+        "fr": "Bonjour ! (le matin)",
+        "emoji": "🌅"
+      },
+      {
+        "id": "q-qichuang",
+        "decoupe": "起床 了 ！",
+        "pinyin": "qǐchuáng le",
+        "fr": "C'est l'heure de se lever !",
+        "emoji": "⏰"
+      },
+      {
+        "id": "q-shuidehao",
+        "decoupe": "你 睡 得 好 吗 ？",
+        "pinyin": "nǐ shuì de hǎo ma",
+        "fr": "Tu as bien dormi ?",
+        "emoji": "😴"
+      },
+      {
+        "id": "q-baobao",
+        "decoupe": "宝宝 ， 我 爱 你 。",
+        "pinyin": "bǎobao wǒ ài nǐ",
+        "fr": "Mon bébé, je t'aime.",
+        "emoji": "❤️"
+      },
+      {
+        "id": "q-baoyibao",
+        "decoupe": "抱一抱 ！",
+        "pinyin": "bào yi bào",
+        "fr": "Un câlin !",
+        "emoji": "🤗"
+      },
+      {
+        "id": "q-niaobu",
+        "decoupe": "我们 换 尿布 吧 。",
+        "pinyin": "wǒmen huàn niàobù ba",
+        "fr": "On change la couche.",
+        "emoji": "🧷"
+      }
     ]
   },
   {
-    "id": "repas", "titre": "Le repas", "emoji": "🍽️",
+    "id": "repas",
+    "titre": "Le repas",
+    "emoji": "🍽️",
     "conseil": "Montrez les aliments en les nommant (voir l'unité Nourriture). Posez des questions simples, même si l'enfant répond en français : il comprend avant de parler.",
     "phrases": [
-      {"id": "q-chifan", "decoupe": "吃饭 了 ！", "pinyin": "chīfàn le", "fr": "À table !", "emoji": "🍚"},
-      {"id": "q-ele", "decoupe": "你 饿 了 吗 ？", "pinyin": "nǐ è le ma", "fr": "Tu as faim ?", "emoji": "🤤"},
-      {"id": "q-heshui", "decoupe": "要 喝 水 吗 ？", "pinyin": "yào hē shuǐ ma", "fr": "Tu veux boire de l'eau ?", "emoji": "💧"},
-      {"id": "q-haochima", "decoupe": "好吃 吗 ？", "pinyin": "hǎochī ma", "fr": "C'est bon ?", "emoji": "🥄"},
-      {"id": "q-haochi", "decoupe": "好吃 ！", "pinyin": "hǎochī", "fr": "C'est délicieux !", "emoji": "😋"},
-      {"id": "q-zailaiyidian", "decoupe": "再 来 一点 ？", "pinyin": "zài lái yìdiǎn", "fr": "Encore un peu ?", "emoji": "➕"},
-      {"id": "q-chibao", "decoupe": "吃饱 了 吗 ？", "pinyin": "chībǎo le ma", "fr": "Tu as assez mangé ?", "emoji": "🙂"},
-      {"id": "q-xishou", "decoupe": "洗 手 ！", "pinyin": "xǐ shǒu", "fr": "Lave-toi les mains !", "emoji": "🧼"}
+      {
+        "id": "q-chifan",
+        "decoupe": "吃饭 了 ！",
+        "pinyin": "chīfàn le",
+        "fr": "À table !",
+        "emoji": "🍚"
+      },
+      {
+        "id": "q-ele",
+        "decoupe": "你 饿 了 吗 ？",
+        "pinyin": "nǐ è le ma",
+        "fr": "Tu as faim ?",
+        "emoji": "🤤"
+      },
+      {
+        "id": "q-heshui",
+        "decoupe": "要 喝 水 吗 ？",
+        "pinyin": "yào hē shuǐ ma",
+        "fr": "Tu veux boire de l'eau ?",
+        "emoji": "💧"
+      },
+      {
+        "id": "q-haochima",
+        "decoupe": "好吃 吗 ？",
+        "pinyin": "hǎochī ma",
+        "fr": "C'est bon ?",
+        "emoji": "🥄"
+      },
+      {
+        "id": "q-haochi",
+        "decoupe": "好吃 ！",
+        "pinyin": "hǎochī",
+        "fr": "C'est délicieux !",
+        "emoji": "😋"
+      },
+      {
+        "id": "q-zailaiyidian",
+        "decoupe": "再 来 一点 ？",
+        "pinyin": "zài lái yìdiǎn",
+        "fr": "Encore un peu ?",
+        "emoji": "➕"
+      },
+      {
+        "id": "q-chibao",
+        "decoupe": "吃饱 了 吗 ？",
+        "pinyin": "chībǎo le ma",
+        "fr": "Tu as assez mangé ?",
+        "emoji": "🙂"
+      },
+      {
+        "id": "q-xishou",
+        "decoupe": "洗 手 ！",
+        "pinyin": "xǐ shǒu",
+        "fr": "Lave-toi les mains !",
+        "emoji": "🧼"
+      }
     ]
   },
   {
-    "id": "habits", "titre": "S'habiller", "emoji": "👕",
+    "id": "habits",
+    "titre": "S'habiller",
+    "emoji": "👕",
     "conseil": "Nommez chaque vêtement en l'enfilant. Les gestes donnent le sens : pas besoin de traduire.",
     "phrases": [
-      {"id": "q-chuanyifu", "decoupe": "穿 衣服 吧 。", "pinyin": "chuān yīfu ba", "fr": "On s'habille.", "emoji": "👕"},
-      {"id": "q-xiezi", "decoupe": "穿 鞋子 。", "pinyin": "chuān xiézi", "fr": "On met les chaussures.", "emoji": "👟"},
-      {"id": "q-jushou", "decoupe": "举起 手 来 ！", "pinyin": "jǔ qǐ shǒu lái", "fr": "Lève les bras !", "emoji": "🙌"},
-      {"id": "q-henleng", "decoupe": "外面 很 冷 。", "pinyin": "wàimiàn hěn lěng", "fr": "Il fait froid dehors.", "emoji": "🥶"},
-      {"id": "q-maozi", "decoupe": "戴 帽子 。", "pinyin": "dài màozi", "fr": "Mets ton bonnet.", "emoji": "🧢"}
+      {
+        "id": "q-chuanyifu",
+        "decoupe": "穿 衣服 吧 。",
+        "pinyin": "chuān yīfu ba",
+        "fr": "On s'habille.",
+        "emoji": "👕"
+      },
+      {
+        "id": "q-xiezi",
+        "decoupe": "穿 鞋子 。",
+        "pinyin": "chuān xiézi",
+        "fr": "On met les chaussures.",
+        "emoji": "👟"
+      },
+      {
+        "id": "q-jushou",
+        "decoupe": "举起 手 来 ！",
+        "pinyin": "jǔ qǐ shǒu lái",
+        "fr": "Lève les bras !",
+        "emoji": "🙌"
+      },
+      {
+        "id": "q-henleng",
+        "decoupe": "外面 很 冷 。",
+        "pinyin": "wàimiàn hěn lěng",
+        "fr": "Il fait froid dehors.",
+        "emoji": "🥶"
+      },
+      {
+        "id": "q-maozi",
+        "decoupe": "戴 帽子 。",
+        "pinyin": "dài màozi",
+        "fr": "Mets ton bonnet.",
+        "emoji": "🧢"
+      }
     ]
   },
   {
-    "id": "dehors", "titre": "Dehors", "emoji": "🌳",
+    "id": "dehors",
+    "titre": "Dehors",
+    "emoji": "🌳",
     "conseil": "En promenade, montrez du doigt et nommez : animaux, couleurs, voitures… C'est le meilleur imagier qui soit !",
     "phrases": [
-      {"id": "q-chuquwan", "decoupe": "我们 出去 玩 吧 ！", "pinyin": "wǒmen chūqu wán ba", "fr": "On sort jouer !", "emoji": "🛝"},
-      {"id": "q-qianshou", "decoupe": "牵着 我 的 手 。", "pinyin": "qiānzhe wǒ de shǒu", "fr": "Tiens-moi la main.", "emoji": "🤝"},
-      {"id": "q-xiaoxin", "decoupe": "小心 ！", "pinyin": "xiǎoxīn", "fr": "Attention !", "emoji": "⚠️"},
-      {"id": "q-manmanzou", "decoupe": "慢慢 走 。", "pinyin": "mànmàn zǒu", "fr": "Marche doucement.", "emoji": "🐌"},
-      {"id": "q-xiaogou", "decoupe": "看 ！ 小 狗 ！", "pinyin": "kàn xiǎo gǒu", "fr": "Regarde ! Un petit chien !", "emoji": "🐶"},
-      {"id": "q-huijia", "decoupe": "我们 回 家 吧 。", "pinyin": "wǒmen huí jiā ba", "fr": "On rentre à la maison.", "emoji": "🏠"}
+      {
+        "id": "q-chuquwan",
+        "decoupe": "我们 出去 玩 吧 ！",
+        "pinyin": "wǒmen chūqu wán ba",
+        "fr": "On sort jouer !",
+        "emoji": "🛝"
+      },
+      {
+        "id": "q-qianshou",
+        "decoupe": "牵着 我 的 手 。",
+        "pinyin": "qiānzhe wǒ de shǒu",
+        "fr": "Tiens-moi la main.",
+        "emoji": "🤝"
+      },
+      {
+        "id": "q-xiaoxin",
+        "decoupe": "小心 ！",
+        "pinyin": "xiǎoxīn",
+        "fr": "Attention !",
+        "emoji": "⚠️"
+      },
+      {
+        "id": "q-manmanzou",
+        "decoupe": "慢慢 走 。",
+        "pinyin": "mànmàn zǒu",
+        "fr": "Marche doucement.",
+        "emoji": "🐌"
+      },
+      {
+        "id": "q-xiaogou",
+        "decoupe": "看 ！ 小 狗 ！",
+        "pinyin": "kàn xiǎo gǒu",
+        "fr": "Regarde ! Un petit chien !",
+        "emoji": "🐶"
+      },
+      {
+        "id": "q-huijia",
+        "decoupe": "我们 回 家 吧 。",
+        "pinyin": "wǒmen huí jiā ba",
+        "fr": "On rentre à la maison.",
+        "emoji": "🏠"
+      }
     ]
   },
   {
-    "id": "jeu", "titre": "Jouer", "emoji": "🧸",
+    "id": "jeu",
+    "titre": "Jouer",
+    "emoji": "🧸",
     "conseil": "Jouez à « donne-moi » avec des objets dont l'enfant connaît le nom : 给我小狗 (donne-moi le petit chien). Félicitez chaque essai !",
     "phrases": [
-      {"id": "q-yiqiwan", "decoupe": "我们 一起 玩 ！", "pinyin": "wǒmen yìqǐ wán", "fr": "On joue ensemble !", "emoji": "🧸"},
-      {"id": "q-gaini", "decoupe": "该 你 了 ！", "pinyin": "gāi nǐ le", "fr": "À toi !", "emoji": "👉"},
-      {"id": "q-zhenbang", "decoupe": "真 棒 ！", "pinyin": "zhēn bàng", "fr": "Bravo, super !", "emoji": "👏"},
-      {"id": "q-zailaiyici", "decoupe": "再 来 一次 ！", "pinyin": "zài lái yí cì", "fr": "Encore une fois !", "emoji": "🔁"},
-      {"id": "q-wanju", "decoupe": "把 玩具 收起来 。", "pinyin": "bǎ wánjù shōu qǐlai", "fr": "Range tes jouets.", "emoji": "🧺"},
-      {"id": "q-geiwo", "decoupe": "给 我 。", "pinyin": "gěi wǒ", "fr": "Donne-moi.", "emoji": "🫴"},
-      {"id": "q-xiexieni", "decoupe": "谢谢 你 ！", "pinyin": "xièxie nǐ", "fr": "Merci à toi !", "emoji": "🙏"}
+      {
+        "id": "q-yiqiwan",
+        "decoupe": "我们 一起 玩 ！",
+        "pinyin": "wǒmen yìqǐ wán",
+        "fr": "On joue ensemble !",
+        "emoji": "🧸"
+      },
+      {
+        "id": "q-gaini",
+        "decoupe": "该 你 了 ！",
+        "pinyin": "gāi nǐ le",
+        "fr": "À toi !",
+        "emoji": "👉"
+      },
+      {
+        "id": "q-zhenbang",
+        "decoupe": "真 棒 ！",
+        "pinyin": "zhēn bàng",
+        "fr": "Bravo, super !",
+        "emoji": "👏"
+      },
+      {
+        "id": "q-zailaiyici",
+        "decoupe": "再 来 一次 ！",
+        "pinyin": "zài lái yí cì",
+        "fr": "Encore une fois !",
+        "emoji": "🔁"
+      },
+      {
+        "id": "q-wanju",
+        "decoupe": "把 玩具 收起来 。",
+        "pinyin": "bǎ wánjù shōu qǐlai",
+        "fr": "Range tes jouets.",
+        "emoji": "🧺"
+      },
+      {
+        "id": "q-geiwo",
+        "decoupe": "给 我 。",
+        "pinyin": "gěi wǒ",
+        "fr": "Donne-moi.",
+        "emoji": "🫴"
+      },
+      {
+        "id": "q-xiexieni",
+        "decoupe": "谢谢 你 ！",
+        "pinyin": "xièxie nǐ",
+        "fr": "Merci à toi !",
+        "emoji": "🙏"
+      }
     ]
   },
   {
-    "id": "bain", "titre": "Le bain", "emoji": "🛁",
+    "id": "bain",
+    "titre": "Le bain",
+    "emoji": "🛁",
     "conseil": "Le bain est un moment calme et idéal pour nommer les parties du corps (voir l'unité Corps) : 洗手, 洗脚…",
     "phrases": [
-      {"id": "q-xizao", "decoupe": "洗澡 了 ！", "pinyin": "xǐzǎo le", "fr": "C'est l'heure du bain !", "emoji": "🛁"},
-      {"id": "q-shuire", "decoupe": "水 热 不 热 ？", "pinyin": "shuǐ rè bu rè", "fr": "L'eau est chaude ?", "emoji": "🌡️"},
-      {"id": "q-paopao", "decoupe": "泡泡 ！", "pinyin": "pàopao", "fr": "Des bulles !", "emoji": "🫧"},
-      {"id": "q-biyan", "decoupe": "闭上 眼睛 。", "pinyin": "bì shang yǎnjing", "fr": "Ferme les yeux.", "emoji": "😌"},
-      {"id": "q-shuaya", "decoupe": "刷 牙 吧 。", "pinyin": "shuā yá ba", "fr": "On se brosse les dents.", "emoji": "🪥"}
+      {
+        "id": "q-xizao",
+        "decoupe": "洗澡 了 ！",
+        "pinyin": "xǐzǎo le",
+        "fr": "C'est l'heure du bain !",
+        "emoji": "🛁"
+      },
+      {
+        "id": "q-shuire",
+        "decoupe": "水 热 不 热 ？",
+        "pinyin": "shuǐ rè bu rè",
+        "fr": "L'eau est chaude ?",
+        "emoji": "🌡️"
+      },
+      {
+        "id": "q-paopao",
+        "decoupe": "泡泡 ！",
+        "pinyin": "pàopao",
+        "fr": "Des bulles !",
+        "emoji": "🫧"
+      },
+      {
+        "id": "q-biyan",
+        "decoupe": "闭上 眼睛 。",
+        "pinyin": "bì shang yǎnjing",
+        "fr": "Ferme les yeux.",
+        "emoji": "😌"
+      },
+      {
+        "id": "q-shuaya",
+        "decoupe": "刷 牙 吧 。",
+        "pinyin": "shuā yá ba",
+        "fr": "On se brosse les dents.",
+        "emoji": "🪥"
+      }
     ]
   },
   {
-    "id": "dodo", "titre": "Au lit", "emoji": "🌙",
+    "id": "dodo",
+    "titre": "Au lit",
+    "emoji": "🌙",
     "conseil": "Le soir, chantez une comptine (voir Comptines) ou lisez un imagier en chinois : les rituels du coucher sont parfaits pour une langue douce et répétée.",
     "phrases": [
-      {"id": "q-shuijiao", "decoupe": "该 睡觉 了 。", "pinyin": "gāi shuìjiào le", "fr": "C'est l'heure de dormir.", "emoji": "🛏️"},
-      {"id": "q-kunle", "decoupe": "你 困 了 吗 ？", "pinyin": "nǐ kùn le ma", "fr": "Tu es fatigué ?", "emoji": "🥱"},
-      {"id": "q-kanshu", "decoupe": "我们 看 书 吧 。", "pinyin": "wǒmen kàn shū ba", "fr": "On lit un livre.", "emoji": "📖"},
-      {"id": "q-wanan", "decoupe": "晚安 ！", "pinyin": "wǎn'ān", "fr": "Bonne nuit !", "emoji": "🌙"},
-      {"id": "q-haomeng", "decoupe": "做 个 好 梦 ！", "pinyin": "zuò ge hǎo mèng", "fr": "Fais de beaux rêves !", "emoji": "✨"},
-      {"id": "q-qinyige", "decoupe": "亲 一个 ！", "pinyin": "qīn yí ge", "fr": "Un bisou !", "emoji": "😘"}
+      {
+        "id": "q-shuijiao",
+        "decoupe": "该 睡觉 了 。",
+        "pinyin": "gāi shuìjiào le",
+        "fr": "C'est l'heure de dormir.",
+        "emoji": "🛏️"
+      },
+      {
+        "id": "q-kunle",
+        "decoupe": "你 困 了 吗 ？",
+        "pinyin": "nǐ kùn le ma",
+        "fr": "Tu es fatigué ?",
+        "emoji": "🥱"
+      },
+      {
+        "id": "q-kanshu",
+        "decoupe": "我们 看 书 吧 。",
+        "pinyin": "wǒmen kàn shū ba",
+        "fr": "On lit un livre.",
+        "emoji": "📖"
+      },
+      {
+        "id": "q-wanan",
+        "decoupe": "晚安 ！",
+        "pinyin": "wǎn'ān",
+        "fr": "Bonne nuit !",
+        "emoji": "🌙"
+      },
+      {
+        "id": "q-haomeng",
+        "decoupe": "做 个 好 梦 ！",
+        "pinyin": "zuò ge hǎo mèng",
+        "fr": "Fais de beaux rêves !",
+        "emoji": "✨"
+      },
+      {
+        "id": "q-qinyige",
+        "decoupe": "亲 一个 ！",
+        "pinyin": "qīn yí ge",
+        "fr": "Un bisou !",
+        "emoji": "😘"
+      }
     ]
   },
   {
-    "id": "emotions", "titre": "Émotions et câlins", "emoji": "💛",
+    "id": "emotions",
+    "titre": "Émotions et câlins",
+    "emoji": "💛",
     "conseil": "Mettez des mots sur les émotions de l'enfant, en chinois comme en français. Le ton de votre voix compte autant que les mots.",
     "phrases": [
-      {"id": "q-bieku", "decoupe": "别 哭 。", "pinyin": "bié kū", "fr": "Ne pleure pas.", "emoji": "😢"},
-      {"id": "q-meishi", "decoupe": "没事 的 。", "pinyin": "méi shì de", "fr": "Ce n'est rien.", "emoji": "🙂"},
-      {"id": "q-kaixin", "decoupe": "你 很 开心 ！", "pinyin": "nǐ hěn kāixīn", "fr": "Tu es content !", "emoji": "😄"},
-      {"id": "q-teng", "decoupe": "疼 不 疼 ？", "pinyin": "téng bu téng", "fr": "Ça fait mal ?", "emoji": "🩹"},
-      {"id": "q-mamazai", "decoupe": "妈妈 在 这里 。", "pinyin": "māma zài zhèlǐ", "fr": "Maman est là.", "emoji": "👩"},
-      {"id": "q-babazai", "decoupe": "爸爸 在 这里 。", "pinyin": "bàba zài zhèlǐ", "fr": "Papa est là.", "emoji": "👨"},
-      {"id": "q-bukeyi", "decoupe": "不 可以 ！", "pinyin": "bù kěyǐ", "fr": "Non, on ne peut pas !", "emoji": "✋"},
-      {"id": "q-manmanlai", "decoupe": "慢慢 来 。", "pinyin": "mànmàn lái", "fr": "Doucement, prends ton temps.", "emoji": "🐢"}
+      {
+        "id": "q-bieku",
+        "decoupe": "别 哭 。",
+        "pinyin": "bié kū",
+        "fr": "Ne pleure pas.",
+        "emoji": "😢"
+      },
+      {
+        "id": "q-meishi",
+        "decoupe": "没事 的 。",
+        "pinyin": "méi shì de",
+        "fr": "Ce n'est rien.",
+        "emoji": "🙂"
+      },
+      {
+        "id": "q-kaixin",
+        "decoupe": "你 很 开心 ！",
+        "pinyin": "nǐ hěn kāixīn",
+        "fr": "Tu es content !",
+        "emoji": "😄"
+      },
+      {
+        "id": "q-teng",
+        "decoupe": "疼 不 疼 ？",
+        "pinyin": "téng bu téng",
+        "fr": "Ça fait mal ?",
+        "emoji": "🩹"
+      },
+      {
+        "id": "q-mamazai",
+        "decoupe": "妈妈 在 这里 。",
+        "pinyin": "māma zài zhèlǐ",
+        "fr": "Maman est là.",
+        "emoji": "👩"
+      },
+      {
+        "id": "q-babazai",
+        "decoupe": "爸爸 在 这里 。",
+        "pinyin": "bàba zài zhèlǐ",
+        "fr": "Papa est là.",
+        "emoji": "👨"
+      },
+      {
+        "id": "q-bukeyi",
+        "decoupe": "不 可以 ！",
+        "pinyin": "bù kěyǐ",
+        "fr": "Non, on ne peut pas !",
+        "emoji": "✋"
+      },
+      {
+        "id": "q-manmanlai",
+        "decoupe": "慢慢 来 。",
+        "pinyin": "mànmàn lái",
+        "fr": "Doucement, prends ton temps.",
+        "emoji": "🐢"
+      }
+    ]
+  },
+  {
+    "id": "pot",
+    "titre": "Le pot et les toilettes",
+    "emoji": "🚽",
+    "conseil": "Vers 2 ans, l'apprentissage de la propreté est le moment idéal pour quelques mots répétés plusieurs fois par jour. Restez léger et félicitez beaucoup : 真棒 !",
+    "phrases": [
+      {
+        "id": "q-niaoniao",
+        "decoupe": "要 尿尿 吗 ？",
+        "pinyin": "yào niàoniào ma",
+        "fr": "Tu as envie de faire pipi ?",
+        "emoji": "💧"
+      },
+      {
+        "id": "q-lachouchou",
+        "decoupe": "要 拉 臭臭 吗 ？",
+        "pinyin": "yào lā chòuchòu ma",
+        "fr": "Tu as envie de faire caca ?",
+        "emoji": "💩"
+      },
+      {
+        "id": "q-qucesuo",
+        "decoupe": "我们 去 厕所 。",
+        "pinyin": "wǒmen qù cèsuǒ",
+        "fr": "On va aux toilettes.",
+        "emoji": "🚽"
+      },
+      {
+        "id": "q-chongshui",
+        "decoupe": "冲 水 ！",
+        "pinyin": "chōng shuǐ",
+        "fr": "On tire la chasse !",
+        "emoji": "🌊"
+      },
+      {
+        "id": "q-xixishou",
+        "decoupe": "洗洗 手 。",
+        "pinyin": "xǐxi shǒu",
+        "fr": "On se lave les mains.",
+        "emoji": "🧼"
+      }
+    ]
+  },
+  {
+    "id": "voiture",
+    "titre": "En voiture",
+    "emoji": "🚗",
+    "conseil": "La voiture est un super moment pour parler : comptez les voitures rouges, nommez les animaux sur le chemin, chantez 两只老虎 !",
+    "phrases": [
+      {
+        "id": "q-shangche",
+        "decoupe": "我们 上 车 吧 。",
+        "pinyin": "wǒmen shàng chē ba",
+        "fr": "On monte en voiture.",
+        "emoji": "🚗"
+      },
+      {
+        "id": "q-anquandai",
+        "decoupe": "系好 安全带 。",
+        "pinyin": "jì hǎo ānquándài",
+        "fr": "Attache ta ceinture.",
+        "emoji": "🔒"
+      },
+      {
+        "id": "q-zuohao",
+        "decoupe": "坐 好 。",
+        "pinyin": "zuò hǎo",
+        "fr": "Assieds-toi bien.",
+        "emoji": "🪑"
+      },
+      {
+        "id": "q-kuaidaole",
+        "decoupe": "快 到 了 。",
+        "pinyin": "kuài dào le",
+        "fr": "On est presque arrivés.",
+        "emoji": "⏳"
+      },
+      {
+        "id": "q-daole",
+        "decoupe": "我们 到 了 ！",
+        "pinyin": "wǒmen dào le",
+        "fr": "On est arrivés !",
+        "emoji": "🏁"
+      },
+      {
+        "id": "q-xiache",
+        "decoupe": "下 车 吧 。",
+        "pinyin": "xià chē ba",
+        "fr": "On descend de la voiture.",
+        "emoji": "🚪"
+      }
+    ]
+  },
+  {
+    "id": "courses",
+    "titre": "Les courses",
+    "emoji": "🛒",
+    "conseil": "Au supermarché, faites choisir l'enfant : 你要哪个 ? (lequel tu veux ?). Nommez les fruits et les couleurs dans les rayons.",
+    "phrases": [
+      {
+        "id": "q-maidongxi",
+        "decoupe": "我们 去 买 东西 。",
+        "pinyin": "wǒmen qù mǎi dōngxi",
+        "fr": "On va faire les courses.",
+        "emoji": "🛒"
+      },
+      {
+        "id": "q-yaonage",
+        "decoupe": "你 要 哪个 ？",
+        "pinyin": "nǐ yào nǎge",
+        "fr": "Lequel tu veux ?",
+        "emoji": "🤔"
+      },
+      {
+        "id": "q-nayige",
+        "decoupe": "拿 一个 。",
+        "pinyin": "ná yí ge",
+        "fr": "Prends-en un.",
+        "emoji": "🫳"
+      },
+      {
+        "id": "q-bangmama",
+        "decoupe": "帮 妈妈 拿 。",
+        "pinyin": "bāng māma ná",
+        "fr": "Aide maman à porter.",
+        "emoji": "🛍️"
+      },
+      {
+        "id": "q-taiguile",
+        "decoupe": "太 贵 了 ！",
+        "pinyin": "tài guì le",
+        "fr": "C'est trop cher !",
+        "emoji": "💸"
+      }
     ]
   }
 ]

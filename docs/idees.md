@@ -15,12 +15,14 @@
 - [x] « Je répète » au micro, exercice « remettre dans l'ordre », notes de grammaire
 - [x] Série tolérante, objectif réglable, équipe famille, autocollants
 - [x] Refonte du design : mascotte Bao, onglets, niveaux du zodiaque, quêtes et coffre, badges
+- [x] 221 mots en 15 unités et 4 étapes, 67 phrases du quotidien, 4 histoires
+- [x] Test de passage, lexique « Mes mots », premier lancement guidé
+- [x] Sauvegarde / restauration, bilan de la semaine, mode sombre, alerte voix
 
 ## Prochaines étapes
+- [ ] Plus d'histoires, et des routines : médecin, anniversaire, Nouvel An chinois
+- [ ] Unités suivantes (HSK 2) : école, transports, verbes de mouvement, phrases avec 了 et 过
+- [ ] Rappel quotidien (notifications, nécessite un petit serveur)
 - [ ] **Écriture** : ordre des traits animé et tracé au doigt (bibliothèque Hanzi Writer)
-- [ ] Plus de routines : voiture, courses, chez le médecin, anniversaire
-- [ ] Histoires courtes illustrées à lire aux enfants
-- [ ] Nouvelles unités : météo, école, vêtements, jours, verbes courants
-- [ ] Mode sombre pour les révisions du soir
 - [ ] Synchronisation de la progression entre appareils
 - [ ] Vrais enregistrements audio dans `assets/audio/`

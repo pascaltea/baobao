@@ -1,0 +1,15 @@
+[
+  {"id": "taiyang", "hanzi": "太阳", "pinyin": "tàiyáng", "fr": "soleil", "emoji": "☀️"},
+  {"id": "yueliang", "hanzi": "月亮", "pinyin": "yuèliang", "fr": "lune", "emoji": "🌙", "astuce": "月 dessine un croissant de lune."},
+  {"id": "xingxing", "hanzi": "星星", "pinyin": "xīngxing", "fr": "étoile", "emoji": "⭐"},
+  {"id": "yun", "hanzi": "云", "pinyin": "yún", "fr": "nuage", "emoji": "☁️"},
+  {"id": "yu-pluie", "hanzi": "雨", "pinyin": "yǔ", "fr": "pluie", "emoji": "🌧️", "astuce": "雨 dessine des gouttes qui tombent du ciel. 下雨了 = il pleut."},
+  {"id": "xue", "hanzi": "雪", "pinyin": "xuě", "fr": "neige", "emoji": "❄️"},
+  {"id": "feng", "hanzi": "风", "pinyin": "fēng", "fr": "vent", "emoji": "🌬️"},
+  {"id": "huaduo", "hanzi": "花", "pinyin": "huā", "fr": "fleur", "emoji": "🌺"},
+  {"id": "shu-arbre", "hanzi": "树", "pinyin": "shù", "fr": "arbre", "emoji": "🌳"},
+  {"id": "cao", "hanzi": "草", "pinyin": "cǎo", "fr": "herbe", "emoji": "🌿", "astuce": "艹 en haut représente des petites pousses : on le retrouve dans 草莓 (fraise)."},
+  {"id": "gongyuan", "hanzi": "公园", "pinyin": "gōngyuán", "fr": "parc", "emoji": "🛝"},
+  {"id": "lu", "hanzi": "路", "pinyin": "lù", "fr": "route, chemin", "emoji": "🛣️"},
+  {"id": "shan", "hanzi": "山", "pinyin": "shān", "fr": "montagne", "emoji": "⛰️", "astuce": "山 dessine trois sommets."}
+]

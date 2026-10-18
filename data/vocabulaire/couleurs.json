@@ -6,5 +6,8 @@
   {"id": "heise", "hanzi": "黑色", "pinyin": "hēisè", "fr": "noir", "emoji": "⚫"},
   {"id": "baise", "hanzi": "白色", "pinyin": "báisè", "fr": "blanc", "emoji": "⚪"},
   {"id": "zise", "hanzi": "紫色", "pinyin": "zǐsè", "fr": "violet", "emoji": "🟣"},
-  {"id": "chengse", "hanzi": "橙色", "pinyin": "chéngsè", "fr": "orange", "emoji": "🟠"}
+  {"id": "chengse", "hanzi": "橙色", "pinyin": "chéngsè", "fr": "orange", "emoji": "🟠"},
+  {"id": "fense", "hanzi": "粉色", "pinyin": "fěnsè", "fr": "rose", "emoji": "🩷"},
+  {"id": "zongse", "hanzi": "棕色", "pinyin": "zōngsè", "fr": "marron", "emoji": "🟤"},
+  {"id": "huise", "hanzi": "灰色", "pinyin": "huīsè", "fr": "gris", "emoji": "🩶"}
 ]

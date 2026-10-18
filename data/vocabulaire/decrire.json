@@ -1,0 +1,18 @@
+[
+  {"id": "da", "hanzi": "大", "pinyin": "dà", "fr": "grand", "emoji": "🐳", "astuce": "大 : un bonhomme (人) qui écarte les bras pour montrer « grand comme ça »."},
+  {"id": "xiao-petit", "hanzi": "小", "pinyin": "xiǎo", "fr": "petit", "emoji": "🐜"},
+  {"id": "hao", "hanzi": "好", "pinyin": "hǎo", "fr": "bien, bon", "emoji": "👍", "astuce": "好 = une femme (女) et un enfant (子) : ce qui est bon !"},
+  {"id": "re", "hanzi": "热", "pinyin": "rè", "fr": "chaud", "emoji": "🔥"},
+  {"id": "leng", "hanzi": "冷", "pinyin": "lěng", "fr": "froid", "emoji": "🥶"},
+  {"id": "kaixin", "hanzi": "开心", "pinyin": "kāixīn", "fr": "content", "emoji": "😄", "astuce": "开 = ouvrir + 心 = cœur : avoir le cœur ouvert."},
+  {"id": "nanguo", "hanzi": "难过", "pinyin": "nánguò", "fr": "triste", "emoji": "😢"},
+  {"id": "lei", "hanzi": "累", "pinyin": "lèi", "fr": "fatigué", "emoji": "😩"},
+  {"id": "e", "hanzi": "饿", "pinyin": "è", "fr": "avoir faim", "emoji": "🤤"},
+  {"id": "kun", "hanzi": "困", "pinyin": "kùn", "fr": "avoir sommeil", "emoji": "🥱", "astuce": "困 : un arbre (木) enfermé dans une boîte, coincé… comme quand on lutte contre le sommeil."},
+  {"id": "teng", "hanzi": "疼", "pinyin": "téng", "fr": "avoir mal", "emoji": "🤕"},
+  {"id": "zang", "hanzi": "脏", "pinyin": "zāng", "fr": "sale", "emoji": "💩"},
+  {"id": "ganjing", "hanzi": "干净", "pinyin": "gānjìng", "fr": "propre", "emoji": "✨"},
+  {"id": "piaoliang", "hanzi": "漂亮", "pinyin": "piàoliang", "fr": "joli, beau", "emoji": "🌸"},
+  {"id": "kuai", "hanzi": "快", "pinyin": "kuài", "fr": "rapide, vite", "emoji": "⚡"},
+  {"id": "man", "hanzi": "慢", "pinyin": "màn", "fr": "lent, doucement", "emoji": "🐌"}
+]

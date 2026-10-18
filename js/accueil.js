@@ -2,11 +2,12 @@
 // (Apprendre, Famille, Succès, Profil), adapté au type de profil.
 // Les blocs portent un attribut data-modes qui liste les profils concernés.
 
-import { prononcer, activerHorsLigne, appliquerTheme } from "./app.js";
+import { prononcer, activerHorsLigne, appliquerTheme, changerSombre, preferenceSombre, verifierVoixChinoise } from "./app.js";
 import { chargerParcours, chargerRoutines, etatsLecons } from "./parcours.js";
 import {
   listerProfils, ajouterProfil, choisirProfil, supprimerProfil, profilActif, changerMode, changerObjectif,
   statistiques, leconsTerminees, motsARevoir, motsConnus, phrasesDitesAujourdhui, marquerPhraseDite, aujourdhui,
+  motsDeLaSemaine, exporterDonnees, importerDonnees,
 } from "./profils.js";
 import { rubyHTML } from "./pinyin.js";
 import { mascotte } from "./mascotte.js";
@@ -21,13 +22,40 @@ const DECORS = ["🏮", "🎋", "🐉", "🧧", "🥮", "🍵", "🪁", "🌸"];
 
 let unites = [];
 let phrases = [];
+let dictionnaire = new Map(); // id → mot ou phrase
 
 function montrer(ecran) {
+  $("ecran-bienvenue").classList.toggle("cache", ecran !== "bienvenue");
   $("ecran-profils").classList.toggle("cache", ecran !== "profils");
   $("ecran-accueil").classList.toggle("cache", ecran !== "accueil");
   $("onglets").classList.toggle("cache", ecran !== "accueil");
   document.body.classList.toggle("avec-onglets", ecran === "accueil");
 }
+
+// ---------- Premier lancement ----------
+
+const CLE_BIENVENUE = "mandarin-famille-bienvenue";
+let diapo = 0;
+
+function afficherBienvenue() {
+  $("mascotte-bienvenue").innerHTML = mascotte("bravo", "saute");
+  montrer("bienvenue");
+}
+
+function finirBienvenue() {
+  try { localStorage.setItem(CLE_BIENVENUE, "1"); } catch { /* pas de stockage */ }
+  afficherProfils();
+}
+
+$("bienvenue-suivant").addEventListener("click", () => {
+  if (diapo === 2) return finirBienvenue();
+  diapo++;
+  document.querySelectorAll(".diapo").forEach((d) => d.classList.toggle("cache", Number(d.dataset.diapo) !== diapo));
+  document.querySelectorAll("#points i").forEach((p, i) => p.classList.toggle("actif", i === diapo));
+  $("mascotte-bienvenue").innerHTML = mascotte(["bravo", "parle", "content"][diapo], "respire");
+  if (diapo === 2) $("bienvenue-suivant").textContent = "Créer mon profil";
+});
+$("bienvenue-passer").addEventListener("click", finirBienvenue);
 
 // ---------- Profils ----------
 
@@ -185,8 +213,17 @@ function afficherParcours() {
   const zone = $("parcours");
   zone.innerHTML = "";
   let n = 0;
+  let etapeCourante = null;
 
   for (const unite of unites) {
+    // Titre d'étape (« Étape 1 · Les premiers mots »…) quand on change d'étape.
+    if (unite.section && unite.section !== etapeCourante) {
+      etapeCourante = unite.section;
+      const titre = document.createElement("h2");
+      titre.className = "titre-etape";
+      titre.textContent = unite.section;
+      zone.appendChild(titre);
+    }
     const section = document.createElement("section");
     section.className = "unite";
     section.style.setProperty("--couleur", unite.couleur);
@@ -200,6 +237,14 @@ function afficherParcours() {
       ${unite.note && !enfant ? `<details class="note-unite"><summary>📖 À savoir</summary><p></p></details>` : ""}
       <div class="chemin"></div>`;
     if (unite.note && !enfant) section.querySelector(".note-unite p").textContent = unite.note;
+    // Test de passage pour les adultes qui connaissent déjà une unité verrouillée.
+    if (!enfant && etats.get(unite.lecons[0].cle) === "verrou") {
+      const test = document.createElement("a");
+      test.className = "bouton-test";
+      test.href = `pages/lecon.html?test=${unite.id}`;
+      test.textContent = "⏩ Je connais déjà : passer le test";
+      section.querySelector(".unite-entete").appendChild(test);
+    }
     const chemin = section.querySelector(".chemin");
 
     unite.lecons.forEach((lecon, i) => {
@@ -344,7 +389,56 @@ function afficherProfil() {
     : `${MODES[p.mode]} · ${s.nbMots} mots et phrases appris · ${p.badges.length} badge(s)`;
   $("r-mode").value = p.mode;
   $("r-objectif").value = String(p.objectif);
+  $("r-sombre").value = preferenceSombre();
+
+  // Bilan de la semaine : utile au parent pour réutiliser les mots avec l'enfant.
+  const semaine = motsDeLaSemaine().map((id) => dictionnaire.get(id)).filter(Boolean);
+  $("bilan-semaine").classList.toggle("cache", p.mode === "bebe");
+  $("bilan-texte").textContent = semaine.length
+    ? p.mode === "enfant"
+      ? `${p.nom} a découvert ${semaine.length} mot(s) cette semaine. Dites-les-lui dans la journée : touchez un mot pour l'entendre.`
+      : `${semaine.length} nouveau(x) mot(s) et phrase(s) cette semaine. Touchez pour réécouter.`
+    : "Aucun nouveau mot cette semaine pour l'instant. Une petite leçon ?";
+  const zone = $("bilan-mots");
+  zone.innerHTML = "";
+  for (const m of semaine.slice(0, 40)) {
+    const puce = document.createElement("button");
+    puce.className = "puce-mot";
+    puce.innerHTML = `${m.emoji} ${rubyHTML(m.hanzi, m.pinyin)}`;
+    puce.title = m.fr;
+    puce.addEventListener("click", () => prononcer(m.hanzi));
+    zone.appendChild(puce);
+  }
 }
+
+$("r-sombre").addEventListener("change", (e) => changerSombre(e.target.value));
+
+// ---------- Sauvegarde ----------
+
+$("exporter").addEventListener("click", () => {
+  const blob = new Blob([exporterDonnees()], { type: "application/json" });
+  const lien = document.createElement("a");
+  lien.href = URL.createObjectURL(blob);
+  lien.download = `mandarin-famille-${aujourdhui()}.json`;
+  lien.click();
+  setTimeout(() => URL.revokeObjectURL(lien.href), 1000);
+  $("sauvegarde-info").textContent = "✅ Fichier enregistré dans tes téléchargements.";
+});
+const demanderImport = () => $("fichier-import").click();
+$("importer").addEventListener("click", demanderImport);
+$("restaurer-accueil").addEventListener("click", demanderImport);
+$("fichier-import").addEventListener("change", async (e) => {
+  const fichier = e.target.files[0];
+  if (!fichier) return;
+  try {
+    const nb = importerDonnees(await fichier.text());
+    alert(`Sauvegarde restaurée : ${nb} profil(s).`);
+    afficherAccueil("apprendre");
+  } catch (erreur) {
+    alert(erreur.message || "Fichier illisible.");
+  }
+  e.target.value = "";
+});
 
 // ---------- Effets ----------
 
@@ -391,5 +485,12 @@ function afficherAccueil(onglet) {
   chargerParcours("data/vocabulaire/"),
   chargerRoutines("data/").then((routines) => routines.flatMap((r) => r.phrases)),
 ]);
-afficherAccueil();
+dictionnaire = new Map([...unites.flatMap((u) => u.mots), ...phrases].map((m) => [m.id, m]));
+
+let dejaVu = false;
+try { dejaVu = !!localStorage.getItem(CLE_BIENVENUE); } catch { /* pas de stockage */ }
+if (!listerProfils().length && !dejaVu) afficherBienvenue();
+else afficherAccueil();
 activerHorsLigne("./");
+
+verifierVoixChinoise().then((ok) => $("alerte-voix").classList.toggle("cache", ok));

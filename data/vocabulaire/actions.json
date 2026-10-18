@@ -1,0 +1,21 @@
+[
+  {"id": "yao", "hanzi": "要", "pinyin": "yào", "fr": "vouloir", "emoji": "🙋", "astuce": "Le mot le plus utile avec un enfant : 要吗 ? (tu en veux ?) 要 ! (oui !)"},
+  {"id": "buyao", "hanzi": "不要", "pinyin": "bú yào", "fr": "ne pas vouloir, non !", "emoji": "🙅", "astuce": "Le premier « non » des tout-petits en chinois !"},
+  {"id": "chi", "hanzi": "吃", "pinyin": "chī", "fr": "manger", "emoji": "🍽️", "astuce": "吃 contient 口 (la bouche) à gauche."},
+  {"id": "he", "hanzi": "喝", "pinyin": "hē", "fr": "boire", "emoji": "🥤", "astuce": "喝 contient aussi 口 (la bouche)."},
+  {"id": "shuijiao", "hanzi": "睡觉", "pinyin": "shuìjiào", "fr": "dormir", "emoji": "😴"},
+  {"id": "bao", "hanzi": "抱", "pinyin": "bào", "fr": "porter dans les bras", "emoji": "🤗", "astuce": "抱抱 bàobao : le câlin que réclament les petits."},
+  {"id": "zou", "hanzi": "走", "pinyin": "zǒu", "fr": "marcher, partir", "emoji": "🚶", "astuce": "走吧 zǒu ba = on y va !"},
+  {"id": "pao", "hanzi": "跑", "pinyin": "pǎo", "fr": "courir", "emoji": "🏃"},
+  {"id": "zuo", "hanzi": "坐", "pinyin": "zuò", "fr": "s'asseoir", "emoji": "🪑", "astuce": "坐 dessine deux personnes (人人) assises sur le sol (土)."},
+  {"id": "kan", "hanzi": "看", "pinyin": "kàn", "fr": "regarder", "emoji": "🔭", "astuce": "看 : une main (手) au-dessus de l'œil (目) pour regarder au loin."},
+  {"id": "ting", "hanzi": "听", "pinyin": "tīng", "fr": "écouter", "emoji": "🎧"},
+  {"id": "wan", "hanzi": "玩", "pinyin": "wán", "fr": "jouer", "emoji": "🪀"},
+  {"id": "gei", "hanzi": "给", "pinyin": "gěi", "fr": "donner", "emoji": "🫴", "astuce": "给我 gěi wǒ = donne-moi."},
+  {"id": "xi", "hanzi": "洗", "pinyin": "xǐ", "fr": "laver", "emoji": "🧼", "astuce": "Le côté gauche 氵 représente l'eau, comme dans 水."},
+  {"id": "lai", "hanzi": "来", "pinyin": "lái", "fr": "venir", "emoji": "🔜", "astuce": "过来 guòlai = viens ici !"},
+  {"id": "qu", "hanzi": "去", "pinyin": "qù", "fr": "aller", "emoji": "➡️"},
+  {"id": "shuo", "hanzi": "说", "pinyin": "shuō", "fr": "parler, dire", "emoji": "🗣️"},
+  {"id": "ku", "hanzi": "哭", "pinyin": "kū", "fr": "pleurer", "emoji": "😭", "astuce": "哭 : deux bouches (口口) qui crient au-dessus d'un chien (犬)."},
+  {"id": "xiao", "hanzi": "笑", "pinyin": "xiào", "fr": "rire, sourire", "emoji": "😆"}
+]
