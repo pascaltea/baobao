@@ -61,6 +61,11 @@ vibrations, sons et confettis.
 Voir [docs/critiques.md](docs/critiques.md) : les critiques faites à Duolingo et aux
 autres applis, et comment l'appli y répond.
 
+### Partager
+- 💌 **Inviter la famille** (onglet Famille) : partage natif du téléphone, lien à copier et
+  QR code à scanner. Joli aperçu avec Bao dans WhatsApp, Messenger, etc.
+- Chacun apprend sur son propre téléphone, sans compte, et garde sa progression.
+
 ### Confort
 - 👋 Premier lancement guidé par Bao
 - 💾 **Sauvegarde / restauration** de toute la famille (fichier), pour changer d'appareil

@@ -1423,6 +1423,12 @@ header h1 { font-size: 1.3rem; }
   :root[data-sombre="auto"][data-theme="adulte"] :is(.pastille, .bouton-entete, main h2, .titre-etape, .filtre:not(.actif), .bouton.secondaire, .choix button, .paires button, .morceau, .salut .bulle, .bulle, .infobulle, .quete-verre, .onglets) { background: var(--carte); }
 }
 
+/* Partage */
+.partage { background: #fff; text-align: center; }
+.partage > p:first-child { text-align: left; margin-top: 0; }
+.partage-qr { margin: 6px auto 16px; }
+.partage-qr img { display: block; margin: 0 auto; border-radius: 16px; padding: 8px; background: #fff; box-shadow: 0 5px 0 rgba(45, 42, 50, 0.12); }
+
 /* Réinitialisation */
 .zone-danger { background: #fff; }
 .zone-danger h3 { color: var(--corail); }

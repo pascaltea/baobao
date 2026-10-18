@@ -426,6 +426,29 @@ $("exporter").addEventListener("click", () => {
   setTimeout(() => URL.revokeObjectURL(lien.href), 1000);
   $("sauvegarde-info").textContent = "✅ Fichier enregistré dans tes téléchargements.";
 });
+// ---------- Partage ----------
+
+const LIEN_APPLI = "https://pascaltea.github.io/baobao/";
+const MESSAGE_PARTAGE = "🐼 On apprend le chinois en famille avec BaoBao ! Leçons de 5 minutes, phrases à dire aux enfants, comptines… Gratuit et sans pub. Ouvre le lien, puis « Ajouter à l'écran d'accueil » pour l'installer :";
+
+async function copier(texte) {
+  try { await navigator.clipboard.writeText(texte); return true; } catch { return false; }
+}
+
+// Partage natif du téléphone (WhatsApp, SMS, e-mail…), sinon copie du message.
+$("partager").addEventListener("click", async () => {
+  if (navigator.share) {
+    try { await navigator.share({ title: "BaoBao 宝宝 · Le chinois en famille", text: MESSAGE_PARTAGE, url: LIEN_APPLI }); return; }
+    catch (e) { if (e.name === "AbortError") return; }
+  }
+  $("partage-info").textContent = (await copier(`${MESSAGE_PARTAGE} ${LIEN_APPLI}`))
+    ? "✅ Message copié : colle-le dans WhatsApp, un SMS ou un e-mail."
+    : `Copie ce lien : ${LIEN_APPLI}`;
+});
+$("copier-lien").addEventListener("click", async () => {
+  $("partage-info").textContent = (await copier(LIEN_APPLI)) ? "✅ Lien copié !" : `Copie ce lien : ${LIEN_APPLI}`;
+});
+
 // ---------- Réinitialisation ----------
 
 $("reinit-profil").addEventListener("click", () => {

@@ -1,7 +1,7 @@
 // Mode hors-ligne : on garde en cache les fichiers de l'appli.
 // Pensez à changer VERSION quand vous modifiez des fichiers, pour forcer la mise à jour.
 
-const VERSION = "v10";
+const VERSION = "v11";
 const FICHIERS = [
   "./",
   "./index.html",
@@ -35,6 +35,7 @@ const FICHIERS = [
   "./pages/tons.html",
   "./pages/quiz.html",
   "./assets/icons/icon.svg",
+  "./assets/qr-code.svg",
   "./assets/icons/icon-192.png",
   "./assets/icons/apple-touch-icon.png",
   "./data/tons.json",
