@@ -1432,17 +1432,20 @@ header h1 { font-size: 1.3rem; }
 .points i { cursor: pointer; }
 .astuce-glisser {
   position: fixed;
-  left: 50%;
+  left: 16px;
+  right: 16px;
   bottom: calc(92px + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
+  margin: 0 auto;
+  width: fit-content;
+  max-width: calc(100% - 32px);
   z-index: 7;
   background: var(--marine);
   color: #fff;
   font-weight: 800;
   font-size: 0.9rem;
+  text-align: center;
   padding: 8px 16px;
   border-radius: 999px;
-  white-space: nowrap;
   box-shadow: 0 6px 16px rgba(45, 42, 50, 0.25);
   animation: flotte 1.6s ease-in-out infinite;
   pointer-events: none;
