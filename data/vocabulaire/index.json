@@ -1,0 +1,6 @@
+[
+  { "id": "animaux", "titre": "Animaux", "emoji": "🐼", "fichier": "animaux.json" },
+  { "id": "couleurs", "titre": "Couleurs", "emoji": "🎨", "fichier": "couleurs.json" },
+  { "id": "nombres", "titre": "Nombres", "emoji": "🔢", "fichier": "nombres.json" },
+  { "id": "famille", "titre": "Famille", "emoji": "👨‍👩‍👧", "fichier": "famille.json" }
+]

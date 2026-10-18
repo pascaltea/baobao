@@ -1,0 +1,14 @@
+{
+  "name": "Mandarin en famille",
+  "short_name": "学中文",
+  "description": "Apprendre le chinois mandarin en famille",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f2",
+  "theme_color": "#d7263d",
+  "lang": "fr",
+  "icons": [
+    { "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

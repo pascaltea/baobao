@@ -1,0 +1,10 @@
+[
+  { "id": "baba", "hanzi": "爸爸", "pinyin": "bàba", "fr": "papa", "emoji": "👨" },
+  { "id": "mama", "hanzi": "妈妈", "pinyin": "māma", "fr": "maman", "emoji": "👩" },
+  { "id": "gege", "hanzi": "哥哥", "pinyin": "gēge", "fr": "grand frère", "emoji": "👦" },
+  { "id": "jiejie", "hanzi": "姐姐", "pinyin": "jiějie", "fr": "grande sœur", "emoji": "👧" },
+  { "id": "didi", "hanzi": "弟弟", "pinyin": "dìdi", "fr": "petit frère", "emoji": "🧒" },
+  { "id": "meimei", "hanzi": "妹妹", "pinyin": "mèimei", "fr": "petite sœur", "emoji": "👶" },
+  { "id": "yeye", "hanzi": "爷爷", "pinyin": "yéye", "fr": "grand-père (paternel)", "emoji": "👴" },
+  { "id": "nainai", "hanzi": "奶奶", "pinyin": "nǎinai", "fr": "grand-mère (paternelle)", "emoji": "👵" }
+]

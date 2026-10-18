@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards · Mandarin en famille</title>
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <section id="choix-theme">
+      <h2>Choisis un thème</h2>
+      <div id="themes" class="grille"></div>
+    </section>
+
+    <section id="session" class="cache">
+      <div class="barre"><span id="barre"></span></div>
+      <p class="progression" id="progression"></p>
+
+      <div id="carte" class="flashcard" tabindex="0" role="button" aria-label="Retourner la carte">
+        <div id="recto">
+          <div class="hanzi" id="hanzi"></div>
+          <div class="indice">Touche la carte pour voir la réponse</div>
+        </div>
+        <div id="verso" class="cache">
+          <div class="emoji" id="emoji"></div>
+          <div class="hanzi" id="hanzi-verso"></div>
+          <div class="pinyin" id="pinyin"></div>
+          <div class="fr" id="fr"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="bouton secondaire" id="ecouter">🔊 Écouter</button>
+      </div>
+      <div class="actions cache" id="reponse">
+        <button class="bouton secondaire" id="revoir">🔁 À revoir</button>
+        <button class="bouton vert" id="connu">✅ Je sais !</button>
+      </div>
+      <div class="actions">
+        <button class="bouton secondaire" id="changer">Changer de thème</button>
+      </div>
+    </section>
+
+    <section id="fin" class="cache" style="text-align:center">
+      <p style="font-size:3rem;margin:0">🎉</p>
+      <h2>Bravo, 太棒了 (tài bàng le) !</h2>
+      <p id="bilan"></p>
+      <div class="actions">
+        <button class="bouton" id="recommencer">Recommencer</button>
+        <a class="bouton secondaire" href="../index.html">Accueil</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../js/flashcards.js"></script>
+</body>
+</html>

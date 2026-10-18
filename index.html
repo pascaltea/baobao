@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mandarin en famille</title>
+  <meta name="description" content="Apprendre le chinois mandarin en famille : flashcards, pinyin et prononciation.">
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>学中文 · Mandarin en famille</h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <section>
+      <h2>Qui apprend aujourd'hui ?</h2>
+      <div id="profils" class="grille"></div>
+
+      <form id="form-profil" class="ajout">
+        <input id="nom" placeholder="Prénom" required maxlength="20">
+        <input id="avatar" placeholder="Emoji (ex. 🐼)" maxlength="4">
+        <button class="bouton secondaire" type="submit">+ Ajouter</button>
+      </form>
+    </section>
+
+    <section id="activites" class="cache">
+      <h2>Activités</h2>
+      <div class="grille">
+        <a class="tuile" href="pages/flashcards.html">
+          <span class="grand">🃏</span>
+          <strong>Flashcards</strong><br><small>caractères, pinyin, sens</small>
+        </a>
+        <div class="tuile" aria-disabled="true" style="opacity:.5;cursor:default">
+          <span class="grand">🎵</span>
+          <strong>Les 4 tons</strong><br><small>bientôt</small>
+        </div>
+        <div class="tuile" aria-disabled="true" style="opacity:.5;cursor:default">
+          <span class="grand">❓</span>
+          <strong>Quiz</strong><br><small>bientôt</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { listerProfils, ajouterProfil, choisirProfil, supprimerProfil, profilActif } from "./js/profils.js";
+    import { afficherProfilActif, activerHorsLigne } from "./js/app.js";
+
+    const zone = document.getElementById("profils");
+
+    function afficher() {
+      const actif = profilActif();
+      zone.innerHTML = "";
+      for (const p of listerProfils()) {
+        const tuile = document.createElement("button");
+        tuile.className = "tuile" + (actif?.id === p.id ? " active" : "");
+        tuile.innerHTML = `<span class="grand"></span><strong></strong><br><small>${p.connus.length} mot(s) appris</small>`;
+        tuile.querySelector(".grand").textContent = p.avatar;
+        tuile.querySelector("strong").textContent = p.nom;
+        tuile.addEventListener("click", () => { choisirProfil(p.id); afficher(); });
+        tuile.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          if (confirm(`Supprimer le profil ${p.nom} et sa progression ?`)) { supprimerProfil(p.id); afficher(); }
+        });
+        zone.appendChild(tuile);
+      }
+      document.getElementById("activites").classList.toggle("cache", !actif);
+      afficherProfilActif();
+    }
+
+    document.getElementById("form-profil").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const nom = document.getElementById("nom").value.trim();
+      const avatar = document.getElementById("avatar").value.trim() || "🙂";
+      if (!nom) return;
+      ajouterProfil(nom, avatar);
+      e.target.reset();
+      afficher();
+    });
+
+    afficher();
+    activerHorsLigne("./");
+  </script>
+</body>
+</html>

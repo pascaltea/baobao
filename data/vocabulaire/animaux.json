@@ -1,0 +1,12 @@
+[
+  { "id": "mao", "hanzi": "猫", "pinyin": "māo", "fr": "chat", "emoji": "🐱" },
+  { "id": "gou", "hanzi": "狗", "pinyin": "gǒu", "fr": "chien", "emoji": "🐶" },
+  { "id": "xiongmao", "hanzi": "熊猫", "pinyin": "xióngmāo", "fr": "panda", "emoji": "🐼" },
+  { "id": "niao", "hanzi": "鸟", "pinyin": "niǎo", "fr": "oiseau", "emoji": "🐦" },
+  { "id": "yu", "hanzi": "鱼", "pinyin": "yú", "fr": "poisson", "emoji": "🐟" },
+  { "id": "ma", "hanzi": "马", "pinyin": "mǎ", "fr": "cheval", "emoji": "🐴" },
+  { "id": "niu", "hanzi": "牛", "pinyin": "niú", "fr": "vache", "emoji": "🐮" },
+  { "id": "tuzi", "hanzi": "兔子", "pinyin": "tùzi", "fr": "lapin", "emoji": "🐰" },
+  { "id": "laohu", "hanzi": "老虎", "pinyin": "lǎohǔ", "fr": "tigre", "emoji": "🐯" },
+  { "id": "long", "hanzi": "龙", "pinyin": "lóng", "fr": "dragon", "emoji": "🐲" }
+]
