@@ -1,7 +1,7 @@
 // Mode hors-ligne : on garde en cache les fichiers de l'appli.
 // Pensez à changer VERSION quand vous modifiez des fichiers, pour forcer la mise à jour.
 
-const VERSION = "v1";
+const VERSION = "v2";
 const FICHIERS = [
   "./",
   "./index.html",
@@ -10,13 +10,21 @@ const FICHIERS = [
   "./js/app.js",
   "./js/profils.js",
   "./js/flashcards.js",
+  "./js/tons.js",
+  "./js/quiz.js",
   "./pages/flashcards.html",
+  "./pages/tons.html",
+  "./pages/quiz.html",
   "./assets/icons/icon.svg",
+  "./data/tons.json",
   "./data/vocabulaire/index.json",
+  "./data/vocabulaire/salutations.json",
   "./data/vocabulaire/animaux.json",
   "./data/vocabulaire/couleurs.json",
   "./data/vocabulaire/nombres.json",
   "./data/vocabulaire/famille.json",
+  "./data/vocabulaire/nourriture.json",
+  "./data/vocabulaire/corps.json",
 ];
 
 self.addEventListener("install", (event) => {

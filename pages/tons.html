@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Les 4 tons · Mandarin en famille</title>
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <h2>🎵 Les 4 tons</h2>
+    <div class="aide-tons">
+      <div><strong>ā</strong>1 · plat et haut</div>
+      <div><strong>á</strong>2 · monte</div>
+      <div><strong>ǎ</strong>3 · descend puis monte</div>
+      <div><strong>à</strong>4 · descend fort</div>
+    </div>
+
+    <section id="jeu">
+      <p class="score" id="score"></p>
+      <div class="question">
+        <p class="consigne">Écoute bien, puis choisis le ton que tu entends.</p>
+        <button class="bouton" id="ecouter">🔊 Écouter</button>
+      </div>
+
+      <div class="choix" id="choix">
+        <button data-ton="0"><span class="ton-signe">ˉ</span>1<sup>er</sup> ton<br><small>plat</small></button>
+        <button data-ton="1"><span class="ton-signe">ˊ</span>2<sup>e</sup> ton<br><small>monte</small></button>
+        <button data-ton="2"><span class="ton-signe">ˇ</span>3<sup>e</sup> ton<br><small>descend-monte</small></button>
+        <button data-ton="3"><span class="ton-signe">ˋ</span>4<sup>e</sup> ton<br><small>descend</small></button>
+      </div>
+
+      <div class="retour" id="retour"></div>
+      <div class="actions">
+        <button class="bouton cache" id="suivant">Suivant →</button>
+      </div>
+    </section>
+
+    <section id="fin" class="cache" style="text-align:center">
+      <p style="font-size:3rem;margin:0" id="fin-emoji"></p>
+      <h2 id="fin-titre"></h2>
+      <p id="bilan"></p>
+      <div class="actions">
+        <button class="bouton" id="recommencer">Rejouer</button>
+        <a class="bouton secondaire" href="../index.html">Accueil</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../js/tons.js"></script>
+</body>
+</html>

@@ -21,6 +21,22 @@ export async function chargerJSON(chemin) {
   return reponse.json();
 }
 
+// Charge tous les thèmes de vocabulaire et renvoie la liste complète des mots.
+export async function chargerTousLesMots(dossier) {
+  const themes = await chargerJSON(`${dossier}index.json`);
+  const listes = await Promise.all(themes.map((t) => chargerJSON(dossier + t.fichier)));
+  return listes.flatMap((liste, i) => liste.map((m) => ({ ...m, theme: themes[i].id })));
+}
+
+export function melanger(liste) {
+  const copie = [...liste];
+  for (let i = copie.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copie[i], copie[j]] = [copie[j], copie[i]];
+  }
+  return copie;
+}
+
 // Affiche le profil actif dans l'en-tête (élément .profil-actif).
 export function afficherProfilActif() {
   const zone = document.querySelector(".profil-actif");

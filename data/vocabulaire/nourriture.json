@@ -1,0 +1,12 @@
+[
+  { "id": "mifan", "hanzi": "米饭", "pinyin": "mǐfàn", "fr": "riz", "emoji": "🍚" },
+  { "id": "miantiao", "hanzi": "面条", "pinyin": "miàntiáo", "fr": "nouilles", "emoji": "🍜" },
+  { "id": "jiaozi", "hanzi": "饺子", "pinyin": "jiǎozi", "fr": "raviolis", "emoji": "🥟" },
+  { "id": "pingguo", "hanzi": "苹果", "pinyin": "píngguǒ", "fr": "pomme", "emoji": "🍎" },
+  { "id": "xiangjiao", "hanzi": "香蕉", "pinyin": "xiāngjiāo", "fr": "banane", "emoji": "🍌" },
+  { "id": "niunai", "hanzi": "牛奶", "pinyin": "niúnǎi", "fr": "lait", "emoji": "🥛" },
+  { "id": "shui", "hanzi": "水", "pinyin": "shuǐ", "fr": "eau", "emoji": "💧" },
+  { "id": "jidan", "hanzi": "鸡蛋", "pinyin": "jīdàn", "fr": "œuf", "emoji": "🥚" },
+  { "id": "mianbao", "hanzi": "面包", "pinyin": "miànbāo", "fr": "pain", "emoji": "🍞" },
+  { "id": "cha", "hanzi": "茶", "pinyin": "chá", "fr": "thé", "emoji": "🍵" }
+]

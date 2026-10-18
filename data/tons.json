@@ -1,0 +1,50 @@
+[
+  [
+    { "hanzi": "妈", "pinyin": "mā", "fr": "maman" },
+    { "hanzi": "麻", "pinyin": "má", "fr": "chanvre" },
+    { "hanzi": "马", "pinyin": "mǎ", "fr": "cheval" },
+    { "hanzi": "骂", "pinyin": "mà", "fr": "gronder" }
+  ],
+  [
+    { "hanzi": "八", "pinyin": "bā", "fr": "huit" },
+    { "hanzi": "拔", "pinyin": "bá", "fr": "arracher" },
+    { "hanzi": "把", "pinyin": "bǎ", "fr": "tenir" },
+    { "hanzi": "爸", "pinyin": "bà", "fr": "papa" }
+  ],
+  [
+    { "hanzi": "诗", "pinyin": "shī", "fr": "poème" },
+    { "hanzi": "十", "pinyin": "shí", "fr": "dix" },
+    { "hanzi": "史", "pinyin": "shǐ", "fr": "histoire" },
+    { "hanzi": "是", "pinyin": "shì", "fr": "être" }
+  ],
+  [
+    { "hanzi": "汤", "pinyin": "tāng", "fr": "soupe" },
+    { "hanzi": "糖", "pinyin": "táng", "fr": "bonbon" },
+    { "hanzi": "躺", "pinyin": "tǎng", "fr": "s'allonger" },
+    { "hanzi": "烫", "pinyin": "tàng", "fr": "brûlant" }
+  ],
+  [
+    { "hanzi": "衣", "pinyin": "yī", "fr": "vêtement" },
+    { "hanzi": "姨", "pinyin": "yí", "fr": "tante" },
+    { "hanzi": "椅", "pinyin": "yǐ", "fr": "chaise" },
+    { "hanzi": "亿", "pinyin": "yì", "fr": "cent millions" }
+  ],
+  [
+    { "hanzi": "屋", "pinyin": "wū", "fr": "maison" },
+    { "hanzi": "无", "pinyin": "wú", "fr": "rien" },
+    { "hanzi": "五", "pinyin": "wǔ", "fr": "cinq" },
+    { "hanzi": "雾", "pinyin": "wù", "fr": "brouillard" }
+  ],
+  [
+    { "hanzi": "踢", "pinyin": "tī", "fr": "taper du pied" },
+    { "hanzi": "题", "pinyin": "tí", "fr": "question" },
+    { "hanzi": "体", "pinyin": "tǐ", "fr": "corps" },
+    { "hanzi": "替", "pinyin": "tì", "fr": "remplacer" }
+  ],
+  [
+    { "hanzi": "汤", "pinyin": "tāng", "fr": "soupe" },
+    { "hanzi": "鱼", "pinyin": "yú", "fr": "poisson" },
+    { "hanzi": "狗", "pinyin": "gǒu", "fr": "chien" },
+    { "hanzi": "四", "pinyin": "sì", "fr": "quatre" }
+  ]
+]

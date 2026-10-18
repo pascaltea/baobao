@@ -7,7 +7,9 @@ séparée pour chaque membre de la famille.
 ## Fonctionnalités
 
 - 👨‍👩‍👧 **Profils** : chacun a sa propre progression (enregistrée dans le navigateur)
-- 🃏 **Flashcards** par thème (animaux, couleurs, nombres…) : touche la carte pour la retourner
+- 🃏 **Flashcards** par thème (salutations, animaux, couleurs, nombres, famille, nourriture, corps) : touche la carte pour la retourner
+- 🎵 **Les 4 tons** : écoute une syllabe et retrouve son ton (séries dans `data/tons.json`)
+- ❓ **Quiz** : 10 questions à 4 choix, du chinois vers le français et inversement
 - 🔊 **Prononciation** via la synthèse vocale du navigateur (voix chinoise `zh-CN`)
 - 📱 **Installable** sur téléphone/tablette et utilisable hors-ligne (PWA)
 
@@ -25,7 +27,7 @@ python3 -m http.server 8000
 
 ```
 index.html            accueil + choix du profil
-pages/                une page par activité (flashcards, puis tons, quiz…)
+pages/                une page par activité (flashcards, tons, quiz)
 css/style.css         styles communs
 js/                   logique (profils, flashcards…)
 data/vocabulaire/     le contenu, un fichier JSON par thème

@@ -1,7 +1,7 @@
 // Flashcards : on montre le caractère, l'enfant devine, puis retourne la carte.
 // Les mots « à revoir » reviennent en fin de paquet jusqu'à ce qu'ils soient sus.
 
-import { chargerJSON, prononcer, afficherProfilActif, activerHorsLigne } from "./app.js";
+import { chargerJSON, prononcer, melanger, afficherProfilActif, activerHorsLigne } from "./app.js";
 import { profilActif, marquerMot, motsConnus } from "./profils.js";
 
 const DATA = "../data/vocabulaire/";
@@ -12,15 +12,6 @@ let mots = [];
 let paquet = [];
 let courant = null;
 let retournee = false;
-
-function melanger(liste) {
-  const copie = [...liste];
-  for (let i = copie.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copie[i], copie[j]] = [copie[j], copie[i]];
-  }
-  return copie;
-}
 
 function montrer(section) {
   for (const id of ["choix-theme", "session", "fin"]) $(id).classList.toggle("cache", id !== section);

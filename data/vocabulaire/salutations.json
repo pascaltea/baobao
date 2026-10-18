@@ -1,0 +1,12 @@
+[
+  { "id": "nihao", "hanzi": "你好", "pinyin": "nǐ hǎo", "fr": "bonjour", "emoji": "👋" },
+  { "id": "zaoshanghao", "hanzi": "早上好", "pinyin": "zǎoshang hǎo", "fr": "bonjour (le matin)", "emoji": "🌅" },
+  { "id": "wanan", "hanzi": "晚安", "pinyin": "wǎn'ān", "fr": "bonne nuit", "emoji": "🌙" },
+  { "id": "zaijian", "hanzi": "再见", "pinyin": "zàijiàn", "fr": "au revoir", "emoji": "🚪" },
+  { "id": "xiexie", "hanzi": "谢谢", "pinyin": "xièxie", "fr": "merci", "emoji": "🙏" },
+  { "id": "bukeqi", "hanzi": "不客气", "pinyin": "bú kèqi", "fr": "de rien", "emoji": "😊" },
+  { "id": "qing", "hanzi": "请", "pinyin": "qǐng", "fr": "s'il te plaît", "emoji": "🤲" },
+  { "id": "duibuqi", "hanzi": "对不起", "pinyin": "duìbuqǐ", "fr": "pardon", "emoji": "😔" },
+  { "id": "meiguanxi", "hanzi": "没关系", "pinyin": "méi guānxi", "fr": "ce n'est pas grave", "emoji": "🙂" },
+  { "id": "woaini", "hanzi": "我爱你", "pinyin": "wǒ ài nǐ", "fr": "je t'aime", "emoji": "❤️" }
+]

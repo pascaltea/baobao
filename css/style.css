@@ -112,4 +112,55 @@ form.ajout input {
 .barre { height: 10px; background: var(--bord); border-radius: 999px; overflow: hidden; }
 .barre > span { display: block; height: 100%; background: var(--ok); width: 0; transition: width 0.3s; }
 
+/* Quiz et tons : boutons de réponse */
+.choix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.choix button {
+  background: var(--carte);
+  border: 2px solid var(--bord);
+  border-radius: var(--rayon);
+  padding: 16px 10px;
+  font: inherit;
+  font-size: 1.15rem;
+  color: inherit;
+  cursor: pointer;
+  min-height: 72px;
+}
+.choix button:hover:not(:disabled) { border-color: var(--or); }
+.choix button.hanzi-choix { font-size: 2.2rem; }
+.choix button.bon { border-color: var(--ok); background: #e7f6ed; }
+.choix button.faux { border-color: var(--rouge); background: #fbe7ea; }
+.choix button:disabled { cursor: default; }
+.choix .ton-signe { display: block; font-size: 2rem; line-height: 1; color: var(--rouge); }
+.choix small { color: var(--doux); font-size: 0.85rem; }
+
+.question { text-align: center; }
+.question .grand-hanzi { font-size: 4.5rem; line-height: 1.1; }
+.question .grand-emoji { font-size: 3.5rem; }
+.question .consigne { color: var(--doux); }
+
+.retour { text-align: center; min-height: 3.2em; margin-top: 14px; font-size: 1.1rem; }
+.retour .ok { color: var(--ok); font-weight: 600; }
+.retour .ko { color: var(--rouge); font-weight: 600; }
+
+.score { text-align: right; color: var(--doux); }
+
+.aide-tons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  text-align: center;
+  background: var(--carte);
+  border: 2px solid var(--bord);
+  border-radius: var(--rayon);
+  padding: 12px 8px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+}
+.aide-tons strong { display: block; font-size: 1.4rem; color: var(--rouge); }
+
 .cache { display: none !important; }
