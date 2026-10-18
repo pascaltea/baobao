@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comptines · Mandarin en famille</title>
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <section id="liste">
+      <h2>🎶 Comptines</h2>
+      <p class="carte intro">Chanter est l'une des meilleures façons de transmettre une langue, même aux bébés.
+        Apprenez les paroles ici, puis chantez-les <strong>sans écran</strong> : au bain, en voiture, au coucher.</p>
+      <div id="comptines" class="grille"></div>
+    </section>
+
+    <section id="detail" class="cache">
+      <button class="bouton secondaire" id="retour">← Toutes les comptines</button>
+      <h2 id="d-titre"></h2>
+      <p class="carte conseil" id="d-air"></p>
+      <button class="bouton" id="tout">▶️ Tout écouter</button>
+      <ol id="lignes" class="lignes"></ol>
+    </section>
+  </main>
+
+  <script type="module" src="../js/comptines.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mandarin en famille</title>
-  <meta name="description" content="Apprendre le chinois mandarin en famille : parcours de leçons, tons, révisions et quiz.">
+  <meta name="description" content="Apprendre le chinois mandarin en famille : leçons pour les parents, phrases du quotidien, comptines et imagier pour les enfants.">
   <meta name="theme-color" content="#d7263d">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
@@ -17,6 +17,7 @@
   </header>
 
   <main>
+    <!-- Choix du profil -->
     <section id="ecran-profils" class="cache">
       <h2>Qui apprend aujourd'hui ?</h2>
       <div id="profils" class="grille"></div>
@@ -27,45 +28,118 @@
           <input id="nom" placeholder="Prénom" required maxlength="20">
           <input id="avatar" placeholder="Emoji (ex. 🐼)" maxlength="4">
         </div>
-        <label class="case"><input type="checkbox" id="mode-enfant"> Mode enfant : exercices avec images et sons, sans lecture</label>
+        <fieldset class="choix-mode">
+          <legend>Pour qui ?</legend>
+          <label><input type="radio" name="mode" value="adulte" checked><span>🧑 <strong>Adulte</strong><small>Leçons complètes et phrases à dire aux enfants</small></span></label>
+          <label><input type="radio" name="mode" value="enfant"><span>🧒 <strong>Enfant 3-6 ans</strong><small>Images et sons, sans lecture, autocollants</small></span></label>
+          <label><input type="radio" name="mode" value="bebe"><span>👶 <strong>Bébé 0-2 ans</strong><small>Imagier et comptines, à faire avec un parent</small></span></label>
+        </fieldset>
         <button class="bouton" type="submit">+ Ajouter</button>
       </form>
       <p class="petit">Appui long (ou clic droit) sur un profil pour le supprimer.</p>
     </section>
 
+    <!-- Tableau de bord -->
     <section id="ecran-accueil" class="cache">
-      <div class="stats">
-        <div class="stat" title="Jours d'affilée"><span>🔥</span><strong id="s-serie">0</strong><small>jours</small></div>
-        <div class="stat" title="Points d'expérience"><span>⭐</span><strong id="s-xp">0</strong><small>XP</small></div>
-        <div class="stat" title="Mots appris"><span>📚</span><strong id="s-mots">0</strong><small>mots</small></div>
+
+      <div data-modes="bebe" class="carte bebe-intro">
+        <h2>👶 Avec les tout-petits, c'est vous qui parlez !</h2>
+        <p>Avant 2 ans, les enfants apprennent une langue par l'échange avec une vraie personne, et l'OMS déconseille les écrans.
+          Utilisez l'appli <strong>pour vous préparer</strong>, puis parlez, chantez et jouez avec votre enfant.
+          Quelques minutes d'imagier ensemble restent un bon moment de partage.</p>
       </div>
 
-      <div class="carte objectif">
-        <div class="objectif-texte">🎯 Objectif du jour <strong id="o-texte"></strong></div>
-        <div class="barre"><span id="o-barre"></span></div>
+      <div data-modes="adulte enfant">
+        <div class="stats">
+          <div class="stat" title="Jours d'affilée"><span>🔥</span><strong id="s-serie">0</strong><small>jours</small></div>
+          <div class="stat" title="Points d'expérience"><span>⭐</span><strong id="s-xp">0</strong><small>XP</small></div>
+          <div class="stat" title="Mots et phrases appris"><span>📚</span><strong id="s-mots">0</strong><small>appris</small></div>
+        </div>
+        <div class="carte objectif">
+          <div class="objectif-texte">🎯 Objectif du jour <strong id="o-texte"></strong></div>
+          <div class="barre"><span id="o-barre"></span></div>
+          <p class="petit">🌙 Un jour de repos ne casse pas ta série.</p>
+        </div>
       </div>
 
-      <a id="revision" class="carte revision cache" href="pages/lecon.html?revision=jour">
+      <div data-modes="adulte bebe" id="phrase-jour" class="carte phrase-jour">
+        <p class="etiquette">💬 Phrase du jour à dire à vos enfants</p>
+        <div class="pj-contenu">
+          <span class="pj-emoji" id="pj-emoji"></span>
+          <div><div class="pj-hanzi" id="pj-hanzi"></div><div id="pj-fr"></div></div>
+        </div>
+        <div class="cp-actions">
+          <button class="bouton-son petit" id="pj-son" aria-label="Écouter">🔊</button>
+          <button class="bouton-son petit lent" id="pj-lent" aria-label="Écouter lentement">🐢</button>
+          <button class="bouton-dite" id="pj-dite"></button>
+        </div>
+      </div>
+
+      <a data-modes="adulte enfant" id="revision" class="carte revision cache" href="pages/lecon.html?revision=jour">
         <span class="revision-icone">🧠</span>
         <span><strong>Révision du jour</strong><br><small id="r-texte"></small></span>
         <span class="fleche">›</span>
       </a>
 
-      <div id="parcours"></div>
-
-      <h2>🎮 Entraînement libre</h2>
-      <div class="grille">
-        <a class="tuile" href="pages/flashcards.html"><span class="grand">🃏</span><strong>Flashcards</strong><br><small>révise à ton rythme</small></a>
-        <a class="tuile" href="pages/tons.html"><span class="grand">🎵</span><strong>Les 4 tons</strong><br><small>écoute et reconnais</small></a>
-        <a class="tuile" href="pages/quiz.html"><span class="grand">❓</span><strong>Quiz</strong><br><small>sur les mots appris</small></a>
+      <div data-modes="adulte bebe">
+        <h2>👨‍👩‍👧 Avec mes enfants</h2>
+        <div class="grille">
+          <a class="tuile tuile-vedette" href="pages/quotidien.html"><span class="grand">💬</span><strong>Au quotidien</strong><br><small>phrases pour le repas, le bain, le dodo…</small></a>
+          <a class="tuile" href="pages/comptines.html"><span class="grand">🎶</span><strong>Comptines</strong><br><small>à chanter ensemble</small></a>
+          <a class="tuile" href="pages/imagier.html"><span class="grand">🖼️</span><strong>Imagier</strong><br><small>à regarder ensemble</small></a>
+        </div>
       </div>
 
-      <h2>🏅 Classement de la famille</h2>
-      <p class="petit">XP gagnés ces 7 derniers jours</p>
-      <ol id="classement" class="classement"></ol>
+      <div data-modes="enfant">
+        <h2>🎈 Mes jeux</h2>
+        <div class="grille">
+          <a class="tuile" href="pages/imagier.html"><span class="grand">🖼️</span><strong>Imagier</strong></a>
+          <a class="tuile" href="pages/comptines.html"><span class="grand">🎶</span><strong>Comptines</strong></a>
+          <a class="tuile" href="pages/tons.html"><span class="grand">🎵</span><strong>Les tons</strong></a>
+        </div>
+        <h2>🌟 Mes autocollants</h2>
+        <div id="album" class="album"></div>
+      </div>
+
+      <div data-modes="adulte enfant">
+        <h2 data-modes="adulte">🗺️ Mon parcours</h2>
+        <div id="parcours"></div>
+      </div>
+
+      <div data-modes="adulte">
+        <h2>🎮 Entraînement libre</h2>
+        <div class="grille">
+          <a class="tuile" href="pages/flashcards.html"><span class="grand">🃏</span><strong>Flashcards</strong><br><small>révise à ton rythme</small></a>
+          <a class="tuile" href="pages/tons.html"><span class="grand">🎵</span><strong>Les 4 tons</strong><br><small>écoute et reconnais</small></a>
+          <a class="tuile" href="pages/quiz.html"><span class="grand">❓</span><strong>Quiz</strong><br><small>sur les mots appris</small></a>
+        </div>
+      </div>
+
+      <h2>🤝 L'équipe famille</h2>
+      <div class="carte">
+        <div class="objectif-texte">Objectif commun de la semaine <strong id="f-texte"></strong></div>
+        <div class="barre"><span id="f-barre"></span></div>
+        <p class="petit">On avance ensemble : chaque XP de chacun compte pour toute la famille.</p>
+      </div>
+      <ul id="equipe" class="classement"></ul>
 
       <div class="carte reglages">
-        <label class="case"><input type="checkbox" id="r-enfant"> Mode enfant (images et sons, sans lecture)</label>
+        <h3>⚙️ Réglages du profil</h3>
+        <label>Type de profil
+          <select id="r-mode">
+            <option value="adulte">🧑 Adulte</option>
+            <option value="enfant">🧒 Enfant 3-6 ans</option>
+            <option value="bebe">👶 Bébé 0-2 ans</option>
+          </select>
+        </label>
+        <label data-modes="adulte enfant">Objectif du jour
+          <select id="r-objectif">
+            <option value="10">🐢 Tranquille : 10 XP (≈ 1 leçon)</option>
+            <option value="20">🙂 Normal : 20 XP (≈ 2 leçons)</option>
+            <option value="30">💪 Motivé : 30 XP</option>
+            <option value="50">🔥 Intense : 50 XP</option>
+          </select>
+        </label>
       </div>
     </section>
   </main>

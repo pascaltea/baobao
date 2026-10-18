@@ -34,7 +34,7 @@ function decoupagesMot(mot) {
 
 // Découpe le pinyin en exactement `nb` syllabes (une par caractère), ou null.
 export function decouper(pinyin, nb) {
-  const mots = pinyin.replace(/['’]/g, " ").split(/\s+/).filter(Boolean);
+  const mots = pinyin.replace(/['’,.!?;:，。！？]/g, " ").split(/\s+/).filter(Boolean);
   const chercher = (i, reste) => {
     if (i === mots.length) return reste === 0 ? [] : null;
     for (const decoupage of decoupagesMot(mots[i])) {
@@ -47,33 +47,34 @@ export function decouper(pinyin, nb) {
   return chercher(0, nb);
 }
 
+const HAN = /\p{Script=Han}/u;
+export const estHan = (c) => HAN.test(c);
+
+// Associe à chaque caractère sa syllabe (la ponctuation n'en a pas), ou null.
+function associer(hanzi, pinyin) {
+  const caracteres = [...hanzi];
+  const syllabes = decouper(pinyin, caracteres.filter(estHan).length);
+  if (!syllabes) return null;
+  let i = 0;
+  return caracteres.map((c) => [c, estHan(c) ? syllabes[i++] : null]);
+}
+
 const echapper = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
 // Caractères avec leur pinyin coloré au-dessus (balises <ruby>).
 export function rubyHTML(hanzi, pinyin) {
-  const caracteres = [...hanzi];
-  const syllabes = decouper(pinyin, caracteres.length);
-  if (!syllabes) {
-    return `<ruby>${echapper(hanzi)}<rt>${echapper(pinyin)}</rt></ruby>`;
-  }
-  return caracteres
-    .map((c, i) => `<ruby>${echapper(c)}<rt class="ton${tonSyllabe(syllabes[i])}">${echapper(syllabes[i])}</rt></ruby>`)
+  const paires = associer(hanzi, pinyin);
+  if (!paires) return `<ruby>${echapper(hanzi)}<rt>${echapper(pinyin)}</rt></ruby>`;
+  return paires
+    .map(([c, s]) => (s ? `<ruby>${echapper(c)}<rt class="ton${tonSyllabe(s)}">${echapper(s)}</rt></ruby>` : echapper(c)))
     .join("");
 }
 
 // Pinyin seul, chaque syllabe dans la couleur de son ton.
 export function pinyinColore(pinyin, hanzi) {
-  const syllabes = decouper(pinyin, [...hanzi].length);
-  if (!syllabes) return echapper(pinyin);
-  return syllabes.map((s) => `<span class="ton${tonSyllabe(s)}">${echapper(s)}</span>`).join(" ");
-}
-
-// Caractères colorés selon leur ton (sans pinyin) : aide visuelle discrète.
-export function hanziColore(hanzi, pinyin) {
-  const caracteres = [...hanzi];
-  const syllabes = decouper(pinyin, caracteres.length);
-  if (!syllabes) return echapper(hanzi);
-  return caracteres.map((c, i) => `<span class="ton${tonSyllabe(syllabes[i])}">${echapper(c)}</span>`).join("");
+  const paires = associer(hanzi, pinyin);
+  if (!paires) return echapper(pinyin);
+  return paires.filter(([, s]) => s).map(([, s]) => `<span class="ton${tonSyllabe(s)}">${echapper(s)}</span>`).join(" ");
 }
 
 // Fausses réponses pour l'exercice « bon pinyin » : même mot, autres tons.

@@ -8,12 +8,16 @@
 //   lecon.html?cle=animaux:0         une leçon du parcours
 //   lecon.html?cle=animaux:revision  la révision d'une unité
 //   lecon.html?revision=jour         les mots à réviser aujourd'hui
+//   lecon.html?routine=repas         les phrases du quotidien d'une routine
 
 import { prononcer, melanger, activerHorsLigne } from "./app.js";
-import { chargerParcours, toutesLesLecons } from "./parcours.js";
-import { profilActif, niveauMot, enregistrerReponse, terminerLecon, ajouterXP, motsARevoir, statistiques } from "./profils.js";
+import { chargerParcours, chargerRoutines, toutesLesLecons } from "./parcours.js";
+import {
+  profilActif, niveauMot, enregistrerReponse, terminerLecon, ajouterXP, motsARevoir, statistiques, gagnerAutocollant,
+} from "./profils.js";
 import { rubyHTML, variantesTon } from "./pinyin.js";
 import { sonJuste, sonFaux, sonVictoire } from "./sons.js";
+import { boutonsMicro } from "./micro.js";
 
 const $ = (id) => document.getElementById(id);
 const alea = (liste) => liste[Math.floor(Math.random() * liste.length)];
@@ -29,7 +33,17 @@ const TYPES = enfant
   ? { facile: ["ecoute-image"], moyen: ["ecoute-image", "image-hanzi"], difficile: ["image-hanzi", "ecoute-image"] }
   : { facile: ["ecoute-image", "hanzi-fr"], moyen: ["hanzi-fr", "image-hanzi", "ecoute-image"], difficile: ["ecoute-hanzi", "pinyin-ton", "image-hanzi"] };
 
+// Pour les phrases, on vise la compréhension orale et la production (remettre dans l'ordre).
+const TYPES_PHRASES = { facile: ["ecoute-fr", "hanzi-fr"], moyen: ["ecoute-fr", "fr-phrase"], difficile: ["ordre", "fr-phrase", "ecoute-fr"] };
+
+const choisirType = (mot, difficulte) => {
+  const types = (mot.phrase ? TYPES_PHRASES : TYPES)[difficulte];
+  const possibles = types.filter((t) => t !== "ordre" || mot.morceaux?.length >= 3);
+  return alea(possibles.length ? possibles : types.filter((t) => t !== "ordre"));
+};
+
 let tousLesMots = [];
+let routine = null;
 let lecon = null;          // la leçon du parcours (null pour la révision du jour)
 let pas = [];              // la file des étapes
 let total = 0;             // nombre d'étapes prévues au départ
@@ -47,7 +61,9 @@ const motsSession = new Map();
 function leurres(mot, nb, champ) {
   const deja = new Set([mot[champ]]);
   const resultat = [];
-  const candidats = [...melanger(tousLesMots.filter((m) => m.theme === mot.theme)), ...melanger(tousLesMots)];
+  // Une phrase a pour leurres d'autres phrases, un mot d'autres mots.
+  const pool = tousLesMots.filter((m) => !!m.phrase === !!mot.phrase);
+  const candidats = [...melanger(pool.filter((m) => m.theme === mot.theme)), ...melanger(pool)];
   for (const m of candidats) {
     if (resultat.length >= nb) break;
     if (!m[champ] || deja.has(m[champ])) continue;
@@ -93,31 +109,52 @@ function exercice(type, mot) {
         question: `<div class="q-emoji petit">${mot.emoji}</div><div class="q-hanzi">${mot.hanzi}</div>`,
         options: melanger([mot.pinyin, ...variantes]).map((p) => ({ id: p, html: p, classe: "choix-pinyin" })) };
     }
+    case "ecoute-fr":
+      return { type, mot, bonne: mot.id, audio: true,
+        consigne: "Écoute : qu'est-ce que ça veut dire ?",
+        options: options(mot, "fr", (m) => m.fr) };
+    case "fr-phrase":
+      return { type, mot, bonne: mot.id, audio: false,
+        consigne: "Comment dit-on en chinois…",
+        question: `<div class="q-emoji petit">${mot.emoji}</div><div class="q-fr">« ${mot.fr} »</div>`,
+        options: options(mot, "hanzi", (m) => (debutant ? rubyHTML(m.hanzi, m.pinyin) : m.hanzi), "choix-phrase") };
+    case "ordre":
+      return { type, mot, bonne: mot.morceaux.join(""), audio: false,
+        consigne: "Remets la phrase dans l'ordre",
+        question: `<div class="q-emoji petit">${mot.emoji}</div><div class="q-fr">« ${mot.fr} »</div>`,
+        morceaux: melanger(mot.morceaux) };
   }
 }
 
-function construireNouvelleLecon(nouveaux) {
+function construireNouvelleLecon(nouveaux, note) {
   const liste = [];
+  // La note de grammaire de l'unité ouvre la première leçon (pour les adultes).
+  if (note && !enfant) liste.push({ type: "note", texte: note });
   const vus = [];
   nouveaux.forEach((mot, i) => {
     liste.push({ type: "decouverte", mot });
     motsSession.set(mot.id, mot);
-    liste.push(exercice(alea(TYPES.facile), mot));
+    liste.push(exercice(choisirType(mot, "facile"), mot));
     vus.push(mot);
     // Tous les deux mots, on revient sur un mot déjà vu.
-    if (i % 2 === 1) liste.push(exercice(alea(TYPES.moyen), alea(vus.slice(0, -1))));
+    if (i % 2 === 1) {
+      const ancien = alea(vus.slice(0, -1));
+      liste.push(exercice(choisirType(ancien, "moyen"), ancien));
+    }
   });
-  if (vus.length >= 3) liste.push({ type: "paires", mots: melanger(vus).slice(0, 5) });
-  for (const mot of melanger(vus)) liste.push(exercice(alea(TYPES.difficile), mot));
+  if (vus.length >= 3) liste.push({ type: "paires", mots: melanger(vus).slice(0, enfant ? 4 : 5) });
+  // Leçons plus courtes pour les enfants : 3 exercices de fin au lieu d'un par mot.
+  for (const mot of melanger(vus).slice(0, enfant ? 3 : vus.length)) liste.push(exercice(choisirType(mot, "difficile"), mot));
   return liste;
 }
 
 function construireRevision(mots) {
   // Les mots les plus fragiles d'abord (niveau le plus bas), 8 au maximum.
   const choisis = melanger(mots).sort((a, b) => niveauMot(a.id) - niveauMot(b.id)).slice(0, 8);
-  const liste = choisis.map((mot) => exercice(alea(TYPES.moyen), mot));
-  if (choisis.length >= 3) liste.push({ type: "paires", mots: melanger(choisis).slice(0, 5) });
-  for (const mot of melanger(choisis)) liste.push(exercice(alea(TYPES.difficile), mot));
+  const liste = choisis.map((mot) => exercice(choisirType(mot, "moyen"), mot));
+  const motsSimples = choisis.filter((m) => !m.phrase);
+  if (motsSimples.length >= 3) liste.push({ type: "paires", mots: melanger(motsSimples).slice(0, 5) });
+  for (const mot of melanger(choisis)) liste.push(exercice(choisirType(mot, "difficile"), mot));
   return liste;
 }
 
@@ -157,8 +194,54 @@ function afficherPas() {
   void zone.offsetWidth; // relance l'animation d'apparition
   zone.classList.add("apparition");
   if (etape.type === "decouverte") afficherDecouverte(etape);
+  else if (etape.type === "note") afficherNote(etape);
   else if (etape.type === "paires") afficherPaires(etape);
+  else if (etape.type === "ordre") afficherOrdre(etape);
   else afficherChoix(etape);
+}
+
+function afficherNote({ texte }) {
+  $("zone").innerHTML = `
+    <p class="etiquette">📖 À savoir avant de commencer</p>
+    <div class="carte note-lecon"></div>
+    <div class="mascotte"><span class="panda">🐼</span><p class="bulle">Pas besoin de tout retenir : on le reverra en pratiquant !</p></div>`;
+  $("zone").querySelector(".note-lecon").textContent = texte;
+  afficherBandeau("neutre", "", "", "C'est parti !");
+  pas[index].reussi = true;
+}
+
+// Exercice de production : on reconstruit la phrase en touchant les mots.
+function afficherOrdre(etape) {
+  const zone = $("zone");
+  zone.innerHTML = `<p class="consigne"></p><div class="question">${etape.question}</div>
+    <div class="ligne-reponse" aria-label="Ta phrase"></div>
+    <div class="banque"></div>
+    <div class="actions"><button class="bouton" id="verifier" disabled>Vérifier</button></div>`;
+  zone.querySelector(".consigne").textContent = etape.consigne;
+  const ligne = zone.querySelector(".ligne-reponse");
+  const banque = zone.querySelector(".banque");
+  const verifier = zone.querySelector("#verifier");
+
+  etape.morceaux.forEach((morceau) => {
+    const b = document.createElement("button");
+    b.className = "morceau";
+    b.textContent = morceau;
+    b.addEventListener("click", () => {
+      if (etape.repondu) return;
+      // Un mot passe de la banque à la phrase, et inversement.
+      (b.parentElement === banque ? ligne : banque).appendChild(b);
+      prononcer(morceau);
+      verifier.disabled = ligne.children.length !== etape.morceaux.length;
+    });
+    banque.appendChild(b);
+  });
+
+  verifier.addEventListener("click", () => {
+    const reponse = [...ligne.children].map((b) => b.textContent).join("");
+    verifier.disabled = true;
+    ligne.classList.add(reponse === etape.bonne ? "bon" : "faux");
+    repondre(etape, reponse, null);
+  });
 }
 
 function afficherDecouverte({ mot }) {
@@ -172,7 +255,9 @@ function afficherDecouverte({ mot }) {
     </div>
     <div class="mascotte"><span class="panda">🐼</span><p class="bulle"></p></div>`;
   zone.querySelector(".decouverte").appendChild(boutonsSon(mot.hanzi));
-  zone.querySelector(".bulle").textContent = mot.astuce || alea(MASCOTTE);
+  if (!enfant) zone.querySelector(".decouverte").appendChild(boutonsMicro(mot.hanzi));
+  zone.querySelector(".bulle").textContent = mot.astuce || (mot.phrase && routine?.conseil) || alea(MASCOTTE);
+  if (mot.phrase) zone.querySelector(".d-hanzi").classList.add("phrase");
   setTimeout(() => prononcer(mot.hanzi), 250);
   afficherBandeau("neutre", "", "", "Continuer");
   pas[index].reussi = true;
@@ -220,7 +305,7 @@ function repondre(etape, choix, bouton) {
     afficherBandeau("ok", titre, detailMot(etape.mot));
   } else {
     combo = 0;
-    bouton.classList.add("faux");
+    bouton?.classList.add("faux");
     erreurs.add(etape.mot.id);
     sonFaux();
     // L'exercice reviendra (mélangé autrement) à la fin de la leçon.
@@ -300,6 +385,7 @@ function confettis() {
 function terminer() {
   for (const mot of motsSession.values()) enregistrerReponse(mot.id, !erreurs.has(mot.id));
   if (lecon) terminerLecon(lecon.cle);
+  const autocollant = enfant ? gagnerAutocollant() : null;
 
   const parfait = erreurs.size === 0;
   const xp = 10 + (parfait ? 5 : 0);
@@ -315,8 +401,10 @@ function terminer() {
   zone.innerHTML = `
     <div class="fin">
       <div class="fin-emoji">${parfait ? "🏆" : "🎉"}</div>
-      <h2>${lecon && !lecon.revision ? "Leçon terminée !" : "Révision terminée !"}</h2>
+      <h2>${routine ? `${routine.emoji} ${routine.titre} : entraînement terminé !` : lecon && !lecon.revision ? "Leçon terminée !" : "Révision terminée !"}</h2>
       <p>${parfait ? "Sans aucune faute, 太棒了 (tài bàng le) !" : "Les mots difficiles reviendront dans tes révisions."}</p>
+      ${autocollant ? `<div class="autocollant-gagne"><span>${autocollant}</span>Tu gagnes un autocollant !</div>` : ""}
+      ${routine ? `<p class="carte defi">💬 <strong>Défi :</strong> utilise une de ces phrases avec tes enfants aujourd'hui, puis coche-la dans « Au quotidien » (+2 XP).</p>` : ""}
       <div class="tuiles-fin">
         <div class="tuile-fin or"><small>XP gagnés</small><strong>⭐ +${xp}</strong></div>
         <div class="tuile-fin vert"><small>Précision</small><strong>🎯 ${precision} %</strong></div>
@@ -353,11 +441,17 @@ $("continuer").addEventListener("click", () => {
 async function demarrer() {
   if (!profil) { location.href = "../index.html"; return; }
   activerHorsLigne("../");
-  const unites = await chargerParcours("../data/vocabulaire/");
-  tousLesMots = unites.flatMap((u) => u.mots);
+  const [unites, routines] = await Promise.all([chargerParcours("../data/vocabulaire/"), chargerRoutines("../data/")]);
+  tousLesMots = [...unites.flatMap((u) => u.mots), ...routines.flatMap((r) => r.phrases)];
   const params = new URLSearchParams(location.search);
 
-  if (params.get("revision") === "jour") {
+  if (params.get("routine")) {
+    routine = routines.find((r) => r.id === params.get("routine"));
+    if (!routine) { location.href = "../index.html"; return; }
+    // Les phrases jamais vues sont découvertes, les autres seulement révisées.
+    const nouvelles = routine.phrases.filter((p) => niveauMot(p.id) === 0).slice(0, 4);
+    pas = nouvelles.length ? construireNouvelleLecon(nouvelles) : construireRevision(routine.phrases);
+  } else if (params.get("revision") === "jour") {
     const aRevoir = new Set(motsARevoir());
     const mots = tousLesMots.filter((m) => aRevoir.has(m.id));
     if (mots.length === 0) {
@@ -368,7 +462,9 @@ async function demarrer() {
   } else {
     lecon = toutesLesLecons(unites).find((l) => l.cle === params.get("cle"));
     if (!lecon) { location.href = "../index.html"; return; }
-    pas = lecon.revision ? construireRevision(lecon.mots) : construireNouvelleLecon(lecon.mots);
+    const unite = unites.find((u) => u.id === lecon.unite);
+    const premiere = unite.lecons[0] === lecon;
+    pas = lecon.revision ? construireRevision(lecon.mots) : construireNouvelleLecon(lecon.mots, premiere ? unite.note : null);
   }
   total = pas.length;
   afficherPas();

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Au quotidien · Mandarin en famille</title>
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <section id="liste">
+      <h2>💬 Au quotidien</h2>
+      <p class="carte intro">Des phrases simples à dire à vos enfants pendant les moments de la journée.
+        Les tout-petits apprennent une langue en l'entendant de <strong>vous</strong>, dans la vraie vie :
+        une phrase par jour, répétée souvent, vaut mieux que de longues séances.</p>
+      <div id="routines" class="grille"></div>
+    </section>
+
+    <section id="detail" class="cache">
+      <button class="bouton secondaire" id="retour">← Toutes les routines</button>
+      <h2 id="d-titre"></h2>
+      <p class="carte conseil" id="d-conseil"></p>
+      <a class="bouton" id="d-entrainer">🎯 M'entraîner sur ces phrases</a>
+      <div id="phrases"></div>
+    </section>
+  </main>
+
+  <script type="module" src="../js/quotidien.js"></script>
+</body>
+</html>

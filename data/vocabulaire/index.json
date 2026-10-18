@@ -1,9 +1,16 @@
 [
-  { "id": "salutations", "titre": "Salutations", "emoji": "👋", "fichier": "salutations.json" },
-  { "id": "animaux", "titre": "Animaux", "emoji": "🐼", "fichier": "animaux.json" },
-  { "id": "couleurs", "titre": "Couleurs", "emoji": "🎨", "fichier": "couleurs.json" },
-  { "id": "nombres", "titre": "Nombres", "emoji": "🔢", "fichier": "nombres.json" },
-  { "id": "famille", "titre": "Famille", "emoji": "👨‍👩‍👧", "fichier": "famille.json" },
-  { "id": "nourriture", "titre": "Nourriture", "emoji": "🥟", "fichier": "nourriture.json" },
-  { "id": "corps", "titre": "Corps", "emoji": "✋", "fichier": "corps.json" }
+  { "id": "salutations", "titre": "Salutations", "emoji": "👋", "fichier": "salutations.json",
+    "note": "Le chinois a 4 tons : la même syllabe change de sens selon la mélodie (mā = maman, mǎ = cheval). La couleur du pinyin vous indique le ton. Quand deux 3e tons se suivent, le premier se prononce comme un 2e ton : 你好 nǐ hǎo se dit « ní hǎo »." },
+  { "id": "animaux", "titre": "Animaux", "emoji": "🐼", "fichier": "animaux.json",
+    "note": "Pour compter, on place un « classificateur » entre le nombre et le nom. Pour la plupart des animaux, c'est 只 zhī : 一只猫 yì zhī māo = un chat, 两只狗 liǎng zhī gǒu = deux chiens." },
+  { "id": "couleurs", "titre": "Couleurs", "emoji": "🎨", "fichier": "couleurs.json",
+    "note": "Les couleurs finissent par 色 (couleur). L'adjectif se place avant le nom, relié par 的 : 红色的苹果 hóngsè de píngguǒ = une pomme rouge." },
+  { "id": "nombres", "titre": "Nombres", "emoji": "🔢", "fichier": "nombres.json",
+    "note": "Les nombres sont très logiques : 十一 (10+1) = 11, 二十 (2×10) = 20, 二十三 = 23. Devant un nom, « deux » se dit 两 liǎng et non 二 : 两只猫 = deux chats." },
+  { "id": "famille", "titre": "Famille", "emoji": "👨‍👩‍👧", "fichier": "famille.json",
+    "note": "Le chinois distingue les aînés et les cadets (哥哥 grand frère, 弟弟 petit frère), et les grands-parents paternels (爷爷, 奶奶) des maternels (外公 wàigōng, 外婆 wàipó)." },
+  { "id": "nourriture", "titre": "Nourriture", "emoji": "🥟", "fichier": "nourriture.json",
+    "note": "Deux verbes essentiels : 吃 chī (manger) et 喝 hē (boire). « Je veux… » se dit 我要… wǒ yào : 我要苹果 = je veux une pomme. Bonne nouvelle : il n'y a pas de conjugaison en chinois !" },
+  { "id": "corps", "titre": "Corps", "emoji": "✋", "fichier": "corps.json",
+    "note": "Pour « mon / ma », on ajoute 的 : 我的手 wǒ de shǒu = ma main. « J'ai mal à la tête » : 我头疼 wǒ tóu téng (mot à mot : moi tête mal)." }
 ]

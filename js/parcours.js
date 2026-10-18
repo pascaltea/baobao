@@ -22,6 +22,22 @@ export async function chargerParcours(dossier) {
   });
 }
 
+// Phrases du quotidien : « decoupe » sépare les mots par des espaces,
+// ce qui sert à l'exercice « remettre dans l'ordre ».
+export async function chargerRoutines(dossierData) {
+  const routines = await chargerJSON(`${dossierData}quotidien.json`);
+  for (const r of routines) {
+    r.phrases = r.phrases.map((p) => ({
+      ...p,
+      hanzi: p.decoupe.replace(/\s+/g, ""),
+      morceaux: p.decoupe.split(/\s+/).filter((t) => !/^[，。！？、]+$/.test(t)),
+      theme: r.id,
+      phrase: true,
+    }));
+  }
+  return routines;
+}
+
 export function toutesLesLecons(unites) {
   return unites.flatMap((u) => u.lecons);
 }

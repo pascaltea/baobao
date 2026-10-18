@@ -1,0 +1,49 @@
+[
+  {
+    "id": "laohu", "titre": "Deux tigres", "chinois": "两只老虎", "emoji": "🐯",
+    "air": "Sur l'air de « Frère Jacques » : vous connaissez déjà la mélodie !",
+    "lignes": [
+      {"hanzi": "两只老虎，两只老虎，", "pinyin": "liǎng zhī lǎohǔ liǎng zhī lǎohǔ", "fr": "Deux tigres, deux tigres,"},
+      {"hanzi": "跑得快，跑得快。", "pinyin": "pǎo de kuài pǎo de kuài", "fr": "courent vite, courent vite."},
+      {"hanzi": "一只没有眼睛，", "pinyin": "yì zhī méiyǒu yǎnjing", "fr": "L'un n'a pas d'yeux,"},
+      {"hanzi": "一只没有尾巴，", "pinyin": "yì zhī méiyǒu wěiba", "fr": "l'autre n'a pas de queue,"},
+      {"hanzi": "真奇怪，真奇怪！", "pinyin": "zhēn qíguài zhēn qíguài", "fr": "c'est bizarre, c'est bizarre !"}
+    ]
+  },
+  {
+    "id": "xingxing", "titre": "Petite étoile", "chinois": "小星星", "emoji": "⭐",
+    "air": "Sur l'air de « Ah ! vous dirai-je maman » (Brille, brille, petite étoile).",
+    "lignes": [
+      {"hanzi": "一闪一闪亮晶晶，", "pinyin": "yì shǎn yì shǎn liàng jīngjīng", "fr": "Ça scintille, ça brille,"},
+      {"hanzi": "满天都是小星星。", "pinyin": "mǎn tiān dōu shì xiǎo xīngxing", "fr": "le ciel est plein de petites étoiles."},
+      {"hanzi": "挂在天上放光明，", "pinyin": "guà zài tiān shàng fàng guāngmíng", "fr": "Accrochées dans le ciel, elles brillent,"},
+      {"hanzi": "好像许多小眼睛。", "pinyin": "hǎoxiàng xǔduō xiǎo yǎnjing", "fr": "comme plein de petits yeux."},
+      {"hanzi": "一闪一闪亮晶晶，", "pinyin": "yì shǎn yì shǎn liàng jīngjīng", "fr": "Ça scintille, ça brille,"},
+      {"hanzi": "满天都是小星星。", "pinyin": "mǎn tiān dōu shì xiǎo xīngxing", "fr": "le ciel est plein de petites étoiles."}
+    ]
+  },
+  {
+    "id": "shushu", "titre": "Un, deux, trois, quatre, cinq", "chinois": "上山打老虎", "emoji": "🔢",
+    "air": "Comptine traditionnelle pour compter, à réciter en rythme en comptant sur les doigts.",
+    "lignes": [
+      {"hanzi": "一二三四五，", "pinyin": "yī èr sān sì wǔ", "fr": "Un, deux, trois, quatre, cinq,"},
+      {"hanzi": "上山打老虎。", "pinyin": "shàng shān dǎ lǎohǔ", "fr": "on monte à la montagne attraper le tigre."},
+      {"hanzi": "老虎打不到，", "pinyin": "lǎohǔ dǎ bu dào", "fr": "Le tigre, on ne l'attrape pas,"},
+      {"hanzi": "打到小松鼠。", "pinyin": "dǎ dào xiǎo sōngshǔ", "fr": "on attrape un petit écureuil."},
+      {"hanzi": "松鼠有几只？", "pinyin": "sōngshǔ yǒu jǐ zhī", "fr": "Combien y a-t-il d'écureuils ?"},
+      {"hanzi": "让我数一数。", "pinyin": "ràng wǒ shǔ yi shǔ", "fr": "Laisse-moi compter."},
+      {"hanzi": "数来又数去，", "pinyin": "shǔ lái yòu shǔ qù", "fr": "Je compte et je recompte :"},
+      {"hanzi": "一二三四五！", "pinyin": "yī èr sān sì wǔ", "fr": "un, deux, trois, quatre, cinq !"}
+    ]
+  },
+  {
+    "id": "shengri", "titre": "Joyeux anniversaire", "chinois": "生日快乐", "emoji": "🎂",
+    "air": "Sur l'air de « Joyeux anniversaire ».",
+    "lignes": [
+      {"hanzi": "祝你生日快乐，", "pinyin": "zhù nǐ shēngrì kuàilè", "fr": "Joyeux anniversaire,"},
+      {"hanzi": "祝你生日快乐，", "pinyin": "zhù nǐ shēngrì kuàilè", "fr": "joyeux anniversaire,"},
+      {"hanzi": "祝你生日快乐，", "pinyin": "zhù nǐ shēngrì kuàilè", "fr": "joyeux anniversaire,"},
+      {"hanzi": "祝你生日快乐！", "pinyin": "zhù nǐ shēngrì kuàilè", "fr": "joyeux anniversaire !"}
+    ]
+  }
+]

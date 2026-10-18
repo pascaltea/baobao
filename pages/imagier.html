@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imagier · Mandarin en famille</title>
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 学中文</a></h1>
+    <span class="profil-actif"></span>
+  </header>
+
+  <main>
+    <section id="themes-imagier">
+      <h2>🖼️ Imagier</h2>
+      <p class="carte intro">À regarder <strong>ensemble</strong>, l'enfant sur les genoux : montrez l'image, dites le mot avec
+        l'appli, puis faites-le répéter avec un geste. Après 5 minutes, une pause vous proposera de continuer… sans écran !</p>
+      <div id="themes" class="grille"></div>
+    </section>
+
+    <section id="visionneuse" class="cache">
+      <div class="imagier-haut">
+        <button class="bouton secondaire" id="fermer">← Thèmes</button>
+        <label class="case petit"><input type="checkbox" id="voir-pinyin" checked> pinyin</label>
+      </div>
+      <button id="image" class="image-imagier" aria-label="Écouter le mot">
+        <span class="ii-emoji" id="ii-emoji"></span>
+        <span class="ii-hanzi" id="ii-hanzi"></span>
+        <span class="ii-fr" id="ii-fr"></span>
+      </button>
+      <div class="imagier-nav">
+        <button class="bouton-rond" id="precedent" aria-label="Image précédente">‹</button>
+        <span id="position" class="petit"></span>
+        <button class="bouton-rond" id="suivant" aria-label="Image suivante">›</button>
+      </div>
+    </section>
+
+    <div id="pause" class="pause cache" role="dialog" aria-modal="true" aria-labelledby="pause-titre">
+      <div class="pause-carte">
+        <div class="pause-emoji">🌳</div>
+        <h2 id="pause-titre">C'est l'heure de jouer sans écran !</h2>
+        <p id="pause-idee"></p>
+        <button class="bouton" id="pause-ok">D'accord !</button>
+        <button class="lien" id="pause-encore">Encore 2 minutes</button>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="../js/imagier.js"></script>
+</body>
+</html>

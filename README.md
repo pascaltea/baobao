@@ -5,34 +5,44 @@ Duolingo, sans publicité, sans abonnement et sans « vies » perdues.
 
 👉 **https://pascaltea.github.io/mandarin-famille/**
 
+## Pour qui ?
+
+| Profil | Ce qu'il propose |
+|---|---|
+| 🧑 **Adulte** | Parcours de leçons, phrases du quotidien à dire aux enfants, comptines, révisions |
+| 🧒 **Enfant 3-6 ans** | Leçons courtes avec images et sons (sans lecture), imagier, comptines, autocollants |
+| 👶 **Bébé 0-2 ans** | Pas d'exercices : imagier à regarder avec un parent (5 min max), comptines. C'est le parent qui parle ! |
+
 ## Fonctionnalités
 
-### Apprendre
-- 🗺️ **Parcours** : 7 unités (salutations, animaux, couleurs, nombres, famille,
-  nourriture, corps), découpées en leçons de 4-5 mots qui se débloquent une à une,
-  avec une révision 🏆 à la fin de chaque unité.
-- ✨ **Découverte des mots** : chaque nouveau mot est présenté avant d'être pratiqué :
-  caractère, pinyin **coloré selon le ton**, audio normal et 🐢 lent, emoji et
-  astuce mnémotechnique du panda 🐼.
-- 🧩 **6 types d'exercices**, du plus facile au plus difficile : écoute → image,
-  caractère → sens, image → caractère, écoute → caractère, bon pinyin (tons) et
-  association de paires. Les erreurs reviennent en fin de leçon.
-- 🧠 **Répétition espacée** : chaque mot revient au bon moment (1, 2, 4, 7, 15 puis
-  30 jours) dans la « Révision du jour ».
+### Avec mes enfants
+- 💬 **Au quotidien** : 51 phrases pour 8 moments de la journée (réveil, repas, habillage,
+  dehors, jeu, bain, coucher, émotions), avec des conseils pour les parents, l'audio,
+  « Je répète » au micro et « Je l'ai dite ! » (+2 XP quand on l'utilise pour de vrai)
+- 🌅 **Phrase du jour** à dire aux enfants
+- 🎶 **Comptines** traditionnelles (两只老虎, 小星星, 上山打老虎, 生日快乐) avec pinyin,
+  traduction et l'air à chanter
+- 🖼️ **Imagier** plein écran à regarder ensemble, avec une pause sans écran après 5 minutes
 
-### Rester motivé
-- ⭐ XP, 🔥 série de jours, 🎯 objectif quotidien, 🏅 classement de la famille
-- Sons, combos et confettis
+### Apprendre (adultes)
+- 🗺️ **Parcours** : 7 unités, des leçons qui se débloquent, une révision 🏆 par unité
+- 📖 **Notes « À savoir »** de grammaire en tête de chaque unité
+- ✨ **Découverte** de chaque mot : pinyin coloré par ton, audio normal et 🐢 lent,
+  astuce mnémotechnique, 🎙️ enregistrement de sa voix pour comparer
+- 🧩 **Exercices** : écoute → image, écoute → sens, caractère → sens, image → caractère,
+  bon pinyin (tons), paires, et **remettre la phrase dans l'ordre**
+- 🧠 **Répétition espacée** et révision du jour
 
-### Pour toute la famille
-- 👨‍👩‍👧 Un profil par personne, chacun avec sa progression
-- 🧒 **Mode enfant** : exercices uniquement avec images et sons, sans lecture
+### Rester motivé, sans pression
+- ⭐ XP, 🔥 série (un jour de repos ne la casse pas), 🎯 objectif réglable
+- 🤝 **Équipe famille** : un objectif commun de la semaine plutôt qu'un classement
+- Pas de vies, pas de pub, pas d'abonnement, utilisable hors-ligne
 
-### Entraînement libre
-- 🃏 Flashcards · 🎵 Les 4 tons · ❓ Quiz (sur les mots déjà appris)
+Voir [docs/critiques.md](docs/critiques.md) : les critiques faites à Duolingo et aux
+autres applis, et comment l'appli y répond.
 
-📱 Installable sur téléphone/tablette et utilisable hors-ligne (PWA).
-La progression est enregistrée dans le navigateur de chaque appareil.
+📱 Installable sur téléphone/tablette (PWA). La progression est enregistrée dans le
+navigateur de chaque appareil.
 
 ## Lancer en local
 
@@ -46,6 +56,9 @@ python3 -m http.server 8000
 ```
 index.html              accueil : profils, tableau de bord, parcours
 pages/lecon.html        une leçon (découverte + exercices)
+pages/quotidien.html    phrases du quotidien à dire aux enfants
+pages/comptines.html    comptines
+pages/imagier.html      imagier pour les petits
 pages/                  entraînement libre (flashcards, tons, quiz)
 css/style.css           styles
 js/
@@ -55,8 +68,11 @@ js/
   profils.js            profils, XP, série, répétition espacée
   pinyin.js             syllabes, couleurs des tons, variantes de tons
   sons.js               petits sons de jeu
+  micro.js              « Je répète » : enregistrement et comparaison
 data/vocabulaire/       le contenu, un fichier JSON par thème
 data/tons.json          séries de mots pour l'exercice des tons
+data/quotidien.json     routines et phrases du quotidien
+data/comptines.json     paroles des comptines
 docs/idees.md           roadmap et idées
 ```
 

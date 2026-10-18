@@ -1,6 +1,11 @@
 // Profils et progression, stockés dans le navigateur (localStorage).
 // Chaque profil garde : ses XP, sa série de jours, les leçons terminées
 // et, pour chaque mot vu, son niveau de répétition espacée (boîtes de Leitner).
+//
+// Trois types de profil :
+//   adulte  parcours complet, phrases du quotidien à dire aux enfants
+//   enfant  (3-6 ans) exercices avec images et sons, autocollants à gagner
+//   bebe    (0-2 ans) pas d'exercices : imagier à regarder avec un parent, comptines
 
 const CLE = "mandarin-famille";
 
@@ -21,7 +26,10 @@ function normaliser(p) {
   p.serie ??= { jours: 0, dernier: null };
   p.objectif ??= 20;
   p.lecons ??= [];
-  p.mode ??= "normal";
+  p.mode ??= "adulte";
+  if (p.mode === "normal") p.mode = "adulte";
+  p.autocollants ??= [];
+  p.dites ??= { date: null, ids: [] };
   p.mots ??= {};
   if (Array.isArray(p.connus)) {
     for (const id of p.connus) p.mots[id] ??= { niveau: 1, prochaine: aujourdhui() };
@@ -62,7 +70,7 @@ export function listerProfils() {
   return lireEtat().profils;
 }
 
-export function ajouterProfil(nom, avatar, mode = "normal") {
+export function ajouterProfil(nom, avatar, mode = "adulte") {
   const etat = lireEtat();
   const profil = normaliser({ id: Date.now().toString(36), nom, avatar, mode });
   etat.profils.push(profil);
@@ -91,6 +99,40 @@ export function profilActif() {
 
 export function changerMode(mode) {
   modifierActif((p) => { p.mode = mode; });
+}
+
+export function changerObjectif(xp) {
+  modifierActif((p) => { p.objectif = xp; });
+}
+
+// ---------- Vie réelle et récompenses ----------
+
+// « Je l'ai dite aujourd'hui » : une phrase utilisée avec les enfants rapporte 2 XP
+// (une seule fois par phrase et par jour).
+export function phrasesDitesAujourdhui() {
+  const p = profilActif();
+  return new Set(p?.dites.date === aujourdhui() ? p.dites.ids : []);
+}
+
+export function marquerPhraseDite(id) {
+  let nouvelle = false;
+  modifierActif((p) => {
+    if (p.dites.date !== aujourdhui()) p.dites = { date: aujourdhui(), ids: [] };
+    if (!p.dites.ids.includes(id)) { p.dites.ids.push(id); nouvelle = true; }
+  });
+  if (nouvelle) ajouterXP(2);
+  return nouvelle;
+}
+
+const AUTOCOLLANTS = ["🦄", "🐉", "🚀", "🌈", "🦖", "🐬", "🍭", "🎈", "🐞", "🦋", "🍉", "🚂", "🧁", "🦁", "🐧", "🐙", "🌻", "🚒", "🍦", "🐢", "🦊", "🪐", "🎠", "🐳"];
+
+// Les enfants gagnent un autocollant à chaque leçon terminée.
+export function gagnerAutocollant() {
+  const profil = profilActif();
+  const manquants = AUTOCOLLANTS.filter((a) => !profil.autocollants.includes(a));
+  const choix = (manquants.length ? manquants : AUTOCOLLANTS)[Math.floor(Math.random() * (manquants.length || AUTOCOLLANTS.length))];
+  modifierActif((p) => { p.autocollants.push(choix); });
+  return choix;
 }
 
 // ---------- Mots et répétition espacée ----------
@@ -144,8 +186,10 @@ export function ajouterXP(points) {
     const date = aujourdhui();
     p.xp += points;
     p.historique[date] = (p.historique[date] ?? 0) + points;
+    // Un jour de repos ne casse pas la série (pas de culpabilisation).
     if (p.serie.dernier !== date) {
-      p.serie.jours = p.serie.dernier === aujourdhui(-1) ? p.serie.jours + 1 : 1;
+      const enCours = p.serie.dernier === aujourdhui(-1) || p.serie.dernier === aujourdhui(-2);
+      p.serie.jours = enCours ? p.serie.jours + 1 : 1;
       p.serie.dernier = date;
     }
     // On ne garde que les 60 derniers jours d'historique.
@@ -156,7 +200,7 @@ export function ajouterXP(points) {
 
 export function statistiques(p = profilActif()) {
   if (!p) return null;
-  const serieEnCours = p.serie.dernier === aujourdhui() || p.serie.dernier === aujourdhui(-1);
+  const serieEnCours = p.serie.dernier !== null && p.serie.dernier >= aujourdhui(-2);
   let xpSemaine = 0;
   for (let i = 0; i < 7; i++) xpSemaine += p.historique[aujourdhui(-i)] ?? 0;
   return {

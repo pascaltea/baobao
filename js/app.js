@@ -15,6 +15,22 @@ export function prononcer(texte, vitesse = 0.8) {
   speechSynthesis.speak(phrase);
 }
 
+// Comme prononcer, mais renvoie une promesse résolue à la fin de la lecture.
+export function prononcerPuis(texte, vitesse = 0.8) {
+  return new Promise((fini) => {
+    if (!("speechSynthesis" in window)) return fini();
+    speechSynthesis.cancel();
+    const phrase = new SpeechSynthesisUtterance(texte);
+    phrase.lang = "zh-CN";
+    phrase.rate = vitesse;
+    const voix = speechSynthesis.getVoices().find((v) => v.lang.startsWith("zh"));
+    if (voix) phrase.voice = voix;
+    const secours = setTimeout(fini, 1500 + texte.length * 600);
+    phrase.onend = phrase.onerror = () => { clearTimeout(secours); fini(); };
+    speechSynthesis.speak(phrase);
+  });
+}
+
 // Charge un fichier JSON de data/ (chemin relatif à la page courante).
 export async function chargerJSON(chemin) {
   const reponse = await fetch(chemin);
