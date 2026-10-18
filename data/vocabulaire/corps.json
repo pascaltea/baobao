@@ -1,10 +1,10 @@
 [
-  { "id": "tou", "hanzi": "头", "pinyin": "tóu", "fr": "tête", "emoji": "🙆" },
-  { "id": "toufa", "hanzi": "头发", "pinyin": "tóufa", "fr": "cheveux", "emoji": "💇" },
-  { "id": "yanjing", "hanzi": "眼睛", "pinyin": "yǎnjing", "fr": "yeux", "emoji": "👀" },
-  { "id": "erduo", "hanzi": "耳朵", "pinyin": "ěrduo", "fr": "oreille", "emoji": "👂" },
-  { "id": "bizi", "hanzi": "鼻子", "pinyin": "bízi", "fr": "nez", "emoji": "👃" },
-  { "id": "zuiba", "hanzi": "嘴巴", "pinyin": "zuǐba", "fr": "bouche", "emoji": "👄" },
-  { "id": "shou", "hanzi": "手", "pinyin": "shǒu", "fr": "main", "emoji": "✋" },
-  { "id": "jiao", "hanzi": "脚", "pinyin": "jiǎo", "fr": "pied", "emoji": "🦶" }
+  {"id": "tou", "hanzi": "头", "pinyin": "tóu", "fr": "tête", "emoji": "🙆", "astuce": "头 se retrouve dans 头发 (cheveux)."},
+  {"id": "toufa", "hanzi": "头发", "pinyin": "tóufa", "fr": "cheveux", "emoji": "💇", "astuce": "头 = tête, 发 = cheveux : « cheveux de tête »."},
+  {"id": "yanjing", "hanzi": "眼睛", "pinyin": "yǎnjing", "fr": "yeux", "emoji": "👀"},
+  {"id": "erduo", "hanzi": "耳朵", "pinyin": "ěrduo", "fr": "oreille", "emoji": "👂"},
+  {"id": "bizi", "hanzi": "鼻子", "pinyin": "bízi", "fr": "nez", "emoji": "👃"},
+  {"id": "zuiba", "hanzi": "嘴巴", "pinyin": "zuǐba", "fr": "bouche", "emoji": "👄", "astuce": "嘴 = bouche. Le carré 口 tout à gauche est aussi une bouche !"},
+  {"id": "shou", "hanzi": "手", "pinyin": "shǒu", "fr": "main", "emoji": "✋", "astuce": "手 ressemble à une main avec ses doigts."},
+  {"id": "jiao", "hanzi": "脚", "pinyin": "jiǎo", "fr": "pied", "emoji": "🦶"}
 ]

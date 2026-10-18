@@ -1,16 +1,17 @@
 // Quiz à 4 choix, deux sortes de questions mélangées :
 //  - on voit (et entend) le caractère → on choisit la traduction
 //  - on voit l'emoji et le mot français → on choisit le caractère
-// Une bonne réponse compte le mot comme appris pour le profil actif.
+// Le quiz porte uniquement sur les mots déjà découverts dans les leçons.
 
 import { chargerJSON, chargerTousLesMots, prononcer, melanger, afficherProfilActif, activerHorsLigne } from "./app.js";
-import { profilActif, marquerMot } from "./profils.js";
+import { profilActif, enregistrerReponse, motsConnus, ajouterXP } from "./profils.js";
 
 const DATA = "../data/vocabulaire/";
 const NB_QUESTIONS = 10;
 const $ = (id) => document.getElementById(id);
 
-let tousLesMots = [];
+let dictionnaire = []; // tous les mots de l'appli
+let tousLesMots = [];  // les mots déjà découverts par le profil
 let themeChoisi = null; // null = tous les thèmes
 let questions = [];
 let numero = 0;
@@ -25,15 +26,18 @@ async function afficherThemes() {
   const themes = await chargerJSON(`${DATA}index.json`);
   const zone = $("themes");
   zone.innerHTML = "";
-  const tuile = (emoji, titre, id) => {
+  const tuile = (emoji, titre, id, nb) => {
+    const ouvert = nb >= 4;
     const b = document.createElement("button");
-    b.className = "tuile";
-    b.innerHTML = `<span class="grand">${emoji}</span><strong>${titre}</strong>`;
-    b.addEventListener("click", () => demarrer(id));
+    b.className = "tuile" + (ouvert ? "" : " verrouille");
+    b.innerHTML = `<span class="grand">${ouvert ? emoji : "🔒"}</span><strong>${titre}</strong><br><small>${nb} mot(s) appris</small>`;
+    if (ouvert) b.addEventListener("click", () => demarrer(id));
+    else b.disabled = true;
     zone.appendChild(b);
   };
-  tuile("🌈", "Tous les thèmes", null);
-  for (const t of themes) tuile(t.emoji, t.titre, t.id);
+  tuile("🌈", "Tous mes mots", null, tousLesMots.length);
+  for (const t of themes) tuile(t.emoji, t.titre, t.id, tousLesMots.filter((m) => m.theme === t.id).length);
+  $("aide-quiz").classList.toggle("cache", tousLesMots.length >= 4);
   montrer("choix-theme");
 }
 
@@ -45,7 +49,7 @@ function demarrer(theme) {
     sens: Math.random() < 0.5 ? "hanzi-vers-fr" : "fr-vers-hanzi",
     // Les mauvaises réponses viennent du même thème si possible (plus de 3 mots).
     leurres: melanger(
-      (pool.length >= 4 ? pool : tousLesMots).filter((m) => m.id !== mot.id && m.fr !== mot.fr)
+      (pool.length >= 4 ? pool : dictionnaire).filter((m) => m.id !== mot.id && m.fr !== mot.fr)
     ).slice(0, 3),
   }));
   numero = 0;
@@ -95,10 +99,8 @@ function repondre(option, bouton) {
   repondu = true;
   const { mot } = questions[numero];
   const juste = option.id === mot.id;
-  if (juste) {
-    points++;
-    marquerMot(mot.id, true);
-  }
+  if (juste) points++;
+  enregistrerReponse(mot.id, juste);
   for (const b of $("choix").children) {
     b.disabled = true;
     if (b.dataset.id === mot.id) b.classList.add("bon");
@@ -117,7 +119,8 @@ function terminer() {
   const ratio = points / total;
   $("fin-emoji").textContent = ratio >= 0.8 ? "🏆" : ratio >= 0.5 ? "🎉" : "💪";
   $("fin-titre").textContent = ratio >= 0.8 ? "太棒了 (tài bàng le) !" : ratio >= 0.5 ? "Bien joué !" : "Continue, tu progresses !";
-  $("bilan").textContent = `${points} bonne(s) réponse(s) sur ${total}.`;
+  $("bilan").textContent = `${points} bonne(s) réponse(s) sur ${total} · ⭐ +${points} XP`;
+  ajouterXP(points);
   montrer("fin");
 }
 
@@ -133,6 +136,8 @@ if (!profilActif()) {
 } else {
   afficherProfilActif();
   activerHorsLigne("../");
-  tousLesMots = await chargerTousLesMots(DATA);
+  dictionnaire = await chargerTousLesMots(DATA);
+  const connus = motsConnus();
+  tousLesMots = dictionnaire.filter((m) => connus.has(m.id));
   afficherThemes();
 }

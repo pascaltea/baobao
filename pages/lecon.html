@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leçon · Mandarin en famille</title>
+  <meta name="theme-color" content="#d7263d">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-lecon">
+  <div class="lecon-haut">
+    <a href="../index.html" class="fermer" aria-label="Quitter la leçon">✕</a>
+    <div class="barre"><span id="barre"></span></div>
+    <span id="combo" class="combo"></span>
+  </div>
+
+  <main id="zone" class="lecon-zone"></main>
+
+  <div id="bandeau" class="bandeau cache" aria-live="polite">
+    <div class="bandeau-contenu">
+      <div class="bandeau-texte">
+        <strong id="b-titre"></strong>
+        <div id="b-detail"></div>
+      </div>
+      <button class="bouton" id="continuer">Continuer</button>
+    </div>
+  </div>
+
+  <script type="module" src="../js/lecon.js"></script>
+</body>
+</html>

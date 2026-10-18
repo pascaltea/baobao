@@ -3,12 +3,13 @@
 import { profilActif } from "./profils.js";
 
 // Prononce un texte en chinois avec la synthèse vocale du navigateur.
-export function prononcer(texte) {
+// `vitesse` : 0.8 par défaut, 0.45 pour le mode « tortue ».
+export function prononcer(texte, vitesse = 0.8) {
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const phrase = new SpeechSynthesisUtterance(texte);
   phrase.lang = "zh-CN";
-  phrase.rate = 0.8;
+  phrase.rate = vitesse;
   const voix = speechSynthesis.getVoices().find((v) => v.lang.startsWith("zh"));
   if (voix) phrase.voice = voix;
   speechSynthesis.speak(phrase);

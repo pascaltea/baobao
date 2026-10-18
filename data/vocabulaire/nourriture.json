@@ -1,12 +1,12 @@
 [
-  { "id": "mifan", "hanzi": "米饭", "pinyin": "mǐfàn", "fr": "riz", "emoji": "🍚" },
-  { "id": "miantiao", "hanzi": "面条", "pinyin": "miàntiáo", "fr": "nouilles", "emoji": "🍜" },
-  { "id": "jiaozi", "hanzi": "饺子", "pinyin": "jiǎozi", "fr": "raviolis", "emoji": "🥟" },
-  { "id": "pingguo", "hanzi": "苹果", "pinyin": "píngguǒ", "fr": "pomme", "emoji": "🍎" },
-  { "id": "xiangjiao", "hanzi": "香蕉", "pinyin": "xiāngjiāo", "fr": "banane", "emoji": "🍌" },
-  { "id": "niunai", "hanzi": "牛奶", "pinyin": "niúnǎi", "fr": "lait", "emoji": "🥛" },
-  { "id": "shui", "hanzi": "水", "pinyin": "shuǐ", "fr": "eau", "emoji": "💧" },
-  { "id": "jidan", "hanzi": "鸡蛋", "pinyin": "jīdàn", "fr": "œuf", "emoji": "🥚" },
-  { "id": "mianbao", "hanzi": "面包", "pinyin": "miànbāo", "fr": "pain", "emoji": "🍞" },
-  { "id": "cha", "hanzi": "茶", "pinyin": "chá", "fr": "thé", "emoji": "🍵" }
+  {"id": "mifan", "hanzi": "米饭", "pinyin": "mǐfàn", "fr": "riz", "emoji": "🍚", "astuce": "米 = riz (le grain), 饭 = repas."},
+  {"id": "miantiao", "hanzi": "面条", "pinyin": "miàntiáo", "fr": "nouilles", "emoji": "🍜"},
+  {"id": "jiaozi", "hanzi": "饺子", "pinyin": "jiǎozi", "fr": "raviolis", "emoji": "🥟", "astuce": "On mange des raviolis pour le Nouvel An chinois 🧧"},
+  {"id": "pingguo", "hanzi": "苹果", "pinyin": "píngguǒ", "fr": "pomme", "emoji": "🍎", "astuce": "果 = fruit. On le retrouve dans beaucoup de noms de fruits."},
+  {"id": "xiangjiao", "hanzi": "香蕉", "pinyin": "xiāngjiāo", "fr": "banane", "emoji": "🍌"},
+  {"id": "niunai", "hanzi": "牛奶", "pinyin": "niúnǎi", "fr": "lait", "emoji": "🥛", "astuce": "牛 = vache, 奶 = lait : « lait de vache »."},
+  {"id": "shui", "hanzi": "水", "pinyin": "shuǐ", "fr": "eau", "emoji": "💧", "astuce": "水 dessine de l'eau qui coule, avec des gouttes de chaque côté."},
+  {"id": "jidan", "hanzi": "鸡蛋", "pinyin": "jīdàn", "fr": "œuf", "emoji": "🥚", "astuce": "鸡 = poule, 蛋 = œuf : « œuf de poule »."},
+  {"id": "mianbao", "hanzi": "面包", "pinyin": "miànbāo", "fr": "pain", "emoji": "🍞", "astuce": "面 = farine, 包 = envelopper."},
+  {"id": "cha", "hanzi": "茶", "pinyin": "chá", "fr": "thé", "emoji": "🍵"}
 ]

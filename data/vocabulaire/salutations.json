@@ -1,12 +1,12 @@
 [
-  { "id": "nihao", "hanzi": "你好", "pinyin": "nǐ hǎo", "fr": "bonjour", "emoji": "👋" },
-  { "id": "zaoshanghao", "hanzi": "早上好", "pinyin": "zǎoshang hǎo", "fr": "bonjour (le matin)", "emoji": "🌅" },
-  { "id": "wanan", "hanzi": "晚安", "pinyin": "wǎn'ān", "fr": "bonne nuit", "emoji": "🌙" },
-  { "id": "zaijian", "hanzi": "再见", "pinyin": "zàijiàn", "fr": "au revoir", "emoji": "🚪" },
-  { "id": "xiexie", "hanzi": "谢谢", "pinyin": "xièxie", "fr": "merci", "emoji": "🙏" },
-  { "id": "bukeqi", "hanzi": "不客气", "pinyin": "bú kèqi", "fr": "de rien", "emoji": "😊" },
-  { "id": "qing", "hanzi": "请", "pinyin": "qǐng", "fr": "s'il te plaît", "emoji": "🤲" },
-  { "id": "duibuqi", "hanzi": "对不起", "pinyin": "duìbuqǐ", "fr": "pardon", "emoji": "😔" },
-  { "id": "meiguanxi", "hanzi": "没关系", "pinyin": "méi guānxi", "fr": "ce n'est pas grave", "emoji": "🙂" },
-  { "id": "woaini", "hanzi": "我爱你", "pinyin": "wǒ ài nǐ", "fr": "je t'aime", "emoji": "❤️" }
+  {"id": "nihao", "hanzi": "你好", "pinyin": "nǐ hǎo", "fr": "bonjour", "emoji": "👋", "astuce": "你 = toi, 好 = bien : « toi bien ! »"},
+  {"id": "zaoshanghao", "hanzi": "早上好", "pinyin": "zǎoshang hǎo", "fr": "bonjour (le matin)", "emoji": "🌅", "astuce": "早上 = le matin, 好 = bien : « matin bien ! »"},
+  {"id": "wanan", "hanzi": "晚安", "pinyin": "wǎn'ān", "fr": "bonne nuit", "emoji": "🌙", "astuce": "晚 = le soir, 安 = paisible : « soir paisible »."},
+  {"id": "zaijian", "hanzi": "再见", "pinyin": "zàijiàn", "fr": "au revoir", "emoji": "🚪", "astuce": "再 = de nouveau, 见 = voir : « au re-voir », comme en français !"},
+  {"id": "xiexie", "hanzi": "谢谢", "pinyin": "xièxie", "fr": "merci", "emoji": "🙏", "astuce": "On répète 谢 deux fois, comme « merci merci »."},
+  {"id": "bukeqi", "hanzi": "不客气", "pinyin": "bú kèqi", "fr": "de rien", "emoji": "😊", "astuce": "Mot à mot : « pas de cérémonie »."},
+  {"id": "qing", "hanzi": "请", "pinyin": "qǐng", "fr": "s'il te plaît", "emoji": "🤲"},
+  {"id": "duibuqi", "hanzi": "对不起", "pinyin": "duìbuqǐ", "fr": "pardon", "emoji": "😔", "astuce": "Mot à mot : « je ne peux pas te faire face »."},
+  {"id": "meiguanxi", "hanzi": "没关系", "pinyin": "méi guānxi", "fr": "ce n'est pas grave", "emoji": "🙂", "astuce": "Mot à mot : « pas de rapport », donc ce n'est pas grave."},
+  {"id": "woaini", "hanzi": "我爱你", "pinyin": "wǒ ài nǐ", "fr": "je t'aime", "emoji": "❤️", "astuce": "我 = moi, 爱 = aimer, 你 = toi. Même ordre qu'en français !"}
 ]
